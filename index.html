@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formation IA — Journée 2 | Sophiae</title>
+<style>
+:root {
+  --bg:#F1F5F9;--surface:#fff;--surface2:#F8FAFC;--text:#0F172A;--text-sec:#475569;--text-muted:#94A3B8;--border:#E2E8F0;
+  --sb:#0F172A;--sb-text:rgba(255,255,255,.85);--sb-muted:rgba(255,255,255,.4);--sb-hover:rgba(255,255,255,.07);--sb-active:rgba(255,255,255,.13);
+  --c1:#2563EB;--c2:#7C3AED;--c3:#4F46E5;--c4:#EA580C;--c5:#059669;
+  --c1l:#EFF6FF;--c2l:#F5F3FF;--c3l:#EEF2FF;--c4l:#FFF7ED;--c5l:#ECFDF5;
+  --ok:#22C55E;--r:10px;--sh:0 1px 3px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.06);--shm:0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -1px rgba(0,0,0,.06);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{font-size:15px}
+body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;background:var(--bg);color:var(--text);display:flex;height:100vh;overflow:hidden}
+
+/* SIDEBAR */
+.sb{width:252px;background:var(--sb);display:flex;flex-direction:column;flex-shrink:0;overflow-y:auto}
+.sb-brand{padding:18px 16px 14px;border-bottom:1px solid rgba(255,255,255,.08)}
+.sb-brand .tag{font-size:10px;font-weight:600;letter-spacing:.08em;color:var(--sb-muted);text-transform:uppercase;margin-bottom:3px}
+.sb-brand h1{font-size:15px;font-weight:700;color:#fff;line-height:1.3}
+.sb-brand .sub{font-size:11px;color:var(--sb-muted);margin-top:2px}
+.sb-nav{flex:1;padding:10px 8px}
+.nav-label{font-size:10px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--sb-muted);padding:8px 10px 5px}
+.nb{display:flex;align-items:center;gap:9px;width:100%;padding:8px 10px;border:none;background:none;border-radius:7px;cursor:pointer;color:var(--sb-text);font-size:12.5px;text-align:left;transition:background .12s,color .12s;margin-bottom:2px;line-height:1.3}
+.nb:hover{background:var(--sb-hover);color:#fff}
+.nb.active{background:var(--sb-active);color:#fff}
+.ndot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.nb .meta{margin-left:auto;display:flex;align-items:center;gap:4px;flex-shrink:0}
+.nbadge{font-size:9px;background:rgba(255,255,255,.1);color:rgba(255,255,255,.45);padding:1px 5px;border-radius:4px}
+.nchk{font-size:10px;color:var(--ok)}
+
+/* TIMER */
+.timer-box{padding:13px 16px;border-top:1px solid rgba(255,255,255,.08);background:rgba(0,0,0,.2)}
+.timer-lbl{font-size:10px;color:var(--sb-muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px}
+.timer-disp{font-size:28px;font-weight:700;font-variant-numeric:tabular-nums;color:#fff;letter-spacing:-.5px;margin-bottom:7px}
+.timer-disp.warn{color:#FBBF24}
+.timer-disp.danger{color:#EF4444}
+.timer-btns{display:flex;gap:5px}
+.tbtn{flex:1;padding:5px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);border-radius:6px;color:rgba(255,255,255,.7);font-size:11px;cursor:pointer;transition:background .12s}
+.tbtn:hover{background:rgba(255,255,255,.13);color:#fff}
+.tbtn.pri{background:rgba(255,255,255,.14);color:#fff}
+
+/* MAIN */
+.main{flex:1;overflow-y:auto;scroll-behavior:smooth}
+.sec{display:none}
+.sec.active{display:block}
+
+/* HOME HERO */
+.hero{background:linear-gradient(135deg,#0F172A 0%,#1E3A5F 100%);padding:36px 36px 28px;color:#fff}
+.hero .htag{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:7px}
+.hero h2{font-size:24px;font-weight:800;line-height:1.2;margin-bottom:7px}
+.hero .hsub{font-size:13.5px;color:rgba(255,255,255,.65);max-width:520px}
+.obj-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:20px}
+.obj-pill{display:flex;align-items:flex-start;gap:7px;font-size:12px;color:rgba(255,255,255,.8);line-height:1.4}
+.obj-pill::before{content:'→';color:rgba(255,255,255,.4);flex-shrink:0}
+
+/* HOME BODY */
+.hbody{padding:28px 36px;display:grid;gap:22px}
+.sec-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--text-muted);margin-bottom:10px}
+
+/* TABLES */
+.tbl{width:100%;border-collapse:collapse;font-size:13px}
+.tbl th{text-align:left;padding:8px 12px;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--text-muted);border-bottom:1px solid var(--border)}
+.tbl td{padding:9px 12px;border-bottom:1px solid var(--border);vertical-align:top;line-height:1.4}
+.tbl tr:last-child td{border-bottom:none}
+.tbl tr:nth-child(even) td{background:var(--surface2)}
+.tchip{font-variant-numeric:tabular-nums;font-size:12px;font-weight:600;color:var(--text-sec)}
+.fchip{display:inline-block;font-size:10px;font-weight:600;padding:2px 7px;border-radius:20px;background:var(--bg);color:var(--text-sec);border:1px solid var(--border)}
+.fchip.pl{background:#EFF6FF;color:#2563EB;border-color:#BFDBFE}
+.fchip.at{background:#F0FDF4;color:#16A34A;border-color:#BBF7D0}
+.fchip.an{background:#FFF7ED;color:#EA580C;border-color:#FED7AA}
+.tname{font-weight:700;color:var(--text)}
+
+/* MATRIX */
+.matrix{display:grid;grid-template-columns:repeat(5,1fr);gap:9px}
+.mc{border:2px solid var(--border);border-radius:var(--r);padding:13px;cursor:pointer;transition:all .15s}
+.mc:hover{transform:translateY(-2px);box-shadow:var(--shm)}
+.mc-num{font-size:11px;font-weight:700;text-transform:uppercase;margin-bottom:5px}
+.mc-need{font-size:11px;color:var(--text-sec);line-height:1.4;margin-bottom:7px}
+.mc-dur{font-size:10px;color:var(--text-muted)}
+
+/* ATELIER HEADER */
+.ahdr{padding:28px 36px 22px;color:#fff;position:relative;overflow:hidden}
+.ahdr::after{content:'';position:absolute;right:-40px;top:-40px;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,.05)}
+.atag{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;opacity:.7;margin-bottom:5px}
+.ahdr h2{font-size:22px;font-weight:800;line-height:1.2;margin-bottom:11px}
+.ameta{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.adur{font-size:12px;background:rgba(0,0,0,.2);padding:3px 10px;border-radius:20px;font-weight:600}
+.tpill{font-size:11px;background:rgba(255,255,255,.15);padding:3px 10px;border-radius:20px;font-weight:500}
+
+/* ATELIER BODY */
+.abody{padding:24px 36px;display:grid;gap:18px}
+
+/* OBJECTIVE */
+.obj-block{border-radius:var(--r);padding:14px 16px;display:flex;align-items:flex-start;gap:11px;font-size:14px;line-height:1.6;border:1px solid}
+.obj-ico{font-size:20px;flex-shrink:0}
+
+/* PROGRESS */
+.prog-hdr{display:flex;justify-content:space-between;font-size:12px;color:var(--text-muted);margin-bottom:5px}
+.prog-bar{height:4px;background:var(--border);border-radius:2px;overflow:hidden;margin-bottom:10px}
+.prog-fill{height:100%;border-radius:2px;transition:width .3s ease}
+
+/* STEPS */
+.steps{display:grid;gap:7px}
+.step{display:flex;align-items:flex-start;gap:11px;padding:11px 13px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r);cursor:pointer;transition:background .12s}
+.step:hover{background:var(--surface2)}
+.step.done{background:#F0FDF4;border-color:#BBF7D0}
+.snum{width:24px;height:24px;border-radius:50%;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;border:2px solid;transition:all .15s}
+.step.done .snum{background:var(--ok);border-color:var(--ok);color:#fff;font-size:13px}
+.step.done .snum::before{content:'✓'}
+.step.done .snum span{display:none}
+.stxt{font-size:13px;line-height:1.5;flex:1}
+.step.done .stxt{color:var(--text-sec)}
+.hint{font-size:11.5px;color:var(--text-muted);margin-bottom:6px}
+
+/* PROMPTS */
+.prompts{display:grid;gap:11px}
+.pcrd{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
+.phdr{display:flex;align-items:center;justify-content:space-between;padding:11px 13px 9px;border-bottom:1px solid var(--border);background:var(--surface2)}
+.ptitle{font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+.cpbtn{display:flex;align-items:center;gap:4px;padding:5px 11px;border-radius:6px;border:1px solid var(--border);background:#fff;font-size:11px;font-weight:600;cursor:pointer;transition:all .15s;color:var(--text-sec);flex-shrink:0;white-space:nowrap}
+.cpbtn:hover{border-color:#94A3B8}
+.cpbtn.copied{background:#DCFCE7;border-color:#86EFAC;color:#16A34A}
+.pbody{padding:13px;font-size:13px;line-height:1.75;color:var(--text);font-family:Georgia,'Times New Roman',serif;white-space:pre-wrap}
+
+/* TIPS */
+.tips-box{border-radius:var(--r);padding:14px 16px;border-left:3px solid}
+.tips-ttl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:9px}
+.tips-list{display:grid;gap:5px}
+.tip{font-size:12.5px;line-height:1.5;display:flex;gap:7px;align-items:flex-start;color:var(--text-sec)}
+.tip::before{content:'→';flex-shrink:0;opacity:.5}
+
+/* WARNING */
+.warn-box{background:#FEF3C7;border:1px solid #FCD34D;border-radius:var(--r);padding:11px 14px;font-size:13px;color:#92400E;display:flex;gap:9px;align-items:flex-start}
+.warn-ico{font-size:16px;flex-shrink:0}
+
+/* CARD */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:16px}
+.card-0{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:0;overflow:hidden}
+
+/* LINKS GRID */
+.links-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
+.lcard{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:13px;text-decoration:none;color:inherit;display:block;transition:all .15s}
+.lcard:hover{box-shadow:var(--shm);border-color:#94A3B8;transform:translateY(-1px)}
+.lcard .ltool{font-size:12px;font-weight:700;color:var(--text);margin-bottom:3px}
+.lcard .ldesc{font-size:11px;color:var(--text-muted);line-height:1.4}
+.lcard .lurl{font-size:10px;color:var(--c1);margin-top:4px}
+
+/* TOAST */
+.toast{position:fixed;bottom:22px;right:22px;background:#1E293B;color:#fff;padding:9px 15px;border-radius:8px;font-size:13px;font-weight:600;opacity:0;transform:translateY(8px);transition:all .2s;pointer-events:none;z-index:1000}
+.toast.show{opacity:1;transform:translateY(0)}
+
+/* SCROLL */
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:rgba(0,0,0,.13);border-radius:3px}
+.sb::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1)}
+
+@media(max-width:900px){.matrix{grid-template-columns:repeat(2,1fr)}.links-grid{grid-template-columns:repeat(2,1fr)}.obj-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<aside class="sb">
+  <div class="sb-brand">
+    <div class="tag">Sophiae · Formation IA</div>
+    <h1>Journée 2</h1>
+    <div class="sub">Apprendre à faire différemment</div>
+  </div>
+  <nav class="sb-nav">
+    <div class="nav-label">Navigation</div>
+    <button class="nb active" onclick="go('home',this)">
+      <span style="font-size:15px">🏠</span><span>Accueil & Programme</span>
+    </button>
+    <div class="nav-label" style="margin-top:7px">5 Ateliers au choix</div>
+    <button class="nb" onclick="go('a1',this)" id="nb-a1">
+      <span class="ndot" style="background:var(--c1)"></span>
+      <span>Atelier 1 · Préparation cours</span>
+      <span class="meta"><span class="nbadge">45–60'</span><span class="nchk" id="chk-a1" style="display:none">✓</span></span>
+    </button>
+    <button class="nb" onclick="go('a2',this)" id="nb-a2">
+      <span class="ndot" style="background:var(--c2)"></span>
+      <span>Atelier 2 · Ressources interactives</span>
+      <span class="meta"><span class="nbadge">45–60'</span><span class="nchk" id="chk-a2" style="display:none">✓</span></span>
+    </button>
+    <button class="nb" onclick="go('a3',this)" id="nb-a3">
+      <span class="ndot" style="background:var(--c3)"></span>
+      <span>Atelier 3 · Assistant IA</span>
+      <span class="meta"><span class="nbadge">60–75'</span><span class="nchk" id="chk-a3" style="display:none">✓</span></span>
+    </button>
+    <button class="nb" onclick="go('a4',this)" id="nb-a4">
+      <span class="ndot" style="background:var(--c4)"></span>
+      <span>Atelier 4 · Évaluation</span>
+      <span class="meta"><span class="nbadge">45–60'</span><span class="nchk" id="chk-a4" style="display:none">✓</span></span>
+    </button>
+    <button class="nb" onclick="go('a5',this)" id="nb-a5">
+      <span class="ndot" style="background:var(--c5)"></span>
+      <span>Atelier 5 · Élèves & IA</span>
+      <span class="meta"><span class="nbadge">60–75'</span><span class="nchk" id="chk-a5" style="display:none">✓</span></span>
+    </button>
+    <div class="nav-label" style="margin-top:7px">Ressources</div>
+    <button class="nb" onclick="go('res',this)">
+      <span style="font-size:14px">🔗</span><span>Outils & Liens utiles</span>
+    </button>
+  </nav>
+  <div class="timer-box">
+    <div class="timer-lbl">⏱ Chronomètre</div>
+    <div class="timer-disp" id="tdisp">00:00</div>
+    <div class="timer-btns">
+      <button class="tbtn pri" id="tstart" onclick="tToggle()">▶ Démarrer</button>
+      <button class="tbtn" onclick="tReset()">↺ Reset</button>
+    </div>
+  </div>
+</aside>
+
+<main class="main" id="main">
+
+<!-- ══════════════════ HOME ══════════════════ -->
+<section class="sec active" id="sec-home">
+  <div class="hero">
+    <div class="htag">Formation IA · Journée 2 · Session 3h</div>
+    <h2>Apprendre à faire différemment</h2>
+    <div class="hsub">Approfondissez vos usages de l'IA pour transformer votre pratique pédagogique au quotidien.</div>
+    <div class="obj-grid">
+      <div class="obj-pill">Approfondir l'usage des IA génératives dans la pratique quotidienne</div>
+      <div class="obj-pill">Explorer des outils spécialisés : cartes mentales, quiz, podcasts, assistants</div>
+      <div class="obj-pill">Créer des livrables utilisables en classe dès le lendemain</div>
+      <div class="obj-pill">Développer une posture d'expérimentation et de partage entre pairs</div>
+    </div>
+  </div>
+  <div class="hbody">
+
+    <div>
+      <div class="sec-title">🕐 Timeline de la session</div>
+      <div class="card-0">
+        <table class="tbl">
+          <thead><tr><th>Heure</th><th>Durée</th><th>Contenu</th><th>Format</th></tr></thead>
+          <tbody>
+            <tr><td class="tchip">00:00</td><td>15 min</td><td>Accueil, tour de table, rappels J1, présentation des 5 ateliers</td><td><span class="fchip pl">Plénière</span></td></tr>
+            <tr><td class="tchip">00:15</td><td>20 min</td><td>Apport 1 — Stratégies de prompt avancées & panorama outils spécialisés</td><td><span class="fchip an">Animateur</span></td></tr>
+            <tr><td class="tchip">00:35</td><td>40 min</td><td>Temps d'atelier 1 — Choix libre parmi les 5 ateliers</td><td><span class="fchip at">Autonomie</span></td></tr>
+            <tr><td class="tchip">01:15</td><td>15 min</td><td>Partage de pratiques — Tour de table express</td><td><span class="fchip pl">Plénière</span></td></tr>
+            <tr><td class="tchip">01:30</td><td>15 min</td><td>Apport 2 — Créer des assistants IA + usages élèves & éthique</td><td><span class="fchip an">Animateur</span></td></tr>
+            <tr><td class="tchip">01:45</td><td>45 min</td><td>Temps d'atelier 2 — Approfondissement ou nouvel atelier</td><td><span class="fchip at">Autonomie</span></td></tr>
+            <tr><td class="tchip">02:30</td><td>15 min</td><td>Pause & échanges libres</td><td>—</td></tr>
+            <tr><td class="tchip">02:45</td><td>15 min</td><td>Synthèse collective, partage, perspectives</td><td><span class="fchip pl">Plénière</span></td></tr>
+            <tr><td class="tchip">03:00</td><td>—</td><td>Fin de la session</td><td>—</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="warn-box" style="margin-top:9px">
+        <span class="warn-ico">⚠️</span>
+        <div>La totalité des ateliers représente <strong>6 à 9h de travail</strong>. Choisissez <strong>2 à 3 ateliers</strong> selon votre besoin immédiat. Choisissez AVANT de commencer — ne naviguez pas entre les ateliers au fil de l'eau.</div>
+      </div>
+    </div>
+
+    <div>
+      <div class="sec-title">🧭 Quel atelier pour quel besoin ?</div>
+      <div class="matrix">
+        <div class="mc" onclick="go('a1',document.getElementById('nb-a1'))" style="border-color:var(--c1)">
+          <div class="mc-num" style="color:var(--c1)">Atelier 1</div>
+          <div class="mc-need">Je veux gagner du temps sur la préparation de cours</div>
+          <div class="mc-dur">⏱ 45–60 min</div>
+        </div>
+        <div class="mc" onclick="go('a2',document.getElementById('nb-a2'))" style="border-color:var(--c2)">
+          <div class="mc-num" style="color:var(--c2)">Atelier 2</div>
+          <div class="mc-need">Je veux créer des ressources interactives (quiz, cartes…)</div>
+          <div class="mc-dur">⏱ 45–60 min</div>
+        </div>
+        <div class="mc" onclick="go('a3',document.getElementById('nb-a3'))" style="border-color:var(--c3)">
+          <div class="mc-num" style="color:var(--c3)">Atelier 3</div>
+          <div class="mc-need">Je veux un assistant IA personnalisé pour ma classe</div>
+          <div class="mc-dur">⏱ 60–75 min</div>
+        </div>
+        <div class="mc" onclick="go('a4',document.getElementById('nb-a4'))" style="border-color:var(--c4)">
+          <div class="mc-num" style="color:var(--c4)">Atelier 4</div>
+          <div class="mc-need">Je veux alléger ma charge d'évaluation</div>
+          <div class="mc-dur">⏱ 45–60 min</div>
+        </div>
+        <div class="mc" onclick="go('a5',document.getElementById('nb-a5'))" style="border-color:var(--c5)">
+          <div class="mc-num" style="color:var(--c5)">Atelier 5</div>
+          <div class="mc-need">Je veux faire travailler mes élèves avec l'IA</div>
+          <div class="mc-dur">⏱ 60–75 min</div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="sec-title">📶 Les 5 niveaux de prompt (Apport 1)</div>
+      <div class="card-0">
+        <table class="tbl">
+          <thead><tr><th>Niveau</th><th>Exemple</th><th>Résultat</th></tr></thead>
+          <tbody>
+            <tr><td class="tname">1 – Minimal</td><td>"Explique la photosynthèse"</td><td style="color:var(--text-muted)">Résultat générique, souvent trop scolaire</td></tr>
+            <tr><td class="tname">2 – Contextualisé</td><td>"Explique la photosynthèse pour des élèves de 4e en difficulté"</td><td style="color:var(--text-muted)">Bien meilleur — le niveau change tout</td></tr>
+            <tr><td class="tname">3 – Structuré (ACTIF)</td><td>Rôle + Action + Contexte + Ton + Informations + Format</td><td style="color:var(--text-muted)">La méthode de référence pour les prompts complexes</td></tr>
+            <tr><td class="tname">4 – Itératif</td><td>"Maintenant simplifie…", "Ajoute des exemples…", "Adapte pour DYS…"</td><td style="color:var(--text-muted)">Affiner dans la même conversation sans repartir de zéro</td></tr>
+            <tr><td class="tname">5 – Système</td><td>Instructions permanentes qui définissent le comportement de l'IA</td><td style="color:var(--text-muted)">Le niveau des assistants et GPTs personnalisés</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════ ATELIER 1 ══════════════════ -->
+<section class="sec" id="sec-a1">
+  <div class="ahdr" style="background:linear-gradient(135deg,#1D4ED8,#3B82F6)">
+    <div class="atag">Atelier 1</div>
+    <h2>Gagner du temps sur la préparation de cours</h2>
+    <div class="ameta">
+      <span class="adur">⏱ 45–60 min</span>
+      <span class="tpill">ChatGPT</span><span class="tpill">Claude</span><span class="tpill">Copilot</span><span class="tpill">Gemini</span>
+    </div>
+  </div>
+  <div class="abody">
+    <div class="obj-block" style="background:var(--c1l);border-color:#BFDBFE">
+      <span class="obj-ico">🎯</span>
+      <div>Concevoir ou enrichir une séquence de cours complète en utilisant l'IA comme co-concepteur pédagogique — du gain de temps à la créativité augmentée.</div>
+    </div>
+    <div>
+      <div class="prog-hdr"><span>Progression</span><span id="pg-a1">0 / 5 étapes</span></div>
+      <div class="prog-bar"><div class="prog-fill" id="pf-a1" style="background:var(--c1);width:0%"></div></div>
+      <div class="hint">Cliquez sur chaque étape pour la cocher ✓</div>
+      <div class="steps" id="st-a1">
+        <div class="step" onclick="tick(this,'a1',0)"><div class="snum" style="border-color:var(--c1);color:var(--c1)"><span>1</span></div><div class="stxt">Choisissez une séquence à travailler : un thème que vous préparez ou voulez améliorer.</div></div>
+        <div class="step" onclick="tick(this,'a1',1)"><div class="snum" style="border-color:var(--c1);color:var(--c1)"><span>2</span></div><div class="stxt">Utilisez le <strong>Prompt A</strong> pour générer la structure complète de votre séquence (tableau Séance / Objectif / Activité…).</div></div>
+        <div class="step" onclick="tick(this,'a1',2)"><div class="snum" style="border-color:var(--c1);color:var(--c1)"><span>3</span></div><div class="stxt">Affinez dans la <strong>même conversation</strong> : demandez des variantes, de la différenciation, des activités DYS.</div></div>
+        <div class="step" onclick="tick(this,'a1',3)"><div class="snum" style="border-color:var(--c1);color:var(--c1)"><span>4</span></div><div class="stxt">Générez une accroche originale avec le <strong>Prompt B</strong> — choisissez votre préférée.</div></div>
+        <div class="step" onclick="tick(this,'a1',4)"><div class="snum" style="border-color:var(--c1);color:var(--c1)"><span>5</span></div><div class="stxt">Créez 5 exercices progressifs (★ à ★★★★★) avec le <strong>Prompt C</strong>.</div></div>
+      </div>
+    </div>
+    <div>
+      <div class="sec-title">📋 Prompts à copier-coller</div>
+      <div class="prompts">
+        <div class="pcrd">
+          <div class="phdr"><span class="ptitle" style="color:var(--c1)">Prompt A — Séquence complète</span><button class="cpbtn" onclick="cp(this)">📋 Copier</button></div>
+          <div class="pbody">Tu es expert en ingénierie pédagogique. Construis une séquence de [X séances] sur [sujet] pour des élèves de [niveau] en [matière]. Chaque séance inclut : objectif d'apprentissage précis, activité principale, support suggéré, et temps de différenciation. Format : tableau Séance | Durée | Objectif | Activité | Support | Différenciation.</div>
+        </div>
+        <div class="pcrd">
+          <div class="phdr"><span class="ptitle" style="color:var(--c1)">Prompt B — 5 accroches originales</span><button class="cpbtn" onclick="cp(this)">📋 Copier</button></div>
+          <div class="pbody">Propose 5 façons d'introduire le chapitre sur [sujet] à des élèves de [niveau] : une accroche vidéo courte, une question-défi, un cas du quotidien, une image mystère, un extrait d'actualité. Pour chaque accroche, explique comment l'utiliser en 3 minutes.</div>
+        </div>
+        <div class="pcrd">
+          <div class="phdr"><span class="ptitle" style="color:var(--c1)">Prompt C — Exercices progressifs</span><button class="cpbtn" onclick="cp(this)">📋 Copier</button></div>
+          <div class="pbody">Génère 5 exercices progressifs sur [notion] pour des élèves de [niveau] : du plus simple au plus complexe. Pour chaque exercice : consigne, niveau de difficulté (★ à ★★★★★), et correction-type.</div>
+        </div>
+        <div class="pcrd">
+          <div class="phdr"><span class="ptitle" style="color:var(--c1)">Prompt D — Différenciation 3 niveaux</span><button class="cpbtn" onclick="cp(this)">📋 Copier</button></div>
+          <div class="pbody">En reprenant la séance sur [sujet], crée 3 versions d'activité : remédiation (élèves en difficulté), standard, et approfondissement (élèves avancés). Précise les adaptations pour les élèves DYS.</div>
+        </div>
+      </div>
+    </div>
+    <div class="tips-box" style="background:var(--c1l);border-color:var(--c1)">
+      <div class="tips-ttl" style="color:var(--c1)">💡 Tips & Astuces</div>
+      <div class="tips-list">
+        <div class="tip">Ne relancez pas une nouvelle conversation — affinez dans la même : "Maintenant simplifie la version remédiation..."</div>
+        <div class="tip">Copiez-collez votre programme officiel ou votre ancienne fiche séquence pour ancrer la réponse.</div>
+        <div class="tip">L'IA peut se tromper sur les dates, lois récentes, noms propres → toujours vérifier.</div>
+        <div class="tip">"Propose 3 variantes" vous donne des choix plutôt qu'une réponse unique à accepter aveuglément.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ ATELIER 2 ══════════════════ -->
+<section class="sec" id="sec-a2">
+  <div class="ahdr" style="background:linear-gradient(135deg,#6D28D9,#8B5CF6)">
+    <div class="atag">Atelier 2</div>
+    <h2>Créer des ressources interactives</h2>
+    <div class="ameta">
+      <span class="adur">⏱ 45–60 min</span>
+      <span class="tpill">NotebookLM</span><span class="tpill">Quizizz</span><span class="tpill">Quizlet</span><span class="tpill">ChatGPT</span>
+    </div>
+  </div>
+  <div class="abody">
+    <div class="obj-block" style="background:var(--c2l);border-color:#DDD6FE">
+      <span class="obj-ico">🎯</span>
+      <div>Transformer vos cours en ressources interactives : cartes mentales, quiz gamifiés, flashcards et podcasts éducatifs, en exploitant les IA spécialisées.</div>
+    </div>
+    <div>
+      <div class="prog-hdr"><span>Progression</span><span id="pg-a2">0 / 5 étapes</span></div>
+      <div class="prog-bar"><div class="prog-fill" id="pf-a2" style="background:var(--c2);width:0%"></div></div>
+      <div class="hint">Cliquez sur chaque étape pour la cocher ✓</div>
+      <div class="steps" id="st-a2">
+        <div class="step" onclick="tick(this,'a2',0)"><div class="snum" style="border-color:var(--c2);color:var(--c2)"><span>1</span></div><div class="stxt">Préparez un document source : un cours en PDF, ou copiez le texte dans le presse-papiers.</div></div>
+        <div class="step" onclick="tick(this,'a2',1)"><div class="snum" style="border-color:var(--c2);color:var(--c2)"><span>2</span></div><div class="stxt"><strong>Option A – Carte mentale :</strong> Créez un Notebook sur <a href="https://notebooklm.google.com" target="_blank" style="color:var(--c2)">notebooklm.google.com</a> → importez votre document → onglet "Studio" → "Schéma".</div></div>
+        <div class="step" onclick="tick(this,'a2',2)"><div class="snum" style="border-color:var(--c2);color:var(--c2)"><span>3</span></div><div class="stxt"><strong>Option B – Podcast éducatif :</strong> Dans le même Notebook → onglet "Studio" → "Synthèse audio" → cliquez "Personnaliser" pour spécifier le français.</div></div>
+        <div class="step" onclick="tick(this,'a2',3)"><div class="snum" style="border-color:var(--c2);color:var(--c2)"><span>4</span></div><div class="stxt"><strong>Option C – Quiz interactif :</strong> <a href="https://quizizz.com" target="_blank" style="color:var(--c2)">quizizz.com</a> → "Créer" → "Générer avec IA" → collez votre contenu. Ou utilisez le Prompt A dans ChatGPT puis importez.</div></div>
+        <div class="step" onclick="tick(this,'a2',4)"><div class="snum" style="border-color:var(--c2);color:var(--c2)"><span>5</span></div><div class="stxt">Testez votre ressource comme si vous étiez un élève. Partagez le lien avec un collègue.</div></div>
+      </div>
+    </div>
+    <div>
+      <div class="sec-title">📋 Prompts à copier-coller</div>
+      <div class="prompts">
+        <div class="pcrd">
+          <div class="phdr"><span class="ptitle" style="color:var(--c2)">Prompt A — Quiz QCM 12 questions</span><button class="cpbtn" onclick="cp(this)">📋 Copier</button></div>
+          <div class="pbody">Crée un quiz de 12 questions à choix multiples sur [sujet] pour des élèves de [niveau]. Pour chaque question : 4 propositions (A, B, C, D), indiquer la bonne réponse, et une explication en 2 lignes. Progression : 4 questions faciles, 4 moyennes, 4 difficiles.</div>
+        </div>
+        <div class="pcrd">
+          <div class="phdr"><span class="ptitle" style="color:var(--c2)">Prompt B — Flashcards Quizlet (CSV)</span><button class="cpbtn" onclick="cp(this)">📋 Copier</button></div>
+          <div class="pbody">Génère 20 paires terme/définition sur [sujet] pour des élèves de [niveau]. Format CSV uniquement, une paire par ligne : terme;définition. Définitions courtes (max 2 lignes), adaptées au niveau [niveau].</div>
+        </div>
+        <div class="pcrd">
+          <div class="phdr"><span class="ptitle" style="color:var(--c2)">Prompt C — Carte mentale structurée</span><button class="cpbtn" onclick="cp(this)">📋 Copier</button></div>
+          <div class="pbody">Crée une carte mentale sur [sujet] avec : 1 concept central, 5 branches principales (mots-clés courts), 3 sous-branches par branche, et 1 exemple concret pour chaque extrémité. Format texte indenté.</div>
+        </div>
+        <div class="pcrd">
+          <div class="phdr"><span class="ptitle" style="color:var(--c2)">Prompt D — Script podcast 6 minutes</span><button class="cpbtn" onclick="cp(this)">📋 Copier</button></div>
+          <div class="pbody">Écris le script d'un podcast éducatif de 6 minutes sur [sujet] pour des élèves de [niveau]. Structure : accroche narrative (1 min) + développement en 3 parties avec exemples (4 min) + question ouverte finale (1 min). Ton dynamique, phrases courtes.</div>
+        </div>
+      </div>
+    </div>
+    <div class="tips-box" style="background:var(--c2l);border-color:var(--c2)">
+      <div class="tips-ttl" style="color:var(--c2)">💡 Tips & Astuces</div>
+      <div class="tips-list">
+        <div class="tip">NotebookLM Podcast : cliquez "Personnaliser" avant de générer pour spécifier "en français, public : lycéens".</div>
+        <div class="tip">Pour importer dans Quizlet : copiez le CSV généré → Quizlet → "Créer" → "Importer depuis Word/Excel".</div>
+        <div class="tip">Partagez le lien de votre Notebook avec vos élèves en mode "lecture" pour qu'ils génèrent leur propre carte.</div>
+        <div class="tip">Quizizz permet d'importer directement un Word ou PDF sans passer par ChatGPT.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ ATELIER 3 ══════════════════ -->
+<section class="sec" id="sec-a3">
+  <div class="ahdr" style="background:linear-gradient(135deg,#4338CA,#6366F1)">
+    <div class="atag">Atelier 3</div>
+    <h2>Créer un assistant IA personnalisé</h2>
+    <div class="ameta">
+      <span class="adur">⏱ 60–75 min</span>
+      <span class="tpill">Copilot</span><span class="tpill">ChatGPT GPTs</span><span class="tpill">Gemini Gems</span><span class="tpill">Mizou</span>
+    </div>
+  </div>
+  <div class="abody">
+    <div class="obj-block" style="background:var(--c3l);border-color:#C7D2FE">
+      <span class="obj-ico">🎯</span>
+      <div>Concevoir un assistant IA qui connaît votre contexte, votre classe et vos règles pédagogiques — un véritable coéquipier disponible 24h/24.</div>
+    </div>
+    <div>
+      <div class="sec-title">🛠 Où créer votre assistant ?</div>
+      <div class="card-0">
+        <table class="tbl">
+          <thead><tr><th>Plateforme</th><th>Comment créer</th><th>Avantage</th></tr></thead>
+          <tbody>
+            <tr><td class="tname">Copilot</td><td>Explorateur → Créer → Configurer</td><td>Compte Microsoft existant, gratuit</td></tr>
+            <tr><td class="tname">ChatGPT</td><td>"Explorer" → "Créer un GPT"</td><td>Très personnalisable</td></tr>
+            <tr><td class="tname">Gemini</td><td>Paramètres → Gems → Créer</td><td>Interface simple</td></tr>
+            <tr><td class="tname">Mizou.com</td><td>Créer un robot → Configurer</td><td>Idéal élèves, traçable en temps réel</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div>
+      <div class="prog-hdr"><span>Progression</span><span id="pg-a3">0 / 5 étapes</span></div>
+      <div class="prog-bar"><div class="prog-fill" id="pf-a3" style="background:var(--c3);width:0%"></div></div>
+      <div class="hint">Cliquez sur chaque étape pour la cocher ✓</div>
+      <div class="steps" id="st-a3">
+        <div class="step" onclick="tick(this,'a3',0)"><div class="snum" style="border-color:var(--c3);color:var(--c3)"><span>1</span></div><div class="stxt">Définissez votre besoin : tuteur élève / aide à la rédaction / révision examen / support administratif ?</div></div>
+        <div class="step" onclick="tick(this,'a3',1)"><div class="snum" style="border-color:var(--c3);color:var(--c3)"><span>2</span></div><div class="stxt">Rédigez vos instructions avec le <strong>Prompt A</strong> (prenez le temps : la qualité des instructions = la qualité de l'assistant).</div></div>
+        <div class="step" onclick="tick(this,'a3',2)"><div class="snum" style="border-color:var(--c3);color:var(--c3)"><span>3</span></div><div class="stxt">Créez l'assistant sur la plateforme de votre choix (voir tableau ci-dessus).</div></div>
+        <div class="step" onclick="tick(this,'a3',3)"><div class="snum" style="border-color:var(--c3);color:var(--c3)"><span>4</span></div><div class="stxt">Testez avec 3 situations : une question simple, une question hors sujet, un élève qui veut la réponse directement.</div></div>
+        <div class="step" onclick="tick(this,'a3',4)"><div class="snum" style="border-color:var(--c3);color:var(--c3)"><span>5</span></div><div class="stxt">Ajustez vos instructions en fonction des résultats. Partagez le lien avec un collègue pour test.</div></div>
+      </div>
+    </div>
+    <div>
+      <div class="sec-title">📋 Prompts à copier-coller</div>
+      <div class="prompts">
+        <div class="pcrd">
+          <div class="phdr"><span class="ptitle" style="color:var(--c3)">Prompt A — Template instructions (à adapter)</span><button class="cpbtn" onclick="cp(this)">📋 Copier</button></div>
+          <div class="pbody">Tu es [Nom], un assistant pédagogique pour des élèves de [niveau] en [matière]. Ton rôle : [mission]. Tu t'exprimes de manière [bienveillant / rigoureux / ludique]. Règles absolues : (1) Tu ne fournis jamais la réponse directement. (2) Tu guides par des questions socratiques. (3) Si un élève est bloqué, tu proposes 3 indices progressifs, du plus vague au plus précis. (4) Tu encourages avant de corriger. (5) Si la question dépasse ton cadre : "C'est une bonne question, pose-la à ton professeur."</div>
+        </div>
+        <div class="pcrd">
+          <div class="phdr"><span class="ptitle" style="color:var(--c3)">Prompt B — Assistant révision d'examen</span><button class="cpbtn" onclick="cp(this)">📋 Copier</button></div>
+          <div class="pbody">Rédige les instructions d'un assistant IA pour préparer mes élèves de [niveau] à [type d'évaluation]. L'assistant doit : poser des questions de révision sur [liste de notions], analyser les erreurs sans donner la réponse, adapter son niveau de difficulté à l'élève, et générer un bilan de révision personnalisé en fin de session.</div>
+        </div>
+        <div class="pcrd">
+          <div class="phdr"><span class="ptitle" style="color:var(--c3)">Prompt C — Assistant aide à la rédaction</span><button class="cpbtn" onclick="cp(this)">📋 Copier</button></div>
+          <div class="pbody">Crée les instructions d'un assistant qui aide mes élèves de [niveau] à structurer leurs [rédactions / dissertations / commentaires] en [matière]. L'assistant guide étape par étape : analyse du sujet, choix du plan, introduction, développement, conclusion. Il pose des questions avant de valider chaque étape.</div>
+        </div>
+        <div class="pcrd">
+          <div class="phdr"><span class="ptitle" style="color:var(--c3)">Prompt D — Améliorer des instructions existantes</span><button class="cpbtn" onclick="cp(this)">📋 Copier</button></div>
+          <div class="pbody">Voici mes instructions actuelles pour mon assistant IA : [coller les instructions]. Analyse-les et propose des améliorations pour : (1) rendre l'assistant plus pédagogique, (2) éviter qu'il donne les réponses directement, (3) mieux gérer les élèves qui essaient de le contourner.</div>
+        </div>
+      </div>
+    </div>
+    <div class="tips-box" style="background:var(--c3l);border-color:var(--c3)">
+      <div class="tips-ttl" style="color:var(--c3)">💡 Tips & Astuces</div>
+      <div class="tips-list">
+        <div class="tip">Mizou.com : l'enseignant voit toutes les conversations élèves en temps réel → idéal pour le suivi.</div>
+        <div class="tip">Testez votre assistant en jouant le rôle d'un élève qui veut la réponse toute faite : ajustez si ça fonctionne.</div>
+        <div class="tip">Copilot version Education permet de créer des agents sans compte premium.</div>
+        <div class="tip">Les instructions s'améliorent progressivement — revenez les affiner après 1 semaine d'utilisation.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ ATELIER 4 ══════════════════ -->
+<section class="sec" id="sec-a4">
+  <div class="ahdr" style="background:linear-gradient(135deg,#C2410C,#F97316)">
+    <div class="atag">Atelier 4</div>
+    <h2>Alléger la charge d'évaluation</h2>
+    <div class="ameta">
+      <span class="adur">⏱ 45–60 min</span>
+      <span class="tpill">Claude</span><span class="tpill">ChatGPT</span><span class="tpill">Copilot</span><span class="tpill">Mistral</span>
+    </div>
+  </div>
+  <div class="abody">
+    <div class="obj-block" style="background:var(--c4l);border-color:#FED7AA">
+      <span class="obj-ico">🎯</span>
+      <div>Utiliser l'IA pour créer des grilles d'évaluation riches, générer des feedbacks personnalisés et produire des remédiations ciblées — sans jamais laisser l'IA corriger à votre place.</div>
+    </div>
+    <div class="warn-box">
+      <span class="warn-ico">⚠️</span>
+      <div><strong>Règle d'or :</strong> Ne jamais coller des noms d'élèves ou des données personnelles dans une IA commerciale. Utilisez uniquement des productions anonymisées.</div>
+    </div>
+    <div>
+      <div class="prog-hdr"><span>Progression</span><span id="pg-a4">0 / 5 étapes</span></div>
+      <div class="prog-bar"><div class="prog-fill" id="pf-a4" style="background:var(--c4);width:0%"></div></div>
+      <div class="hint">Cliquez sur chaque étape pour la cocher ✓</div>
+      <div class="steps" id="st-a4">
+        <div class="step" onclick="tick(this,'a4',0)"><div class="snum" style="border-color:var(--c4);color:var(--c4)"><span>1</span></div><div class="stxt">Choisissez un type de production à évaluer : devoir écrit, exposé oral, TP, projet, carte mentale…</div></div>
+        <div class="step" onclick="tick(this,'a4',1)"><div class="snum" style="border-color:var(--c4);color:var(--c4)"><span>2</span></div><div class="stxt">Générez une grille de critères avec le <strong>Prompt A</strong>. Personnalisez-la (ajoutez/retirez des critères).</div></div>
+        <div class="step" onclick="tick(this,'a4',2)"><div class="snum" style="border-color:var(--c4);color:var(--c4)"><span>3</span></div><div class="stxt">Testez le <strong>Prompt B</strong> avec une production fictive ou anonymisée pour générer un feedback type.</div></div>
+        <div class="step" onclick="tick(this,'a4',3)"><div class="snum" style="border-color:var(--c4);color:var(--c4)"><span>4</span></div><div class="stxt">Identifiez les erreurs récurrentes dans vos copies, puis utilisez le <strong>Prompt C</strong> pour des remédiations.</div></div>
+        <div class="step" onclick="tick(this,'a4',4)"><div class="snum" style="border-color:var(--c4);color:var(--c4)"><span>5</span></div><div class="stxt">Réflexion : Qu'est-ce que je conserve ? Qu'est-ce que j'adapte dans ma pratique d'évaluation ?</div></div>
+      </div>
+    </div>
+    <div>
+      <div class="sec-title">📋 Prompts à copier-coller</div>
+      <div class="prompts">
+        <div class="pcrd">
+          <div class="phdr"><span class="ptitle" style="color:var(--c4)">Prompt A — Grille d'évaluation 4 niveaux</span><button class="cpbtn" onclick="cp(this)">📋 Copier</button></div>
+          <div class="pbody">Crée une grille d'évaluation détaillée pour [type de production : dissertation / exposé oral / TP / production créative] en [matière], niveau [niveau]. 5 critères évalués sur 4 niveaux : Non acquis (0-4) / En cours (5-9) / Acquis (10-14) / Maîtrisé (15-20). Pour chaque critère et niveau : un descripteur précis et observable. Format : tableau.</div>
+        </div>
+        <div class="pcrd">
+          <div class="phdr"><span class="ptitle" style="color:var(--c4)">Prompt B — Feedback personnalisé</span><button class="cpbtn" onclick="cp(this)">📋 Copier</button></div>
+          <div class="pbody">En te basant sur cette grille : [coller la grille], génère un feedback écrit pour un élève ayant atteint le niveau [résultat] sur chaque critère. Le feedback doit : commencer par 2 points forts spécifiques, identifier 2 axes de progrès avec des suggestions concrètes, proposer une action précise à réaliser. Ton encourageant, 150 mots maximum.</div>
+        </div>
+        <div class="pcrd">
+          <div class="phdr"><span class="ptitle" style="color:var(--c4)">Prompt C — Remédiations collectives</span><button class="cpbtn" onclick="cp(this)">📋 Copier</button></div>
+          <div class="pbody">J'ai identifié ces erreurs fréquentes dans les copies de mes élèves de [niveau] : [liste des erreurs]. Propose 3 activités de remédiation collective, chacune de 15 minutes, à réaliser en classe entière. Pour chaque activité : objectif, déroulement, support ou ressource suggéré.</div>
+        </div>
+        <div class="pcrd">
+          <div class="phdr"><span class="ptitle" style="color:var(--c4)">Prompt D — Analyse de production anonymisée</span><button class="cpbtn" onclick="cp(this)">📋 Copier</button></div>
+          <div class="pbody">Voici la production d'un élève (anonymisée) : [coller la production]. Voici les critères : [coller les critères]. Pour chaque critère : identifie les réussites et les points à améliorer avec des exemples précis. N'attribue pas de note. Génère un commentaire constructif de 100 mots.</div>
+        </div>
+      </div>
+    </div>
+    <div class="tips-box" style="background:var(--c4l);border-color:var(--c4)">
+      <div class="tips-ttl" style="color:var(--c4)">💡 Tips & Astuces</div>
+      <div class="tips-list">
+        <div class="tip">La grille générée est un point de départ — co-construisez-la avec l'IA puis adaptez-la à vos valeurs pédagogiques.</div>
+        <div class="tip">"Reforme ce feedback en version encourageante pour un élève en grande difficulté" pour adapter le ton.</div>
+        <div class="tip">Demandez "Identifie les 3 notions les moins maîtrisées dans ces erreurs" pour cibler la remédiation.</div>
+        <div class="tip">L'IA peut aussi générer une grille d'auto-évaluation à remettre aux élèves avant de rendre le devoir.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ ATELIER 5 ══════════════════ -->
+<section class="sec" id="sec-a5">
+  <div class="ahdr" style="background:linear-gradient(135deg,#047857,#10B981)">
+    <div class="atag">Atelier 5</div>
+    <h2>Faire travailler ses élèves avec l'IA</h2>
+    <div class="ameta">
+      <span class="adur">⏱ 60–75 min</span>
+      <span class="tpill">Mizou</span><span class="tpill">DuckAI</span><span class="tpill">ChatGPT</span><span class="tpill">Claude</span>
+    </div>
+  </div>
+  <div class="abody">
+    <div class="obj-block" style="background:var(--c5l);border-color:#A7F3D0">
+      <span class="obj-ico">🎯</span>
+      <div>Concevoir des activités pédagogiques où les élèves utilisent une IA de façon structurée, critique et éthique — en passant d'un outil de prof à un outil d'apprentissage partagé.</div>
+    </div>
+    <div>
+      <div class="sec-title">🛠 Quels outils pour les élèves ?</div>
+      <div class="card-0">
+        <table class="tbl">
+          <thead><tr><th>Outil</th><th>Accès</th><th>Âge mini</th><th>Point fort pour la classe</th></tr></thead>
+          <tbody>
+            <tr><td class="tname"><a href="https://duck.ai" target="_blank" style="color:var(--c5)">DuckAI</a></td><td>Sans compte</td><td>Dès 4e</td><td>Données protégées, aucune pub, aucun compte</td></tr>
+            <tr><td class="tname"><a href="https://mizou.com" target="_blank" style="color:var(--c5)">Mizou.com</a></td><td>Compte enseignant</td><td>Libre</td><td>L'enseignant voit toutes les conversations</td></tr>
+            <tr><td class="tname">ChatGPT</td><td>Compte requis</td><td>13 ans</td><td>Le plus polyvalent, GPTs disponibles</td></tr>
+            <tr><td class="tname">Claude</td><td>Compte requis</td><td>13 ans</td><td>Excellent pour l'écrit et l'analyse</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div>
+      <div class="prog-hdr"><span>Progression</span><span id="pg-a5">0 / 5 étapes</span></div>
+      <div class="prog-bar"><div class="prog-fill" id="pf-a5" style="background:var(--c5);width:0%"></div></div>
+      <div class="hint">Cliquez sur chaque étape pour la cocher ✓</div>
+      <div class="steps" id="st-a5">
+        <div class="step" onclick="tick(this,'a5',0)"><div class="snum" style="border-color:var(--c5);color:var(--c5)"><span>1</span></div><div class="stxt">Vérifiez le cadre légal : charte IA de l'établissement ? Âge minimum ? Usage autorisé pour les élèves ?</div></div>
+        <div class="step" onclick="tick(this,'a5',1)"><div class="snum" style="border-color:var(--c5);color:var(--c5)"><span>2</span></div><div class="stxt">Concevez une activité "IA + esprit critique" avec le <strong>Prompt A</strong> : les élèves utilisent l'IA PUIS vérifient/critiquent.</div></div>
+        <div class="step" onclick="tick(this,'a5',2)"><div class="snum" style="border-color:var(--c5);color:var(--c5)"><span>3</span></div><div class="stxt">Créez l'assistant élève sur Mizou ou préparez les consignes d'utilisation de DuckAI.</div></div>
+        <div class="step" onclick="tick(this,'a5',3)"><div class="snum" style="border-color:var(--c5);color:var(--c5)"><span>4</span></div><div class="stxt">Rédigez le protocole de séance (rôle de l'IA, moment de vérification critique, trace écrite attendue).</div></div>
+        <div class="step" onclick="tick(this,'a5',4)"><div class="snum" style="border-color:var(--c5);color:var(--c5)"><span>5</span></div><div class="stxt">Anticipez les dérives : comment gérez-vous un élève qui copie-colle sans réfléchir ? Planifiez une réponse pédagogique.</div></div>
+      </div>
+    </div>
+    <div>
+      <div class="sec-title">📋 Prompts à copier-coller</div>
+      <div class="prompts">
+        <div class="pcrd">
+          <div class="phdr"><span class="ptitle" style="color:var(--c5)">Prompt A — Activité IA + esprit critique</span><button class="cpbtn" onclick="cp(this)">📋 Copier</button></div>
+          <div class="pbody">Crée une activité pédagogique de [durée] pour des élèves de [niveau] sur [sujet]. Les élèves utilisent une IA pour [tâche]. Après la phase IA, ils doivent [vérifier / critiquer / améliorer / comparer avec une source]. L'activité inclut : (1) consignes élèves claires, (2) 3 questions de réflexion critique sur la réponse de l'IA, (3) une grille d'auto-évaluation en 4 critères.</div>
+        </div>
+        <div class="pcrd">
+          <div class="phdr"><span class="ptitle" style="color:var(--c5)">Prompt B — Chasse aux hallucinations</span><button class="cpbtn" onclick="cp(this)">📋 Copier</button></div>
+          <div class="pbody">Génère 6 défis progressifs pour des élèves de [niveau] pour repérer les limites d'une IA. Chaque défi : une question à poser à l'IA, ce que l'élève doit vérifier (avec quelle source), et une question de discussion de classe. Couvre : hallucination factuelle, anachronisme, simplification, biais culturel.</div>
+        </div>
+        <div class="pcrd">
+          <div class="phdr"><span class="ptitle" style="color:var(--c5)">Prompt C — Charte d'utilisation en classe</span><button class="cpbtn" onclick="cp(this)">📋 Copier</button></div>
+          <div class="pbody">Rédige une charte d'utilisation de l'IA en classe pour des élèves de [niveau], format affiche A3. La charte inclut en langage simple : ce que l'IA peut m'aider à faire (3 exemples), ce que l'IA ne peut pas faire à ma place (3 exemples), comment vérifier une réponse d'IA (3 étapes), mes droits et responsabilités numériques. Ton positif et responsabilisant.</div>
+        </div>
+        <div class="pcrd">
+          <div class="phdr"><span class="ptitle" style="color:var(--c5)">Prompt D — Protocole de séance structuré</span><button class="cpbtn" onclick="cp(this)">📋 Copier</button></div>
+          <div class="pbody">Crée un protocole de séance en 5 étapes pour utiliser une IA en classe avec des élèves de [niveau] sur [sujet]. Pour chaque étape : durée, ce que font les élèves, rôle de l'enseignant, et trace écrite attendue. Inclure un moment obligatoire de vérification critique de la réponse de l'IA.</div>
+        </div>
+      </div>
+    </div>
+    <div class="tips-box" style="background:var(--c5l);border-color:var(--c5)">
+      <div class="tips-ttl" style="color:var(--c5)">💡 Tips & Astuces</div>
+      <div class="tips-list">
+        <div class="tip">DuckAI (duck.ai) : aucun compte, données protégées → la solution la plus simple pour commencer dès la 4e.</div>
+        <div class="tip">L'activité "chasse aux hallucinations" est très motivante : les élèves adorent prendre l'IA en défaut.</div>
+        <div class="tip">Toujours prévoir une trace écrite : elle prouve que l'élève a réfléchi et ne s'est pas contenté de copier-coller.</div>
+        <div class="tip">Mizou : créez un assistant avec des instructions restrictives (pas de réponses directes, guide par questions).</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ RESSOURCES ══════════════════ -->
+<section class="sec" id="sec-res">
+  <div class="ahdr" style="background:linear-gradient(135deg,#334155,#64748B)">
+    <div class="atag">Ressources</div>
+    <h2>Outils & Liens utiles</h2>
+    <div class="ameta"><span class="adur">📚 Pour aller plus loin</span></div>
+  </div>
+  <div class="abody">
+    <div>
+      <div class="sec-title">🗂 Récapitulatif des outils par atelier</div>
+      <div class="card-0">
+        <table class="tbl">
+          <thead><tr><th>Atelier</th><th>Outils principaux</th><th>Outils spécialisés</th></tr></thead>
+          <tbody>
+            <tr><td><span style="font-weight:700;color:var(--c1)">1 – Préparation cours</span></td><td>ChatGPT, Claude, Copilot, Gemini</td><td>NotebookLM, Gamma.app</td></tr>
+            <tr><td><span style="font-weight:700;color:var(--c2)">2 – Ressources interactives</span></td><td>NotebookLM, Quizizz</td><td>Quizlet AI, Kahoot AI, Napkin.ai</td></tr>
+            <tr><td><span style="font-weight:700;color:var(--c3)">3 – Assistants IA</span></td><td>Copilot, ChatGPT GPTs</td><td>Gemini Gems, Mizou.com</td></tr>
+            <tr><td><span style="font-weight:700;color:var(--c4)">4 – Évaluation</span></td><td>Claude, ChatGPT, Copilot</td><td>Mistral, Canva (grilles)</td></tr>
+            <tr><td><span style="font-weight:700;color:var(--c5)">5 – Élèves & IA</span></td><td>Mizou.com, DuckAI</td><td>ChatGPT, Claude, Khanmigo</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div>
+      <div class="sec-title">🔗 Liens rapides</div>
+      <div class="links-grid">
+        <a class="lcard" href="https://notebooklm.google.com" target="_blank"><div class="ltool">NotebookLM</div><div class="ldesc">Cartes mentales et podcasts depuis vos documents</div><div class="lurl">notebooklm.google.com</div></a>
+        <a class="lcard" href="https://quizizz.com" target="_blank"><div class="ltool">Quizizz</div><div class="ldesc">Quiz gamifiés générés par IA depuis vos cours</div><div class="lurl">quizizz.com</div></a>
+        <a class="lcard" href="https://quizlet.com" target="_blank"><div class="ltool">Quizlet AI</div><div class="ldesc">Flashcards et révision autonome pour les élèves</div><div class="lurl">quizlet.com</div></a>
+        <a class="lcard" href="https://mizou.com" target="_blank"><div class="ltool">Mizou.com</div><div class="ldesc">Assistants IA sécurisés et traçables pour les élèves</div><div class="lurl">mizou.com</div></a>
+        <a class="lcard" href="https://duck.ai" target="_blank"><div class="ltool">DuckAI</div><div class="ldesc">IA sans compte, données protégées, dès la 4e</div><div class="lurl">duck.ai</div></a>
+        <a class="lcard" href="https://gamma.app" target="_blank"><div class="ltool">Gamma.app</div><div class="ldesc">Présentations et diaporamas générés par IA en 1 min</div><div class="lurl">gamma.app</div></a>
+        <a class="lcard" href="https://napkin.ai" target="_blank"><div class="ltool">Napkin.ai</div><div class="ldesc">Infographies générées automatiquement depuis du texte</div><div class="lurl">napkin.ai</div></a>
+        <a class="lcard" href="https://perplexity.ai" target="_blank"><div class="ltool">Perplexity</div><div class="ldesc">Recherche documentaire avec citations de sources incluses</div><div class="lurl">perplexity.ai</div></a>
+        <a class="lcard" href="https://magicschool.ai" target="_blank"><div class="ltool">MagicSchool AI</div><div class="ldesc">Suite IA complète pensée pour les enseignants</div><div class="lurl">magicschool.ai</div></a>
+        <a class="lcard" href="https://pix.fr" target="_blank"><div class="ltool">Référentiel Pix IA</div><div class="ldesc">Compétences IA pour enseignants et élèves</div><div class="lurl">pix.fr</div></a>
+        <a class="lcard" href="https://www.unesco.org/en/digital-education/artificial-intelligence" target="_blank"><div class="ltool">Guide UNESCO IA</div><div class="ldesc">Recommandations éthiques et pédagogiques officielles</div><div class="lurl">unesco.org</div></a>
+        <a class="lcard" href="https://www.khanacademy.org/khan-labs" target="_blank"><div class="ltool">Khanmigo</div><div class="ldesc">Tuteur IA de Khan Academy pour les élèves</div><div class="lurl">khanacademy.org</div></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<div class="toast" id="toast">✓ Prompt copié dans le presse-papiers !</div>
+
+<script>
+// ── NAVIGATION ──
+let currentBtn = document.querySelector('.nb.active');
+function go(id, btn) {
+  document.querySelectorAll('.sec').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nb').forEach(b => b.classList.remove('active'));
+  document.getElementById('sec-' + id).classList.add('active');
+  if (btn) { btn.classList.add('active'); currentBtn = btn; }
+  document.getElementById('main').scrollTo(0, 0);
+}
+
+// ── STEPS / PROGRESS ──
+const state = JSON.parse(localStorage.getItem('j2-progress') || '{}');
+const TOTAL = 5;
+
+function tick(el, atelier, idx) {
+  if (!state[atelier]) state[atelier] = {};
+  state[atelier][idx] = !state[atelier][idx];
+  localStorage.setItem('j2-progress', JSON.stringify(state));
+  render(atelier);
+}
+
+function render(atelier) {
+  const steps = document.querySelectorAll('#st-' + atelier + ' .step');
+  const done = state[atelier] ? Object.values(state[atelier]).filter(Boolean).length : 0;
+  steps.forEach((s, i) => {
+    s.classList.toggle('done', !!(state[atelier] && state[atelier][i]));
+  });
+  const pct = Math.round(done / TOTAL * 100);
+  document.getElementById('pg-' + atelier).textContent = done + ' / ' + TOTAL + ' étapes';
+  document.getElementById('pf-' + atelier).style.width = pct + '%';
+  // sidebar check
+  const chk = document.getElementById('chk-' + atelier);
+  if (chk) chk.style.display = done === TOTAL ? 'inline' : 'none';
+}
+
+// Init
+['a1','a2','a3','a4','a5'].forEach(a => render(a));
+
+// ── COPY PROMPT ──
+function cp(btn) {
+  const text = btn.closest('.pcrd').querySelector('.pbody').textContent.trim();
+  navigator.clipboard.writeText(text).then(() => {
+    btn.classList.add('copied');
+    btn.textContent = '✓ Copié !';
+    showToast();
+    setTimeout(() => { btn.classList.remove('copied'); btn.textContent = '📋 Copier'; }, 2000);
+  }).catch(() => {
+    // fallback
+    const ta = document.createElement('textarea');
+    ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    btn.classList.add('copied'); btn.textContent = '✓ Copié !'; showToast();
+    setTimeout(() => { btn.classList.remove('copied'); btn.textContent = '📋 Copier'; }, 2000);
+  });
+}
+
+function showToast() {
+  const t = document.getElementById('toast');
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2000);
+}
+
+// ── TIMER ──
+let tSec = 0, tRunning = false, tInterval = null;
+
+function tToggle() {
+  if (tRunning) {
+    clearInterval(tInterval); tRunning = false;
+    document.getElementById('tstart').textContent = '▶ Reprendre';
+  } else {
+    tInterval = setInterval(() => { tSec++; tRender(); }, 1000);
+    tRunning = true;
+    document.getElementById('tstart').textContent = '⏸ Pause';
+  }
+}
+
+function tReset() {
+  clearInterval(tInterval); tRunning = false; tSec = 0;
+  document.getElementById('tstart').textContent = '▶ Démarrer';
+  tRender();
+}
+
+function tRender() {
+  const m = String(Math.floor(tSec / 60)).padStart(2, '0');
+  const s = String(tSec % 60).padStart(2, '0');
+  const d = document.getElementById('tdisp');
+  d.textContent = m + ':' + s;
+  d.className = 'timer-disp';
+  if (tSec >= 3600) d.classList.add('danger');
+  else if (tSec >= 2700) d.classList.add('warn');
+}
+</script>
+</body>
+</html>
