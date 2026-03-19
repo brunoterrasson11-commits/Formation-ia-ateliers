@@ -339,18 +339,18 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,'Helvetica Neue',Ar
     </div>
 
     <div>
-      <div class="sec-title">📶 Les 5 niveaux de prompt (Apport 1)</div>
-      <div class="card-0">
-        <table class="tbl">
-          <thead><tr><th>Niveau</th><th>Exemple</th><th>Résultat</th></tr></thead>
-          <tbody>
-            <tr><td class="tname">1 – Minimal</td><td>"Explique la photosynthèse"</td><td style="color:var(--text-muted)">Résultat générique, souvent trop scolaire</td></tr>
-            <tr><td class="tname">2 – Contextualisé</td><td>"Explique la photosynthèse pour des élèves de 4e en difficulté"</td><td style="color:var(--text-muted)">Bien meilleur — le niveau change tout</td></tr>
-            <tr><td class="tname">3 – Structuré (ACTIF)</td><td>Rôle + Action + Contexte + Ton + Informations + Format</td><td style="color:var(--text-muted)">La méthode de référence pour les prompts complexes</td></tr>
-            <tr><td class="tname">4 – Itératif</td><td>"Maintenant simplifie…", "Ajoute des exemples…", "Adapte pour DYS…"</td><td style="color:var(--text-muted)">Affiner dans la même conversation sans repartir de zéro</td></tr>
-            <tr><td class="tname">5 – Système</td><td>Instructions permanentes qui définissent le comportement de l'IA</td><td style="color:var(--text-muted)">Le niveau des assistants et GPTs personnalisés</td></tr>
-          </tbody>
-        </table>
+      <div class="sec-title">🎡 Vous êtes joueur ? Laissez la roue choisir !</div>
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:22px 22px 20px;display:flex;align-items:center;gap:32px;flex-wrap:wrap">
+        <div style="flex:1;min-width:220px">
+          <p style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:8px">Impossible de choisir votre atelier ?</p>
+          <p style="font-size:13px;color:var(--text-sec);line-height:1.65;margin-bottom:18px">Donnez un coup de roue et laissez le hasard décider. Chaque atelier est une bonne porte d'entrée — l'essentiel est de commencer !</p>
+          <button onclick="spinWheel()" id="spin-btn" style="background:#1E293B;color:#fff;border:none;padding:11px 28px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;transition:background .15s;width:100%" onmouseover="this.style.background='#334155'" onmouseout="this.style.background='#1E293B'">🎲 Tourner la roue !</button>
+          <div id="wheel-result" style="display:none;margin-top:14px;padding:14px 16px;background:var(--surface2);border:2px solid #E2E8F0;border-radius:12px;text-align:center"></div>
+        </div>
+        <div style="flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:0">
+          <div style="width:0;height:0;border-left:12px solid transparent;border-right:12px solid transparent;border-top:22px solid #1E293B;margin-bottom:-2px;z-index:2;position:relative"></div>
+          <canvas id="wheel-canvas" width="260" height="260" style="border-radius:50%;cursor:pointer;display:block;box-shadow:0 4px 20px rgba(0,0,0,.15)" onclick="spinWheel()"></canvas>
+        </div>
       </div>
     </div>
 
@@ -1409,6 +1409,87 @@ function showToast() {
   t.classList.add('show');
   setTimeout(() => t.classList.remove('show'), 2000);
 }
+
+// ── ROUE ──
+const WHEEL_ITEMS = [
+  { id:'a1', label:'Atelier 1', sub:'Préparation cours',      color:'#2563EB' },
+  { id:'a2', label:'Atelier 2', sub:'Ressources interactives', color:'#7C3AED' },
+  { id:'a3', label:'Atelier 3', sub:'Assistant IA',            color:'#4F46E5' },
+  { id:'a4', label:'Atelier 4', sub:'Évaluation',              color:'#EA580C' },
+  { id:'a5', label:'Atelier 5', sub:'Élèves & IA',             color:'#059669' },
+  { id:'a6', label:'Atelier 6', sub:'Missions élèves',         color:'#0E7490' },
+  { id:'a7', label:'Atelier 7', sub:'Devoirs & cartouche',     color:'#9D174D' },
+  { id:'a8', label:'Atelier 8', sub:'Sciences & Base44',       color:'#065F46' },
+];
+let wheelAngle = 0, wheelSpinning = false;
+
+function drawWheel(angle) {
+  const canvas = document.getElementById('wheel-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const cx = 130, cy = 130, r = 126;
+  const n = WHEEL_ITEMS.length;
+  const arc = (2 * Math.PI) / n;
+  ctx.clearRect(0, 0, 260, 260);
+  for (let i = 0; i < n; i++) {
+    const a0 = angle + i * arc, a1 = a0 + arc;
+    const item = WHEEL_ITEMS[i];
+    ctx.beginPath(); ctx.moveTo(cx, cy);
+    ctx.arc(cx, cy, r, a0, a1); ctx.closePath();
+    ctx.fillStyle = item.color; ctx.fill();
+    ctx.strokeStyle = '#fff'; ctx.lineWidth = 2; ctx.stroke();
+    ctx.save();
+    ctx.translate(cx, cy); ctx.rotate(a0 + arc / 2);
+    ctx.textAlign = 'right'; ctx.fillStyle = '#fff';
+    ctx.font = 'bold 11.5px Segoe UI,sans-serif';
+    ctx.fillText(item.label, r - 8, -3);
+    ctx.font = '9.5px Segoe UI,sans-serif'; ctx.globalAlpha = .82;
+    ctx.fillText(item.sub, r - 8, 9);
+    ctx.restore();
+  }
+  ctx.beginPath(); ctx.arc(cx, cy, 18, 0, 2 * Math.PI);
+  ctx.fillStyle = '#1E293B'; ctx.fill();
+  ctx.strokeStyle = '#fff'; ctx.lineWidth = 3; ctx.stroke();
+}
+
+function spinWheel() {
+  if (wheelSpinning) return;
+  wheelSpinning = true;
+  const btn = document.getElementById('spin-btn');
+  btn.disabled = true; btn.textContent = '⏳ En train de tourner…';
+  document.getElementById('wheel-result').style.display = 'none';
+  const extra = (6 + Math.random() * 4) * 2 * Math.PI;
+  const rnd = Math.random() * 2 * Math.PI;
+  const target = wheelAngle + extra + rnd;
+  const t0 = performance.now(), dur = 4200, start = wheelAngle;
+  function animate(now) {
+    const t = Math.min((now - t0) / dur, 1);
+    const e = 1 - Math.pow(1 - t, 3);
+    wheelAngle = start + (target - start) * e;
+    drawWheel(wheelAngle);
+    if (t < 1) { requestAnimationFrame(animate); }
+    else {
+      wheelAngle = target % (2 * Math.PI);
+      wheelSpinning = false;
+      btn.disabled = false; btn.textContent = '🎲 Tourner à nouveau !';
+      showWheelResult();
+    }
+  }
+  requestAnimationFrame(animate);
+}
+
+function showWheelResult() {
+  const n = WHEEL_ITEMS.length, arc = (2 * Math.PI) / n;
+  const norm = (((-wheelAngle - Math.PI / 2) % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
+  const item = WHEEL_ITEMS[Math.floor(norm / arc) % n];
+  const el = document.getElementById('wheel-result');
+  el.style.display = 'block'; el.style.borderColor = item.color;
+  el.innerHTML = `<div style="font-size:12px;color:${item.color};font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">🎯 La roue a choisi…</div>
+    <div style="font-size:17px;font-weight:800;color:var(--text);margin-bottom:12px">${item.label} — ${item.sub}</div>
+    <button onclick="go('${item.id}',document.getElementById('nb-${item.id}'))" style="background:${item.color};color:#fff;border:none;padding:9px 22px;border-radius:9px;font-size:13px;font-weight:700;cursor:pointer">→ Lancer cet atelier</button>`;
+}
+
+drawWheel(0);
 
 // ── TIMER ──
 let tSec = 0, tRunning = false, tInterval = null;
