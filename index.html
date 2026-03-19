@@ -11,6 +11,7 @@
   --c1:#2563EB;--c2:#7C3AED;--c3:#4F46E5;--c4:#EA580C;--c5:#059669;
   --c1l:#EFF6FF;--c2l:#F5F3FF;--c3l:#EEF2FF;--c4l:#FFF7ED;--c5l:#ECFDF5;
   --ok:#22C55E;--r:10px;--sh:0 1px 3px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.06);--shm:0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -1px rgba(0,0,0,.06);
+  --c6:#0E7490;--c6l:#CFFAFE;--c7:#9D174D;--c7l:#FCE7F3;--c8:#059669;--c8l:#D1FAE5;
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 html{font-size:15px}
@@ -75,7 +76,7 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,'Helvetica Neue',Ar
 .tname{font-weight:700;color:var(--text)}
 
 /* MATRIX */
-.matrix{display:grid;grid-template-columns:repeat(5,1fr);gap:9px}
+.matrix{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}
 .mc{border:2px solid var(--border);border-radius:var(--r);padding:13px;cursor:pointer;transition:all .15s}
 .mc:hover{transform:translateY(-2px);box-shadow:var(--shm)}
 .mc-num{font-size:11px;font-weight:700;text-transform:uppercase;margin-bottom:5px}
@@ -159,7 +160,37 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,'Helvetica Neue',Ar
 ::-webkit-scrollbar-thumb{background:rgba(0,0,0,.13);border-radius:3px}
 .sb::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1)}
 
-@media(max-width:900px){.matrix{grid-template-columns:repeat(2,1fr)}.links-grid{grid-template-columns:repeat(2,1fr)}.obj-grid{grid-template-columns:1fr}}
+/* CARTOUCHE IA */
+.cartouche{border:2px solid;border-radius:var(--r);overflow:hidden}
+.cartouche-hdr{display:flex;align-items:center;gap:9px;padding:10px 14px;font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+.cartouche-body{padding:12px 14px;display:grid;gap:7px;font-size:12.5px;line-height:1.5}
+.cartouche-row{display:flex;align-items:flex-start;gap:8px}
+.cartouche-ico{flex-shrink:0;width:18px}
+.level-badge{display:inline-flex;align-items:center;gap:5px;padding:2px 10px;border-radius:20px;font-size:11px;font-weight:700;white-space:nowrap}
+.level-1{background:#DCFCE7;color:#16A34A;border:1px solid #86EFAC}
+.level-2{background:#FEF3C7;color:#D97706;border:1px solid #FCD34D}
+.level-3{background:#FEE2E2;color:#DC2626;border:1px solid #FCA5A5}
+
+/* MISSIONS GRID */
+.missions-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.mission-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:14px;display:flex;flex-direction:column;gap:6px;transition:all .15s}
+.mission-card:hover{box-shadow:var(--shm);transform:translateY(-1px)}
+.mission-num{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--text-muted)}
+.mission-title{font-size:13.5px;font-weight:700;color:var(--text)}
+.mission-desc{font-size:12px;color:var(--text-sec);line-height:1.5}
+.mission-footer{display:flex;align-items:center;gap:6px;margin-top:4px;flex-wrap:wrap}
+.mtag{font-size:10px;padding:2px 8px;border-radius:20px;font-weight:600;background:var(--bg);color:var(--text-sec);border:1px solid var(--border)}
+
+/* DEVOIR CARDS */
+.devoir-wrap{display:grid;gap:14px}
+.devoir-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
+.devoir-hdr{padding:12px 15px;display:flex;align-items:center;justify-content:space-between;background:var(--surface2);border-bottom:1px solid var(--border);flex-wrap:wrap;gap:6px}
+.devoir-titre{font-size:13.5px;font-weight:700}
+.devoir-matiere{font-size:10px;font-weight:600;padding:2px 9px;border-radius:20px;white-space:nowrap}
+.devoir-body{padding:14px 15px;display:grid;gap:11px}
+.devoir-consigne{font-size:13px;line-height:1.6;color:var(--text-sec)}
+
+@media(max-width:900px){.matrix{grid-template-columns:repeat(2,1fr)}.links-grid{grid-template-columns:repeat(2,1fr)}.obj-grid{grid-template-columns:1fr}.missions-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -175,7 +206,7 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,'Helvetica Neue',Ar
     <button class="nb active" onclick="go('home',this)">
       <span style="font-size:15px">🏠</span><span>Accueil & Programme</span>
     </button>
-    <div class="nav-label" style="margin-top:7px">5 Ateliers au choix</div>
+    <div class="nav-label" style="margin-top:7px">8 Ateliers au choix</div>
     <button class="nb" onclick="go('a1',this)" id="nb-a1">
       <span class="ndot" style="background:var(--c1)"></span>
       <span>Atelier 1 · Préparation cours</span>
@@ -200,6 +231,21 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,'Helvetica Neue',Ar
       <span class="ndot" style="background:var(--c5)"></span>
       <span>Atelier 5 · Élèves & IA</span>
       <span class="meta"><span class="nbadge">60–75'</span><span class="nchk" id="chk-a5" style="display:none">✓</span></span>
+    </button>
+    <button class="nb" onclick="go('a6',this)" id="nb-a6">
+      <span class="ndot" style="background:var(--c6)"></span>
+      <span>Atelier 6 · Missions élèves</span>
+      <span class="meta"><span class="nbadge">45–60'</span><span class="nchk" id="chk-a6" style="display:none">✓</span></span>
+    </button>
+    <button class="nb" onclick="go('a7',this)" id="nb-a7">
+      <span class="ndot" style="background:var(--c7)"></span>
+      <span>Atelier 7 · Devoirs & cartouche</span>
+      <span class="meta"><span class="nbadge">45–60'</span><span class="nchk" id="chk-a7" style="display:none">✓</span></span>
+    </button>
+    <button class="nb" onclick="go('a8',this)" id="nb-a8">
+      <span class="ndot" style="background:var(--c8)"></span>
+      <span>Atelier 8 · Sciences & Base44</span>
+      <span class="meta"><span class="nbadge">60–75'</span><span class="nchk" id="chk-a8" style="display:none">✓</span></span>
     </button>
     <div class="nav-label" style="margin-top:7px">Ressources</div>
     <button class="nb" onclick="go('res',this)">
@@ -253,7 +299,7 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,'Helvetica Neue',Ar
       </div>
       <div class="warn-box" style="margin-top:9px">
         <span class="warn-ico">⚠️</span>
-        <div>La totalité des ateliers représente <strong>6 à 9h de travail</strong>. Choisissez <strong>2 à 3 ateliers</strong> selon votre besoin immédiat. Choisissez AVANT de commencer — ne naviguez pas entre les ateliers au fil de l'eau.</div>
+        <div>La totalité des ateliers représente <strong>8 à 12h de travail</strong>. Choisissez <strong>2 à 3 ateliers</strong> selon votre besoin immédiat. Les ateliers 6, 7 et 8 sont des modules complémentaires centrés sur les élèves et les sciences.</div>
       </div>
     </div>
 
@@ -283,6 +329,21 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,'Helvetica Neue',Ar
         <div class="mc" onclick="go('a5',document.getElementById('nb-a5'))" style="border-color:var(--c5)">
           <div class="mc-num" style="color:var(--c5)">Atelier 5</div>
           <div class="mc-need">Je veux faire travailler mes élèves avec l'IA</div>
+          <div class="mc-dur">⏱ 60–75 min</div>
+        </div>
+        <div class="mc" onclick="go('a6',document.getElementById('nb-a6'))" style="border-color:var(--c6)">
+          <div class="mc-num" style="color:var(--c6)">Atelier 6 ✦ Nouveau</div>
+          <div class="mc-need">Je veux des missions clés-en-main pour mes élèves</div>
+          <div class="mc-dur">⏱ 45–60 min</div>
+        </div>
+        <div class="mc" onclick="go('a7',document.getElementById('nb-a7'))" style="border-color:var(--c7)">
+          <div class="mc-num" style="color:var(--c7)">Atelier 7 ✦ Nouveau</div>
+          <div class="mc-need">Je veux encadrer l'usage IA dans les devoirs maison</div>
+          <div class="mc-dur">⏱ 45–60 min</div>
+        </div>
+        <div class="mc" onclick="go('a8',document.getElementById('nb-a8'))" style="border-color:var(--c8)">
+          <div class="mc-num" style="color:var(--c8)">Atelier 8 ✦ Nouveau</div>
+          <div class="mc-need">Je veux créer une app SVT avec Base44 sans coder</div>
           <div class="mc-dur">⏱ 60–75 min</div>
         </div>
       </div>
@@ -639,6 +700,428 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,'Helvetica Neue',Ar
   </div>
 </section>
 
+<!-- ══════════════════ ATELIER 6 ══════════════════ -->
+<section class="sec" id="sec-a6">
+  <div class="ahdr" style="background:linear-gradient(135deg,#0C4A6E,#0EA5E9)">
+    <div class="atag">Atelier 6</div>
+    <h2>8 Missions IA avec les élèves</h2>
+    <div class="ameta">
+      <span class="adur">⏱ 45–60 min</span>
+      <span class="tpill">DuckAI</span><span class="tpill">ChatGPT</span><span class="tpill">Copilot</span><span class="tpill">Claude</span>
+    </div>
+  </div>
+  <div class="abody">
+    <div class="obj-block" style="background:var(--c6l);border-color:#A5F3FC">
+      <span class="obj-ico">🎯</span>
+      <div>Découvrir 8 missions clés-en-main où les élèves utilisent l'IA de façon active, critique et réflexive — adaptables à toutes les matières et tous les niveaux.</div>
+    </div>
+    <div>
+      <div class="sec-title">🗂 Les 8 missions à la carte</div>
+      <div class="missions-grid">
+        <div class="mission-card">
+          <div class="mission-num">Mission 1</div>
+          <div class="mission-title">🔍 Chasseur de Fake News</div>
+          <div class="mission-desc">Les élèves posent la même question à une IA et à une source fiable, puis identifient les différences, erreurs ou hallucinations.</div>
+          <div class="mission-footer">
+            <span class="mtag" style="background:var(--c6l);color:var(--c6);border-color:#A5F3FC">Esprit critique</span>
+            <span class="mtag">Toutes matières</span>
+            <span class="mtag">⏱ 20 min</span>
+          </div>
+        </div>
+        <div class="mission-card">
+          <div class="mission-num">Mission 2</div>
+          <div class="mission-title">📝 Tuteur Virtuel à Trous</div>
+          <div class="mission-desc">Les élèves utilisent l'IA pour transformer un cours en exercices à trous, puis s'évaluent mutuellement sur les questions générées.</div>
+          <div class="mission-footer">
+            <span class="mtag" style="background:var(--c6l);color:var(--c6);border-color:#A5F3FC">Révision active</span>
+            <span class="mtag">Toutes matières</span>
+            <span class="mtag">⏱ 30 min</span>
+          </div>
+        </div>
+        <div class="mission-card">
+          <div class="mission-num">Mission 3</div>
+          <div class="mission-title">🆚 Duel de Sources</div>
+          <div class="mission-desc">Chaque binôme obtient une réponse de l'IA et la confronte à une source documentaire fiable. Bilan collectif : que faut-il vraiment retenir ?</div>
+          <div class="mission-footer">
+            <span class="mtag" style="background:var(--c6l);color:var(--c6);border-color:#A5F3FC">Recherche documentaire</span>
+            <span class="mtag">⏱ 25 min</span>
+          </div>
+        </div>
+        <div class="mission-card">
+          <div class="mission-num">Mission 4</div>
+          <div class="mission-title">💬 Débat Éthique IA</div>
+          <div class="mission-desc">Les élèves demandent à l'IA des arguments pour et contre une question éthique, puis organisent un débat mouvant avec leur propre analyse.</div>
+          <div class="mission-footer">
+            <span class="mtag" style="background:var(--c6l);color:var(--c6);border-color:#A5F3FC">Argumentation</span>
+            <span class="mtag">EMC / Philo</span>
+            <span class="mtag">⏱ 40 min</span>
+          </div>
+        </div>
+        <div class="mission-card">
+          <div class="mission-num">Mission 5</div>
+          <div class="mission-title">📞 Téléphone Arabe IA</div>
+          <div class="mission-desc">Un texte est reformulé par l'IA à chaque étape. Après 5 reformulations, comparez l'original et le résultat : qu'a-t-on perdu ou transformé ?</div>
+          <div class="mission-footer">
+            <span class="mtag" style="background:var(--c6l);color:var(--c6);border-color:#A5F3FC">Lecture / Écriture</span>
+            <span class="mtag">Français / Langues</span>
+            <span class="mtag">⏱ 25 min</span>
+          </div>
+        </div>
+        <div class="mission-card">
+          <div class="mission-num">Mission 6</div>
+          <div class="mission-title">⏱ Défi Chrono</div>
+          <div class="mission-desc">En 10 minutes, produire la meilleure synthèse possible sur un sujet avec l'aide de l'IA. Évaluation : qualité, précision, esprit critique vis-à-vis de l'IA.</div>
+          <div class="mission-footer">
+            <span class="mtag" style="background:var(--c6l);color:var(--c6);border-color:#A5F3FC">Synthèse</span>
+            <span class="mtag">Toutes matières</span>
+            <span class="mtag">⏱ 20 min</span>
+          </div>
+        </div>
+        <div class="mission-card">
+          <div class="mission-num">Mission 7</div>
+          <div class="mission-title">🏃 Coach Data EPS</div>
+          <div class="mission-desc">Les élèves saisissent leurs performances sportives (temps, distances, répétitions) et demandent à l'IA une analyse et des conseils personnalisés.</div>
+          <div class="mission-footer">
+            <span class="mtag" style="background:var(--c6l);color:var(--c6);border-color:#A5F3FC">Analyse de données</span>
+            <span class="mtag">EPS / SVT</span>
+            <span class="mtag">⏱ 30 min</span>
+          </div>
+        </div>
+        <div class="mission-card">
+          <div class="mission-num">Mission 8</div>
+          <div class="mission-title">🎯 Atelier Différencié</div>
+          <div class="mission-desc">Les élèves demandent à l'IA d'adapter la même notion à trois niveaux (débutant / intermédiaire / expert) et comparent. Quelle version leur correspond ?</div>
+          <div class="mission-footer">
+            <span class="mtag" style="background:var(--c6l);color:var(--c6);border-color:#A5F3FC">Métacognition</span>
+            <span class="mtag">Toutes matières</span>
+            <span class="mtag">⏱ 20 min</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="prog-hdr"><span>Progression</span><span id="pg-a6">0 / 5 étapes</span></div>
+      <div class="prog-bar"><div class="prog-fill" id="pf-a6" style="background:var(--c6);width:0%"></div></div>
+      <div class="hint">Cliquez sur chaque étape pour la cocher ✓</div>
+      <div class="steps" id="st-a6">
+        <div class="step" onclick="tick(this,'a6',0)"><div class="snum" style="border-color:var(--c6);color:var(--c6)"><span>1</span></div><div class="stxt">Choisissez 1 ou 2 missions adaptées à votre matière et à votre niveau de classe.</div></div>
+        <div class="step" onclick="tick(this,'a6',1)"><div class="snum" style="border-color:var(--c6);color:var(--c6)"><span>2</span></div><div class="stxt">Vérifiez les conditions techniques : accès IA pour les élèves (<a href="https://duck.ai" target="_blank" style="color:var(--c6)">DuckAI</a> sans compte, ou salle informatique).</div></div>
+        <div class="step" onclick="tick(this,'a6',2)"><div class="snum" style="border-color:var(--c6);color:var(--c6)"><span>3</span></div><div class="stxt">Préparez la consigne avec le <strong>Prompt A</strong> ou B pour personnaliser la mission à votre cours.</div></div>
+        <div class="step" onclick="tick(this,'a6',3)"><div class="snum" style="border-color:var(--c6);color:var(--c6)"><span>4</span></div><div class="stxt">Testez vous-même la mission en jouant le rôle d'un élève pour anticiper les difficultés.</div></div>
+        <div class="step" onclick="tick(this,'a6',4)"><div class="snum" style="border-color:var(--c6);color:var(--c6)"><span>5</span></div><div class="stxt">Planifiez la trace écrite obligatoire : que devront noter les élèves à l'issue de la mission ?</div></div>
+      </div>
+    </div>
+    <div>
+      <div class="sec-title">📋 Prompts à copier-coller</div>
+      <div class="prompts">
+        <div class="pcrd">
+          <div class="phdr"><span class="ptitle" style="color:var(--c6)">Prompt A — Préparer la Mission Chasseur de Fake News</span><button class="cpbtn" onclick="cp(this)">📋 Copier</button></div>
+          <div class="pbody">Génère 5 questions sur [sujet] à poser à une IA, dont au moins 2 susceptibles de provoquer des hallucinations ou approximations. Pour chaque question : la réponse correcte attendue, la source fiable à utiliser pour vérifier, et un piège typique que l'IA pourrait générer. Niveau : élèves de [niveau].</div>
+        </div>
+        <div class="pcrd">
+          <div class="phdr"><span class="ptitle" style="color:var(--c6)">Prompt B — Tuteur Virtuel à Trous</span><button class="cpbtn" onclick="cp(this)">📋 Copier</button></div>
+          <div class="pbody">Transforme ce cours en 10 exercices à trous progressifs pour des élèves de [niveau] : [coller le cours]. Varie les formats : mots manquants, phrases à compléter, associations. Fournis la correction séparément. Format : liste numérotée, puis correction numérotée à la fin.</div>
+        </div>
+        <div class="pcrd">
+          <div class="phdr"><span class="ptitle" style="color:var(--c6)">Prompt C — Débat Éthique structuré</span><button class="cpbtn" onclick="cp(this)">📋 Copier</button></div>
+          <div class="pbody">Prépare un débat sur la question : [question éthique]. Génère 4 arguments "pour" et 4 arguments "contre", chacun en 2 phrases avec un exemple concret. Ajoute 3 questions pour relancer le débat si les échanges s'essoufflent. Niveau lycée / collège [niveau].</div>
+        </div>
+        <div class="pcrd">
+          <div class="phdr"><span class="ptitle" style="color:var(--c6)">Prompt D — Grille d'évaluation mission IA</span><button class="cpbtn" onclick="cp(this)">📋 Copier</button></div>
+          <div class="pbody">Crée une grille d'auto-évaluation (4 critères) pour que les élèves de [niveau] évaluent leur utilisation de l'IA lors de [mission]. Critères centrés sur : qualité de la question posée, esprit critique sur la réponse, vérification des sources, trace écrite personnelle. 3 niveaux : pas encore / en progrès / maîtrisé.</div>
+        </div>
+      </div>
+    </div>
+    <div class="tips-box" style="background:var(--c6l);border-color:var(--c6)">
+      <div class="tips-ttl" style="color:var(--c6)">💡 Tips & Astuces</div>
+      <div class="tips-list">
+        <div class="tip">La Mission "Chasseur de Fake News" est idéale en première activité IA : elle apprend à se méfier avant tout.</div>
+        <div class="tip">Toujours prévoir un bilan collectif de 5 min après la mission : "Qu'avez-vous appris sur l'IA aujourd'hui ?"</div>
+        <div class="tip">La trace écrite est non-négociable : elle prouve la réflexion personnelle et protège l'enseignant en cas de questionnement.</div>
+        <div class="tip">Pour les missions à distance (devoirs maison), utilisez le système de cartouche d'usage de l'Atelier 7.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ ATELIER 7 ══════════════════ -->
+<section class="sec" id="sec-a7">
+  <div class="ahdr" style="background:linear-gradient(135deg,#831843,#DB2777)">
+    <div class="atag">Atelier 7</div>
+    <h2>Devoirs à la maison avec cartouche IA</h2>
+    <div class="ameta">
+      <span class="adur">⏱ 45–60 min</span>
+      <span class="tpill">ChatGPT</span><span class="tpill">Claude</span><span class="tpill">Copilot</span>
+    </div>
+  </div>
+  <div class="abody">
+    <div class="obj-block" style="background:var(--c7l);border-color:#F9A8D4">
+      <span class="obj-ico">🎯</span>
+      <div>Concevoir des devoirs à la maison qui intègrent l'IA de façon encadrée et transparente, grâce à un <strong>cartouche d'usage</strong> qui définit précisément les droits et obligations de chaque élève.</div>
+    </div>
+    <div>
+      <div class="sec-title">🏷 Le système de cartouche IA — 3 niveaux</div>
+      <div class="card-0">
+        <table class="tbl">
+          <thead><tr><th>Niveau</th><th>Nom</th><th>Principe</th><th>Exemple d'usage autorisé</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><span class="level-badge level-1">Niveau 1</span></td>
+              <td class="tname">Autonome</td>
+              <td>L'élève travaille seul — l'IA peut être utilisée uniquement pour vérifier</td>
+              <td>Vérifier l'orthographe, reformuler une phrase maladroite</td>
+            </tr>
+            <tr>
+              <td><span class="level-badge level-2">Niveau 2</span></td>
+              <td class="tname">Guidé</td>
+              <td>L'IA est autorisée pour des tâches précises définies par l'enseignant</td>
+              <td>Rechercher des infos, générer un plan, traduire un texte</td>
+            </tr>
+            <tr>
+              <td><span class="level-badge level-3">Niveau 3</span></td>
+              <td class="tname">Accompagné</td>
+              <td>L'IA est un outil central, mais l'analyse et la synthèse restent à l'élève</td>
+              <td>Débattre avec l'IA, co-rédiger, générer des hypothèses à tester</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div>
+      <div class="sec-title">📄 Exemples de devoirs avec cartouche</div>
+      <div class="devoir-wrap">
+
+        <div class="devoir-card">
+          <div class="devoir-hdr">
+            <span class="devoir-titre">✍️ Rédiger une lettre formelle</span>
+            <span class="devoir-matiere" style="background:#EFF6FF;color:#2563EB;border:1px solid #BFDBFE">Français — 3e</span>
+          </div>
+          <div class="devoir-body">
+            <div class="devoir-consigne"><strong>Consigne :</strong> Rédigez une lettre de candidature pour un stage fictif dans une entreprise de votre choix. 3 paragraphes : présentation, motivation, disponibilités. Respectez les codes du genre épistolaire formel.</div>
+            <div class="cartouche" style="border-color:#D97706">
+              <div class="cartouche-hdr" style="background:#FEF3C7;color:#92400E">
+                🤖 USAGE DE L'IA POUR CE DEVOIR
+                <span class="level-badge level-2" style="margin-left:auto">Niveau 2 — Guidé</span>
+              </div>
+              <div class="cartouche-body" style="background:#FFFBEB">
+                <div class="cartouche-row"><span class="cartouche-ico">✅</span><div><strong>Tu PEUX utiliser l'IA pour :</strong> reformuler une phrase maladroite, vérifier le registre formel, enrichir ton vocabulaire.</div></div>
+                <div class="cartouche-row"><span class="cartouche-ico">❌</span><div><strong>Tu NE DOIS PAS faire rédiger :</strong> l'IA ne peut pas écrire la lettre à ta place — seule ta motivation est authentique.</div></div>
+                <div class="cartouche-row"><span class="cartouche-ico">💡</span><div><strong>Compétences à conserver :</strong> structurer un propos argumenté, adapter son écrit à un destinataire, soigner la mise en forme.</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="devoir-card">
+          <div class="devoir-hdr">
+            <span class="devoir-titre">🗓 Synthèse sur la Révolution industrielle</span>
+            <span class="devoir-matiere" style="background:#FFF7ED;color:#C2410C;border:1px solid #FED7AA">Histoire — 4e</span>
+          </div>
+          <div class="devoir-body">
+            <div class="devoir-consigne"><strong>Consigne :</strong> Rédigez une synthèse de 20 lignes sur les transformations sociales de la Révolution industrielle (XIXe s.). Utilisez au moins 3 dates et 3 notions du cours.</div>
+            <div class="cartouche" style="border-color:#16A34A">
+              <div class="cartouche-hdr" style="background:#DCFCE7;color:#14532D">
+                🤖 USAGE DE L'IA POUR CE DEVOIR
+                <span class="level-badge level-1" style="margin-left:auto">Niveau 1 — Autonome</span>
+              </div>
+              <div class="cartouche-body" style="background:#F0FDF4">
+                <div class="cartouche-row"><span class="cartouche-ico">✅</span><div><strong>Tu PEUX utiliser l'IA uniquement pour :</strong> vérifier une date ou un fait que tu hésites, corriger l'orthographe après avoir rédigé.</div></div>
+                <div class="cartouche-row"><span class="cartouche-ico">❌</span><div><strong>Tu NE DOIS PAS utiliser l'IA pour :</strong> générer le plan, rédiger les paragraphes, chercher les exemples à ta place.</div></div>
+                <div class="cartouche-row"><span class="cartouche-ico">💡</span><div><strong>Compétences à conserver :</strong> mobiliser ses connaissances du cours, construire un plan, rédiger une synthèse autonome.</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="devoir-card">
+          <div class="devoir-hdr">
+            <span class="devoir-titre">🔬 Exploration des organites cellulaires</span>
+            <span class="devoir-matiere" style="background:#ECFDF5;color:#065F46;border:1px solid #A7F3D0">SVT — 2de</span>
+          </div>
+          <div class="devoir-body">
+            <div class="devoir-consigne"><strong>Consigne :</strong> Sélectionnez 3 organites de la cellule végétale. Pour chacun : structure, fonction et rôle dans la photosynthèse. Incluez un schéma légendé fait à la main.</div>
+            <div class="cartouche" style="border-color:#D97706">
+              <div class="cartouche-hdr" style="background:#FEF3C7;color:#92400E">
+                🤖 USAGE DE L'IA POUR CE DEVOIR
+                <span class="level-badge level-2" style="margin-left:auto">Niveau 2 — Guidé</span>
+              </div>
+              <div class="cartouche-body" style="background:#FFFBEB">
+                <div class="cartouche-row"><span class="cartouche-ico">✅</span><div><strong>Tu PEUX utiliser l'IA pour :</strong> rechercher et synthétiser les informations sur les organites, vérifier les définitions, lister les légendes.</div></div>
+                <div class="cartouche-row"><span class="cartouche-ico">❌</span><div><strong>Tu DOIS faire toi-même :</strong> le schéma dessiné, la mise en lien avec le cours, la formulation dans tes propres mots.</div></div>
+                <div class="cartouche-row"><span class="cartouche-ico">💡</span><div><strong>Compétences à conserver :</strong> réaliser un schéma scientifique, établir des liens fonctionnels, restituer une connaissance de mémoire.</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="devoir-card">
+          <div class="devoir-hdr">
+            <span class="devoir-titre">🌍 Opinion essay on social media</span>
+            <span class="devoir-matiere" style="background:#F5F3FF;color:#6D28D9;border:1px solid #DDD6FE">Anglais — Terminale</span>
+          </div>
+          <div class="devoir-body">
+            <div class="devoir-consigne"><strong>Consigne :</strong> Write a 250-word opinion essay arguing whether social media has more positive or negative effects on teenagers. Introduction, two arguments, conclusion.</div>
+            <div class="cartouche" style="border-color:#DC2626">
+              <div class="cartouche-hdr" style="background:#FEE2E2;color:#991B1B">
+                🤖 USAGE DE L'IA POUR CE DEVOIR
+                <span class="level-badge level-3" style="margin-left:auto">Niveau 3 — Accompagné</span>
+              </div>
+              <div class="cartouche-body" style="background:#FFF5F5">
+                <div class="cartouche-row"><span class="cartouche-ico">✅</span><div><strong>Tu PEUX utiliser l'IA pour :</strong> générer des arguments contradictoires, vérifier la grammaire et le vocabulaire, trouver des exemples concrets.</div></div>
+                <div class="cartouche-row"><span class="cartouche-ico">❌</span><div><strong>Tu DOIS apporter :</strong> ta propre prise de position, des exemples de ta vie ou de l'actualité, une conclusion personnelle.</div></div>
+                <div class="cartouche-row"><span class="cartouche-ico">💡</span><div><strong>Compétences à conserver :</strong> défendre une opinion en anglais, structurer un argumentaire, maîtriser les connecteurs logiques.</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="devoir-card">
+          <div class="devoir-hdr">
+            <span class="devoir-titre">⚖️ Préparer un débat sur l'IA et le travail</span>
+            <span class="devoir-matiere" style="background:#F0FDF4;color:#15803D;border:1px solid #86EFAC">EMC — 1ère</span>
+          </div>
+          <div class="devoir-body">
+            <div class="devoir-consigne"><strong>Consigne :</strong> Préparez 5 arguments (pour ou contre) sur la question "L'automatisation IA représente-t-elle une menace pour l'emploi ?" Chaque argument inclut un exemple concret et une source vérifiable.</div>
+            <div class="cartouche" style="border-color:#DC2626">
+              <div class="cartouche-hdr" style="background:#FEE2E2;color:#991B1B">
+                🤖 USAGE DE L'IA POUR CE DEVOIR
+                <span class="level-badge level-3" style="margin-left:auto">Niveau 3 — Accompagné</span>
+              </div>
+              <div class="cartouche-body" style="background:#FFF5F5">
+                <div class="cartouche-row"><span class="cartouche-ico">✅</span><div><strong>Tu PEUX utiliser l'IA pour :</strong> générer une liste d'arguments, trouver des statistiques, reformuler tes idées, comparer des points de vue.</div></div>
+                <div class="cartouche-row"><span class="cartouche-ico">❌</span><div><strong>Obligatoire :</strong> vérifier chaque source citée (l'IA peut inventer des statistiques !), formuler ton propre point de vue.</div></div>
+                <div class="cartouche-row"><span class="cartouche-ico">💡</span><div><strong>Compétences à conserver :</strong> vérifier et critiquer une source, formuler un jugement éthique personnel, construire une argumentation nuancée.</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div>
+      <div class="prog-hdr"><span>Progression</span><span id="pg-a7">0 / 5 étapes</span></div>
+      <div class="prog-bar"><div class="prog-fill" id="pf-a7" style="background:var(--c7);width:0%"></div></div>
+      <div class="hint">Cliquez sur chaque étape pour la cocher ✓</div>
+      <div class="steps" id="st-a7">
+        <div class="step" onclick="tick(this,'a7',0)"><div class="snum" style="border-color:var(--c7);color:var(--c7)"><span>1</span></div><div class="stxt">Choisissez un devoir existant que vous souhaitez adapter avec un cartouche IA.</div></div>
+        <div class="step" onclick="tick(this,'a7',1)"><div class="snum" style="border-color:var(--c7);color:var(--c7)"><span>2</span></div><div class="stxt">Déterminez le niveau de cartouche (1, 2 ou 3) selon les compétences que vous souhaitez préserver.</div></div>
+        <div class="step" onclick="tick(this,'a7',2)"><div class="snum" style="border-color:var(--c7);color:var(--c7)"><span>3</span></div><div class="stxt">Rédigez votre cartouche avec le <strong>Prompt A</strong> : définissez ce que l'IA peut et ne peut pas faire.</div></div>
+        <div class="step" onclick="tick(this,'a7',3)"><div class="snum" style="border-color:var(--c7);color:var(--c7)"><span>4</span></div><div class="stxt">Testez le devoir vous-même avec et sans l'IA pour identifier d'éventuels contournements.</div></div>
+        <div class="step" onclick="tick(this,'a7',4)"><div class="snum" style="border-color:var(--c7);color:var(--c7)"><span>5</span></div><div class="stxt">Partagez avec un collègue : le cartouche est-il clair ? L'élève comprend-il ce qu'il peut faire ?</div></div>
+      </div>
+    </div>
+    <div>
+      <div class="sec-title">📋 Prompts à copier-coller</div>
+      <div class="prompts">
+        <div class="pcrd">
+          <div class="phdr"><span class="ptitle" style="color:var(--c7)">Prompt A — Créer un cartouche IA pour un devoir</span><button class="cpbtn" onclick="cp(this)">📋 Copier</button></div>
+          <div class="pbody">Je donne le devoir suivant à mes élèves de [niveau] en [matière] : [description du devoir]. Le niveau d'usage IA souhaité est [1 / 2 / 3]. Génère un cartouche d'usage structuré : (1) "Tu PEUX utiliser l'IA pour..." (2 à 3 usages précis autorisés), (2) "Tu NE DOIS PAS utiliser l'IA pour..." (ce qui doit rester personnel), (3) "Compétences à conserver" (ce que ce devoir entraîne chez l'élève). Langage clair, accessible à un élève de [niveau].</div>
+        </div>
+        <div class="pcrd">
+          <div class="phdr"><span class="ptitle" style="color:var(--c7)">Prompt B — Adapter un devoir existant au niveau 2</span><button class="cpbtn" onclick="cp(this)">📋 Copier</button></div>
+          <div class="pbody">Voici un devoir que je donne habituellement : [décrire le devoir]. Je veux l'adapter pour intégrer l'IA comme outil de niveau 2 (guidé). Propose : (1) les modifications à apporter à la consigne, (2) une tâche spécifique où l'IA est un appui (pas un remplacement), (3) une question finale de réflexion sur l'utilisation de l'IA par l'élève.</div>
+        </div>
+        <div class="pcrd">
+          <div class="phdr"><span class="ptitle" style="color:var(--c7)">Prompt C — Créer une charte de classe co-construite</span><button class="cpbtn" onclick="cp(this)">📋 Copier</button></div>
+          <div class="pbody">Aide-moi à co-construire une charte d'usage de l'IA pour les devoirs à la maison avec mes élèves de [niveau]. Propose 10 questions à soumettre à la classe pour définir collectivement : ce que l'IA peut apporter, ce qu'il faut garder comme compétence personnelle, et comment signaler l'usage de l'IA dans le rendu.</div>
+        </div>
+        <div class="pcrd">
+          <div class="phdr"><span class="ptitle" style="color:var(--c7)">Prompt D — Évaluer un devoir réalisé avec IA</span><button class="cpbtn" onclick="cp(this)">📋 Copier</button></div>
+          <div class="pbody">Crée une grille d'évaluation adaptée à un devoir de niveau IA [1/2/3] en [matière] pour des élèves de [niveau]. La grille inclut : (1) les compétences disciplinaires évaluées, (2) un critère "usage raisonné de l'IA" (a-t-il respecté le cartouche ?), (3) un critère "valeur ajoutée personnelle de l'élève". 4 niveaux de maîtrise.</div>
+        </div>
+      </div>
+    </div>
+    <div class="tips-box" style="background:var(--c7l);border-color:var(--c7)">
+      <div class="tips-ttl" style="color:var(--c7)">💡 Tips & Astuces</div>
+      <div class="tips-list">
+        <div class="tip">Commencez par le Niveau 1 pour habituer les élèves au cartouche, puis progressez vers le niveau 3 au fil de l'année.</div>
+        <div class="tip">Demandez aux élèves de joindre une capture d'écran de leur conversation IA : c'est la meilleure preuve de leur usage réel.</div>
+        <div class="tip">Impliquez les élèves dans la création du cartouche : "Qu'est-ce qui vous semble juste d'interdire ?" — cela renforce l'adhésion.</div>
+        <div class="tip">Un cartouche bien conçu est aussi une protection pour l'enseignant : en cas de fraude, les règles étaient clairement posées.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ ATELIER 8 ══════════════════ -->
+<section class="sec" id="sec-a8">
+  <div class="ahdr" style="background:linear-gradient(135deg,#064E3B,#059669)">
+    <div class="atag">Atelier 8</div>
+    <h2>Créer une application pédagogique avec Base44</h2>
+    <div class="ameta">
+      <span class="adur">⏱ 60–75 min</span>
+      <span class="tpill">Base44</span><span class="tpill">ChatGPT</span><span class="tpill">Claude</span>
+    </div>
+  </div>
+  <div class="abody">
+    <div class="obj-block" style="background:var(--c8l);border-color:#6EE7B7">
+      <span class="obj-ico">🎯</span>
+      <div>Créer une application web interactive sans aucune compétence en codage — en utilisant Base44 qui transforme vos descriptions en langage naturel en vraies applications utilisables en classe immédiatement.</div>
+    </div>
+    <div class="warn-box" style="background:#ECFDF5;border-color:#6EE7B7">
+      <span class="warn-ico">💡</span>
+      <div><strong>C'est quoi Base44 ?</strong> <a href="https://base44.com" target="_blank" style="color:#059669">base44.com</a> est un générateur d'applications no-code propulsé par l'IA. Décrivez votre app en français, elle la génère et vous obtenez une URL partageable immédiatement. Gratuit jusqu'à 3 apps.</div>
+    </div>
+    <div>
+      <div class="sec-title">🛠 Exemples d'applications à créer en SVT</div>
+      <div class="card-0">
+        <table class="tbl">
+          <thead><tr><th>Application</th><th>Usage élèves</th><th>Niveau</th></tr></thead>
+          <tbody>
+            <tr><td class="tname">🔬 Schéma interactif de la cellule végétale</td><td>Cliquer sur les organites pour voir définition et fonction</td><td>2de / 1ère</td></tr>
+            <tr><td class="tname">🧬 Quiz sur les étapes de la mitose</td><td>Remettre les étapes dans l'ordre avec feedback instantané</td><td>Terminale</td></tr>
+            <tr><td class="tname">🌍 Simulateur de chaîne alimentaire</td><td>Créer une chaîne et observer les déséquilibres en temps réel</td><td>4e / 3e</td></tr>
+            <tr><td class="tname">💊 Calculateur d'IMC pédagogique</td><td>Saisir des données et analyser les résultats avec explications</td><td>EPS / SVT 5e</td></tr>
+            <tr><td class="tname">🌱 Journal de croissance végétale</td><td>Enregistrer les mesures d'une expérience sur plusieurs semaines</td><td>6e / 5e</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div>
+      <div class="prog-hdr"><span>Progression</span><span id="pg-a8">0 / 5 étapes</span></div>
+      <div class="prog-bar"><div class="prog-fill" id="pf-a8" style="background:var(--c8);width:0%"></div></div>
+      <div class="hint">Cliquez sur chaque étape pour la cocher ✓</div>
+      <div class="steps" id="st-a8">
+        <div class="step" onclick="tick(this,'a8',0)"><div class="snum" style="border-color:var(--c8);color:var(--c8)"><span>1</span></div><div class="stxt">Créez un compte gratuit sur <a href="https://base44.com" target="_blank" style="color:var(--c8)">base44.com</a>. Cliquez "Create new app".</div></div>
+        <div class="step" onclick="tick(this,'a8',1)"><div class="snum" style="border-color:var(--c8);color:var(--c8)"><span>2</span></div><div class="stxt">Préparez votre description d'application avec le <strong>Prompt A</strong> dans ChatGPT ou Claude pour obtenir un brief détaillé.</div></div>
+        <div class="step" onclick="tick(this,'a8',2)"><div class="snum" style="border-color:var(--c8);color:var(--c8)"><span>3</span></div><div class="stxt">Collez votre description dans Base44 et laissez-le générer l'application (2–3 minutes).</div></div>
+        <div class="step" onclick="tick(this,'a8',3)"><div class="snum" style="border-color:var(--c8);color:var(--c8)"><span>4</span></div><div class="stxt">Testez et affinez en langage naturel : "Ajoute un bouton retour", "Mets les couleurs en vert", "Ajoute une explication pour chaque réponse".</div></div>
+        <div class="step" onclick="tick(this,'a8',4)"><div class="snum" style="border-color:var(--c8);color:var(--c8)"><span>5</span></div><div class="stxt">Partagez l'URL avec vos élèves via ENT, QR code ou chat de classe. L'URL est permanente et ne nécessite pas de compte élève.</div></div>
+      </div>
+    </div>
+    <div>
+      <div class="sec-title">📋 Prompts à copier-coller</div>
+      <div class="prompts">
+        <div class="pcrd">
+          <div class="phdr"><span class="ptitle" style="color:var(--c8)">Prompt A — Brief pour Base44 (SVT)</span><button class="cpbtn" onclick="cp(this)">📋 Copier</button></div>
+          <div class="pbody">Je suis enseignant(e) en SVT, niveau [niveau]. Je veux créer une application interactive sur [sujet : la cellule végétale / la mitose / la photosynthèse…]. Elle doit permettre aux élèves de [action principale : identifier les organites en cliquant sur un schéma / remettre des étapes dans l'ordre / répondre à des questions avec feedback]. Interface en français, adaptée au collège/lycée. Génère une description précise de 150 mots que je pourrai coller dans Base44 pour créer l'application.</div>
+        </div>
+        <div class="pcrd">
+          <div class="phdr"><span class="ptitle" style="color:var(--c8)">Prompt B — App quiz interactif (toutes matières)</span><button class="cpbtn" onclick="cp(this)">📋 Copier</button></div>
+          <div class="pbody">Génère un brief de 150 mots pour Base44 afin de créer une application quiz sur [sujet] pour des élèves de [niveau] en [matière]. L'app inclut : 10 questions QCM sur le sujet, feedback immédiat (bonne/mauvaise réponse avec explication courte), score final avec conseils personnalisés, interface en français, colorée et motivante, utilisable sur tablette et ordinateur.</div>
+        </div>
+        <div class="pcrd">
+          <div class="phdr"><span class="ptitle" style="color:var(--c8)">Prompt C — Application de suivi d'expérience</span><button class="cpbtn" onclick="cp(this)">📋 Copier</button></div>
+          <div class="pbody">Génère un brief pour Base44 : une application journal de bord pour une expérience de [germination d'une graine / croissance d'une plante / autre]. L'élève saisit : la date, ses observations, une mesure en cm. L'app affiche un graphique d'évolution et permet d'exporter les données en tableau. Interface simple, adaptée aux collégiens, sans compte requis.</div>
+        </div>
+        <div class="pcrd">
+          <div class="phdr"><span class="ptitle" style="color:var(--c8)">Prompt D — Affiner l'app générée par Base44</span><button class="cpbtn" onclick="cp(this)">📋 Copier</button></div>
+          <div class="pbody">Mon application Base44 sur [sujet] a été générée mais je veux l'améliorer. Voici ce qui fonctionne : [description]. Voici ce que je voudrais changer : [liste]. Génère les instructions précises à taper dans Base44 (en langage naturel, une demande à la fois) pour obtenir ces modifications sans casser ce qui fonctionne déjà.</div>
+        </div>
+      </div>
+    </div>
+    <div class="tips-box" style="background:var(--c8l);border-color:var(--c8)">
+      <div class="tips-ttl" style="color:var(--c8)">💡 Tips & Astuces</div>
+      <div class="tips-list">
+        <div class="tip">Commencez simple : 5 questions QCM sur un chapitre. Vous serez surpris de la qualité en 10 minutes.</div>
+        <div class="tip">Base44 comprend le français : décrivez exactement ce que vous voulez, comme si vous l'expliquiez à un développeur.</div>
+        <div class="tip">L'URL générée est permanente et partageable : collez-la dans votre ENT, vos diapositives ou générez un QR code.</div>
+        <div class="tip">Activité bonus : faites créer une app simple à vos élèves — "Créez un quiz sur ce chapitre pour vos camarades" → apprentissage par les pairs.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ══════════════════ RESSOURCES ══════════════════ -->
 <section class="sec" id="sec-res">
   <div class="ahdr" style="background:linear-gradient(135deg,#334155,#64748B)">
@@ -658,6 +1141,9 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,'Helvetica Neue',Ar
             <tr><td><span style="font-weight:700;color:var(--c3)">3 – Assistants IA</span></td><td>Copilot, ChatGPT GPTs</td><td>Gemini Gems, Mizou.com</td></tr>
             <tr><td><span style="font-weight:700;color:var(--c4)">4 – Évaluation</span></td><td>Claude, ChatGPT, Copilot</td><td>Mistral, Canva (grilles)</td></tr>
             <tr><td><span style="font-weight:700;color:var(--c5)">5 – Élèves & IA</span></td><td>Mizou.com, DuckAI</td><td>ChatGPT, Claude, Khanmigo</td></tr>
+            <tr><td><span style="font-weight:700;color:var(--c6)">6 – Missions élèves</span></td><td>DuckAI, ChatGPT, Copilot</td><td>Claude, Mizou.com</td></tr>
+            <tr><td><span style="font-weight:700;color:var(--c7)">7 – Devoirs & cartouche</span></td><td>ChatGPT, Claude, Copilot</td><td>Mise en page cartouche dans Word</td></tr>
+            <tr><td><span style="font-weight:700;color:var(--c8)">8 – Sciences & Base44</span></td><td>Base44.com</td><td>ChatGPT, Claude (génération de briefs)</td></tr>
           </tbody>
         </table>
       </div>
@@ -677,6 +1163,7 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,'Helvetica Neue',Ar
         <a class="lcard" href="https://pix.fr" target="_blank"><div class="ltool">Référentiel Pix IA</div><div class="ldesc">Compétences IA pour enseignants et élèves</div><div class="lurl">pix.fr</div></a>
         <a class="lcard" href="https://www.unesco.org/en/digital-education/artificial-intelligence" target="_blank"><div class="ltool">Guide UNESCO IA</div><div class="ldesc">Recommandations éthiques et pédagogiques officielles</div><div class="lurl">unesco.org</div></a>
         <a class="lcard" href="https://www.khanacademy.org/khan-labs" target="_blank"><div class="ltool">Khanmigo</div><div class="ldesc">Tuteur IA de Khan Academy pour les élèves</div><div class="lurl">khanacademy.org</div></a>
+        <a class="lcard" href="https://base44.com" target="_blank"><div class="ltool">Base44</div><div class="ldesc">Créez des applications pédagogiques no-code en quelques minutes</div><div class="lurl">base44.com</div></a>
       </div>
     </div>
   </div>
@@ -723,7 +1210,7 @@ function render(atelier) {
 }
 
 // Init
-['a1','a2','a3','a4','a5'].forEach(a => render(a));
+['a1','a2','a3','a4','a5','a6','a7','a8'].forEach(a => render(a));
 
 // ── COPY PROMPT ──
 function cp(btn) {
