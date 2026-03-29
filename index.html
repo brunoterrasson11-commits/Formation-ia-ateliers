@@ -1528,7 +1528,7 @@ function render(atelier) {
   // sidebar check
   const chk = document.getElementById('chk-' + atelier);
   if (chk) chk.style.display = done === TOTAL ? 'inline' : 'none';
-  if(typeof updateCRCNBadges==='function'){updateCRCNBadges();var _cs=document.getElementById('sec-crcn');if(_cs&&_cs.classList.contains('active'))renderCompetencesPage();}
+  try{if(typeof updateCRCNBadges==='function'){updateCRCNBadges();var _cs=document.getElementById('sec-crcn');if(_cs&&_cs.classList.contains('active'))renderCompetencesPage();}}catch(e){}
 }
 
 // Init
