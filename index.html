@@ -1062,6 +1062,80 @@ function checkLock(){
         </div>
       </div>
     </div>
+    <div>
+      <div class="sec-title">📖 Scénario concret — SVT, Terminale</div>
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r);overflow:hidden">
+        <div style="background:linear-gradient(135deg,#7C2D12,#C2410C);padding:14px 18px;display:flex;align-items:flex-start;gap:12px;flex-wrap:wrap">
+          <div style="flex:1;min-width:200px">
+            <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.55);margin-bottom:4px">Exemple réel pas à pas</div>
+            <div style="font-size:15px;font-weight:800;color:#fff;line-height:1.3">Marc corrige 32 comptes-rendus de TP en 2h au lieu de 4h</div>
+          </div>
+          <div style="display:flex;gap:6px;flex-wrap:wrap">
+            <span style="font-size:11px;background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.3);border-radius:20px;padding:3px 10px;font-weight:600">SVT — Terminale</span>
+            <span style="font-size:11px;background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.3);border-radius:20px;padding:3px 10px;font-weight:600">⏱ 50 min de préparation</span>
+          </div>
+        </div>
+        <div style="padding:12px 18px;background:var(--c4l);border-bottom:1px solid #FED7AA;font-size:12.5px;color:var(--text-sec);line-height:1.6">
+          <strong>Contexte :</strong> Marc a 32 comptes-rendus de TP sur la photosynthèse à rendre dans 3 jours. Habituellement il passe 7–8 minutes par copie, souvent à chercher ses mots pour les commentaires. Il veut des feedbacks de qualité sans y passer ses soirées. Aucun nom d'élève ne sera jamais collé dans une IA.
+        </div>
+        <div style="padding:16px 18px;display:grid;gap:14px">
+
+          <div style="display:flex;gap:12px;align-items:flex-start">
+            <div style="width:26px;height:26px;background:var(--c4);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0;margin-top:1px">1</div>
+            <div style="flex:1">
+              <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:3px">Créer la grille d'évaluation — <em style="font-weight:400;color:var(--c4)">Prompt A</em> (10 min)</div>
+              <div style="font-size:12.5px;color:var(--text-sec);line-height:1.55">Il utilise le Prompt A dans Claude : <em>« Grille pour compte-rendu de TP en SVT, Terminale, 5 critères sur 4 niveaux : Protocole / Résultats & schémas / Interprétation / Conclusion / Présentation. »</em> Claude génère un tableau complet avec descripteurs observables. Marc passe 5 minutes à l'affiner : il ajoute une ligne sur la <em>sécurité en laboratoire</em> et reformule 2 descripteurs trop vagues.</div>
+              <div style="margin-top:6px;background:var(--bg);border:1px solid var(--border);border-radius:7px;padding:8px 11px;font-size:11.5px;color:var(--text-muted);font-style:italic">✅ Grille réutilisable pour tous les TP de l'année. Il l'imprime en 32 exemplaires — fini les commentaires écrits à la main copie par copie.</div>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:12px;align-items:flex-start">
+            <div style="width:26px;height:26px;background:var(--c4);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0;margin-top:1px">2</div>
+            <div style="flex:1">
+              <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:3px">Tester sur une production anonymisée — <em style="font-weight:400;color:var(--c4)">Prompt D</em> (12 min)</div>
+              <div style="font-size:12.5px;color:var(--text-sec);line-height:1.55">Il prend la copie d'un élève moyen, <strong>supprime le nom</strong>, et colle le texte dans Claude avec le Prompt D + sa grille. L'IA identifie que la partie <em>Interprétation</em> manque de lien avec les données chiffrées, et que la conclusion ne répond pas à la problématique initiale. Marc constate que l'analyse est juste — et que l'IA a raté l'aspect qualitatif des schémas, qu'il doit évaluer lui-même.</div>
+              <div style="margin-top:6px;background:var(--bg);border:1px solid var(--border);border-radius:7px;padding:8px 11px;font-size:11.5px;color:var(--text-muted);font-style:italic">⚠️ L'IA est pertinente sur le texte, moins sur les schémas ou dessins. Marc garde le critère "schémas" sous sa seule responsabilité.</div>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:12px;align-items:flex-start">
+            <div style="width:26px;height:26px;background:var(--c4);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0;margin-top:1px">3</div>
+            <div style="flex:1">
+              <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:3px">Corriger les 32 copies avec la grille (hors IA) (1h)</div>
+              <div style="font-size:12.5px;color:var(--text-sec);line-height:1.55">La grille en main, Marc coche les niveaux pour chaque critère sans écrire de commentaire libre. Il va deux fois plus vite : il <em>reconnaît</em> un niveau au lieu de le formuler. Pour les 27 copies dans la moyenne, la grille suffit. Il marque d'une étoile les 5 copies nécessitant un feedback personnalisé (très faibles ou très bonnes).</div>
+              <div style="margin-top:6px;background:var(--bg);border:1px solid var(--border);border-radius:7px;padding:8px 11px;font-size:11.5px;color:var(--text-muted);font-style:italic">✅ 27 copies traitées avec la grille seule. Seules 5 copies nécessitent un feedback écrit — c'est là que l'IA va réellement aider.</div>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:12px;align-items:flex-start">
+            <div style="width:26px;height:26px;background:var(--c4);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0;margin-top:1px">4</div>
+            <div style="flex:1">
+              <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:3px">Générer les feedbacks personnalisés — <em style="font-weight:400;color:var(--c4)">Prompt B</em> (10 min)</div>
+              <div style="font-size:12.5px;color:var(--text-sec);line-height:1.55">Pour chacune des 5 copies complexes, il utilise le Prompt B en précisant les niveaux cochés : <em>« Protocole : Acquis / Résultats : En cours / Interprétation : Non acquis / Conclusion : En cours / Présentation : Maîtrisé. »</em> Claude génère un feedback de 150 mots : 2 points forts, 2 axes de progrès, 1 action concrète. Pour 2 élèves très fragiles, il ajoute : <em>« Reformule en version très encourageante. »</em></div>
+              <div style="margin-top:6px;background:var(--bg);border:1px solid var(--border);border-radius:7px;padding:8px 11px;font-size:11.5px;color:var(--text-muted);font-style:italic">✅ 5 feedbacks rédigés en 10 minutes. Marc en retouche 2 phrases par feedback pour les personnaliser avec son vocabulaire.</div>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:12px;align-items:flex-start">
+            <div style="width:26px;height:26px;background:#0F766E;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0;margin-top:1px">5</div>
+            <div style="flex:1">
+              <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:3px">Préparer la remédiation — <em style="font-weight:400;color:var(--c4)">Prompt C</em> (8 min)</div>
+              <div style="font-size:12.5px;color:var(--text-sec);line-height:1.55">En corrigeant, Marc a noté 3 erreurs récurrentes : <em>(1) protocole décrit sans lien avec l'hypothèse, (2) unités oubliées dans les résultats, (3) conclusion sans retour à la problématique</em>. Il utilise le Prompt C — Claude propose 3 activités de remédiation de 15 min chacune : exercice de mise en correspondance hypothèse/protocole, correction collective d'un tableau lacunaire, jeu de rôle "avocat de la problématique".</div>
+              <div style="margin-top:6px;background:var(--bg);border:1px solid var(--border);border-radius:7px;padding:8px 11px;font-size:11.5px;color:var(--text-muted);font-style:italic">✅ La séance de remédiation de 45 min est prête avant même d'avoir rendu les copies.</div>
+            </div>
+          </div>
+
+        </div>
+        <div style="margin:0 18px 16px;background:linear-gradient(135deg,#FFF7ED,#FFEDD5);border:1px solid #FED7AA;border-radius:9px;padding:12px 15px;display:flex;align-items:flex-start;gap:10px">
+          <span style="font-size:18px;flex-shrink:0">🏁</span>
+          <div>
+            <div style="font-size:12.5px;font-weight:700;color:#9A3412;margin-bottom:3px">Résultat en chiffres</div>
+            <div style="font-size:12px;color:#7C2D12;line-height:1.55"><strong>32 copies</strong> rendues avec grille + feedbacks personnalisés pour les 5 cas complexes + séance de remédiation prête. Temps total : <strong>2h au lieu de 4h</strong>. La grille est réutilisable pour tous les TP de l'année. Gain annuel estimé : <strong>15 à 20h de correction</strong>.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="tips-box" style="background:var(--c4l);border-color:var(--c4)">
       <div class="tips-ttl" style="color:var(--c4)">💡 Tips & Astuces</div>
       <div class="tips-list">
