@@ -181,8 +181,35 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,'Helvetica Neue',Ar
 
 /* MISSIONS GRID */
 .missions-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
-.mission-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:14px;display:flex;flex-direction:column;gap:6px;transition:all .15s}
-.mission-card:hover{box-shadow:var(--shm);transform:translateY(-1px)}
+.mission-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:14px;display:flex;flex-direction:column;gap:6px;transition:all .15s;cursor:pointer}
+.mission-card:hover{box-shadow:var(--shm);transform:translateY(-1px);border-color:var(--c6)}
+/* MISSION MODAL */
+.mmodal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.65);backdrop-filter:blur(4px);z-index:9000;display:flex;align-items:center;justify-content:center;padding:16px;opacity:0;pointer-events:none;transition:opacity .2s}
+.mmodal-overlay.open{opacity:1;pointer-events:all}
+.mmodal{background:var(--surface);border:1px solid var(--border);border-radius:14px;width:100%;max-width:640px;max-height:90vh;overflow:hidden;display:flex;flex-direction:column;transform:scale(.96);transition:transform .2s}
+.mmodal-overlay.open .mmodal{transform:scale(1)}
+.mmodal-head{padding:18px 20px 14px;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-shrink:0}
+.mmodal-htag{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.09em;color:var(--c6);margin-bottom:4px}
+.mmodal-htitle{font-size:17px;font-weight:800;color:var(--text);line-height:1.3}
+.mmodal-close{background:var(--surface2);border:1px solid var(--border);border-radius:8px;color:var(--text-sec);font-size:18px;line-height:1;padding:5px 9px;cursor:pointer;flex-shrink:0;transition:background .15s}
+.mmodal-close:hover{background:var(--border)}
+.mmodal-body{overflow-y:auto;padding:20px;display:grid;gap:16px}
+.mm-meta{display:flex;flex-wrap:wrap;gap:6px}
+.mm-mtag{font-size:11px;padding:3px 10px;border-radius:20px;font-weight:600;background:var(--c6l);color:var(--c6);border:1px solid #A5F3FC}
+.mm-obj{background:var(--c6l);border:1px solid #A5F3FC;border-radius:9px;padding:12px 14px;font-size:13px;color:var(--text-sec);line-height:1.6}
+.mm-section-title{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--text-muted);margin-bottom:8px}
+.mm-steps{display:grid;gap:8px}
+.mm-step{display:flex;gap:10px;align-items:flex-start}
+.mm-step-num{width:22px;height:22px;border-radius:50%;background:var(--c6);color:#fff;font-size:10px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.mm-step-txt{font-size:13px;color:var(--text-sec);line-height:1.55;flex:1}
+.mm-step-txt strong{color:var(--text)}
+.mm-prompt{background:var(--bg);border:1px solid var(--border);border-radius:9px;padding:12px 14px;font-size:12px;color:var(--text-sec);line-height:1.6;font-family:monospace;white-space:pre-wrap}
+.mm-tip{background:var(--surface2);border-left:3px solid var(--c6);border-radius:0 8px 8px 0;padding:10px 13px;font-size:12.5px;color:var(--text-sec);line-height:1.55}
+.mm-trace{background:var(--surface2);border:1px solid var(--border);border-radius:9px;padding:12px 14px}
+.mm-trace-title{font-size:11px;font-weight:700;color:var(--text-muted);margin-bottom:6px}
+.mm-trace-items{display:grid;gap:4px}
+.mm-trace-item{font-size:12.5px;color:var(--text-sec);line-height:1.5;padding-left:14px;position:relative}
+.mm-trace-item::before{content:'→';position:absolute;left:0;color:var(--c6);font-weight:700}
 .mission-num{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--text-muted)}
 .mission-title{font-size:13.5px;font-weight:700;color:var(--text)}
 .mission-desc{font-size:12px;color:var(--text-sec);line-height:1.5}
@@ -874,7 +901,7 @@ function checkLock(){
     <div>
       <div class="sec-title">🗂 Les 8 missions à la carte</div>
       <div class="missions-grid">
-        <div class="mission-card">
+        <div class="mission-card" onclick="openMission(1)">
           <div class="mission-num">Mission 1</div>
           <div class="mission-title">🔍 Chasseur de Fake News</div>
           <div class="mission-desc">Les élèves posent la même question à une IA et à une source fiable, puis identifient les différences, erreurs ou hallucinations.</div>
@@ -884,7 +911,7 @@ function checkLock(){
             <span class="mtag">⏱ 20 min</span>
           </div>
         </div>
-        <div class="mission-card">
+        <div class="mission-card" onclick="openMission(2)">
           <div class="mission-num">Mission 2</div>
           <div class="mission-title">📝 Tuteur Virtuel à Trous</div>
           <div class="mission-desc">Les élèves utilisent l'IA pour transformer un cours en exercices à trous, puis s'évaluent mutuellement sur les questions générées.</div>
@@ -894,7 +921,7 @@ function checkLock(){
             <span class="mtag">⏱ 30 min</span>
           </div>
         </div>
-        <div class="mission-card">
+        <div class="mission-card" onclick="openMission(3)">
           <div class="mission-num">Mission 3</div>
           <div class="mission-title">🆚 Duel de Sources</div>
           <div class="mission-desc">Chaque binôme obtient une réponse de l'IA et la confronte à une source documentaire fiable. Bilan collectif : que faut-il vraiment retenir ?</div>
@@ -903,7 +930,7 @@ function checkLock(){
             <span class="mtag">⏱ 25 min</span>
           </div>
         </div>
-        <div class="mission-card">
+        <div class="mission-card" onclick="openMission(4)">
           <div class="mission-num">Mission 4</div>
           <div class="mission-title">💬 Débat Éthique IA</div>
           <div class="mission-desc">Les élèves demandent à l'IA des arguments pour et contre une question éthique, puis organisent un débat mouvant avec leur propre analyse.</div>
@@ -913,7 +940,7 @@ function checkLock(){
             <span class="mtag">⏱ 40 min</span>
           </div>
         </div>
-        <div class="mission-card">
+        <div class="mission-card" onclick="openMission(5)">
           <div class="mission-num">Mission 5</div>
           <div class="mission-title">📞 Téléphone Brisé IA</div>
           <div class="mission-desc">Un texte est reformulé par l'IA à chaque étape. Après 5 reformulations, comparez l'original et le résultat : qu'a-t-on perdu ou transformé ?</div>
@@ -923,7 +950,7 @@ function checkLock(){
             <span class="mtag">⏱ 25 min</span>
           </div>
         </div>
-        <div class="mission-card">
+        <div class="mission-card" onclick="openMission(6)">
           <div class="mission-num">Mission 6</div>
           <div class="mission-title">⏱ Défi Chrono</div>
           <div class="mission-desc">En 10 minutes, produire la meilleure synthèse possible sur un sujet avec l'aide de l'IA. Évaluation : qualité, précision, esprit critique vis-à-vis de l'IA.</div>
@@ -933,7 +960,7 @@ function checkLock(){
             <span class="mtag">⏱ 20 min</span>
           </div>
         </div>
-        <div class="mission-card">
+        <div class="mission-card" onclick="openMission(7)">
           <div class="mission-num">Mission 7</div>
           <div class="mission-title">🏃 Coach Data EPS</div>
           <div class="mission-desc">Les élèves saisissent leurs performances sportives (temps, distances, répétitions) et demandent à l'IA une analyse et des conseils personnalisés.</div>
@@ -943,7 +970,7 @@ function checkLock(){
             <span class="mtag">⏱ 30 min</span>
           </div>
         </div>
-        <div class="mission-card">
+        <div class="mission-card" onclick="openMission(8)">
           <div class="mission-num">Mission 8</div>
           <div class="mission-title">🎯 Atelier Différencié</div>
           <div class="mission-desc">Les élèves demandent à l'IA d'adapter la même notion à trois niveaux (débutant / intermédiaire / expert) et comparent. Quelle version leur correspond ?</div>
@@ -1860,5 +1887,171 @@ function renderCertificate() {
     <div class="cert-paper" id="cert-paper"></div>
   </div>
 </div>
+<!-- MISSION MODAL -->
+<div class="mmodal-overlay" id="mmodal-overlay" onclick="closeMissionModal(event)">
+  <div class="mmodal" id="mmodal">
+    <div class="mmodal-head">
+      <div>
+        <div class="mmodal-htag" id="mmodal-tag">Mission 1</div>
+        <div class="mmodal-htitle" id="mmodal-title">Chasseur de Fake News</div>
+      </div>
+      <button class="mmodal-close" onclick="closeMissionModal(null)">✕</button>
+    </div>
+    <div class="mmodal-body" id="mmodal-body"></div>
+  </div>
+</div>
+
+<script>
+var MISSIONS = {
+  1:{
+    tag:'Mission 1',title:'🔍 Chasseur de Fake News',
+    meta:['Esprit critique','Toutes matières','⏱ 20–30 min','Collège / Lycée'],
+    obj:'Les élèves posent les mêmes questions à une IA et à une source fiable, puis identifient hallucinations, approximations et erreurs — pour apprendre à ne jamais faire confiance aveuglément.',
+    steps:[
+      {t:'Lancement (5 min)',d:"L'enseignant pose une question ouverte sur un thème du programme. Ex : <em>\"Quand a eu lieu la bataille de Verdun ?\"</em> ou <em>\"Quelle est la formule de la photosynthèse ?\"</em> Les élèves la notent."},
+      {t:'Interrogation de l\'IA (8 min)',d:'En binôme, les élèves posent <strong>3 questions</strong> à DuckAI ou ChatGPT. Ils copient-collent ou recopient chaque réponse dans un tableau à 4 colonnes.'},
+      {t:'Vérification source fiable (10 min)',d:'Ils cherchent la réponse correcte dans le manuel, sur un site <em>.gouv.fr</em>, Encyclopédie Universalis ou Lumni. Ils complètent : <strong>Réponse IA | Réponse vérifiée | Écart constaté | Verdict ✅/❌/❓</strong>'},
+      {t:'Bilan collectif (5 min)',d:'Chaque binôme partage <strong>1 erreur ou approximation</strong> trouvée. L\'enseignant liste au tableau. Question finale : <em>\"Comment savoir quand l\'IA a tort ?\"</em>'}
+    ],
+    prompt:'Génère 5 questions sur [sujet] à poser à une IA, dont au moins 2 susceptibles de provoquer des hallucinations. Pour chaque question : la réponse correcte, la source fiable à utiliser, et un piège typique que l\'IA pourrait générer. Niveau élèves de [niveau].',
+    trace:['Ce que l\'IA a dit sur [sujet]','Ce que j\'ai vérifié avec [source]','Ce que j\'en retiens sur la fiabilité de l\'IA'],
+    tip:'Choisir un sujet où l\'IA fait typiquement des erreurs : dates précises, citations, formules chimiques, biographies. Tester soi-même en amont pour repérer les pièges.'
+  },
+  2:{
+    tag:'Mission 2',title:'📝 Tuteur Virtuel à Trous',
+    meta:['Révision active','Toutes matières','⏱ 30–40 min','Collège / Lycée'],
+    obj:'Utiliser l\'IA comme outil de révision active : les élèves transforment leur propre cours en exercices, puis s\'évaluent mutuellement — bien plus efficace que relire passivement.',
+    steps:[
+      {t:'Préparation (5 min)',d:'Chaque élève choisit un chapitre de cours déjà étudié (200 à 500 mots). Il l\'a sous la main (papier ou numérique).'},
+      {t:'Création des exercices via l\'IA (10 min)',d:'L\'élève copie-colle son cours dans ChatGPT/Claude avec le prompt fourni. Il génère <strong>10 exercices à trous progressifs</strong> avec correction séparée.'},
+      {t:'Mise en forme (5 min)',d:'L\'élève recopie ou imprime les exercices <strong>sans la correction</strong> sur une feuille. Il numérote chaque trou.'},
+      {t:'Échange & évaluation par les pairs (10 min)',d:'Les élèves échangent leurs exercices avec un voisin et tentent de les compléter de mémoire, sans regarder leur cours.'},
+      {t:'Correction et discussion (5 min)',d:'Retour aux exercices d\'origine. Discussion : <em>\"Quels trous étaient les plus difficiles ? Pourquoi ?\"</em> L\'élève identifie ses lacunes.'}
+    ],
+    prompt:'Transforme ce cours en 10 exercices à trous progressifs pour des élèves de [niveau] : [coller le cours]. Varie les formats : mots manquants, phrases à compléter, associations. Fournis la correction séparément. Format : liste numérotée, puis correction numérotée à la fin.',
+    trace:['Les 3 notions que j\'ai eu le plus de mal à retrouver','Ce que ces lacunes m\'indiquent sur ma révision','Mon plan de révision pour les 3 prochains jours'],
+    tip:'Idéal à faire 48h avant un contrôle. Encourager les élèves à conserver leurs exercices pour réviser à nouveau la veille.'
+  },
+  3:{
+    tag:'Mission 3',title:'🆚 Duel de Sources',
+    meta:['Recherche documentaire','Histoire · SVT · Sciences','⏱ 25–35 min','Collège / Lycée'],
+    obj:'Confronter une réponse d\'IA à une source documentaire fiable pour développer le sens critique et la maîtrise des outils de recherche.',
+    steps:[
+      {t:'Attribution des sujets (5 min)',d:'Chaque binôme reçoit un thème du programme. Ex : <em>\"Les causes de la 1ère Guerre Mondiale\"</em> ou <em>\"Le rôle du glucose dans la cellule\"</em>.'},
+      {t:'Réponse de l\'IA (8 min)',d:'Le binôme interroge une IA et note sa réponse en <strong>5 points clés</strong> sur une feuille partagée.'},
+      {t:'Source documentaire (8 min)',d:'Ils cherchent les mêmes informations dans le manuel, sur <em>Lumni.fr</em>, <em>eduscol.fr</em> ou un site gouvernemental. Ils notent également 5 points clés.'},
+      {t:'Fiche comparative (7 min)',d:'Ils remplissent : <strong>Ce que dit l\'IA | Ce que dit la source | Points communs | Différences | Mon verdict</strong>. Puis présentent leur verdict en 1 minute à la classe.'}
+    ],
+    prompt:'Sur le thème [sujet], rédige une réponse structurée en 5 points clés pour des élèves de [niveau]. Sois précis, concis, et utilise un vocabulaire adapté à leur âge.',
+    trace:['Le point où l\'IA et la source étaient d\'accord','Le point où il y avait une différence ou une erreur','Ce que ça m\'apprend sur comment utiliser l\'IA pour réviser'],
+    tip:'Faire tourner les sujets entre binômes puis croiser les verdicts : certains sujets donnent des erreurs IA très marquées (dates, chiffres), d\'autres montrent l\'IA à son meilleur (définitions générales).'
+  },
+  4:{
+    tag:'Mission 4',title:'💬 Débat Éthique IA',
+    meta:['Argumentation','EMC · Philo · Français','⏱ 40–50 min','Lycée (adapatable collège)'],
+    obj:'Utiliser l\'IA pour générer des arguments contradictoires, puis pratiquer le débat mouvant — en distinguant les arguments produits par la machine de ceux produits par les élèves eux-mêmes.',
+    steps:[
+      {t:'Question posée (3 min)',d:'L\'enseignant annonce une question : <em>\"L\'IA devrait-elle corriger les copies au bac ?\"</em> / <em>\"La surveillance par IA en ville est-elle acceptable ?\"</em> / <em>\"Faut-il indiquer quand un texte est écrit par une IA ?\"</em>'},
+      {t:'Positionnement personnel (5 min)',d:'Chaque élève note <strong>sa position initiale</strong> et 2 arguments personnels, AVANT de voir les arguments de l\'IA.'},
+      {t:'Génération d\'arguments par l\'IA (8 min)',d:'Chaque groupe de 4 interroge l\'IA avec le prompt fourni : 4 arguments pour + 4 contre, chacun avec un exemple concret.'},
+      {t:'Débat mouvant (15 min)',d:'Les élèves se placent physiquement selon leur accord/désaccord. Un élève énonce un argument — ceux que cet argument convainc peuvent changer de côté.'},
+      {t:'Synthèse et bilan (10 min)',d:'Les élèves identifient : quels arguments de l\'IA leur ont semblé les plus forts ? Les plus faibles ? Lesquels n\'y avaient-ils pas pensé ?'}
+    ],
+    prompt:'Prépare un débat sur la question : [question éthique]. Génère 4 arguments "pour" et 4 arguments "contre", chacun en 2 phrases avec un exemple concret. Ajoute 3 questions pour relancer le débat si les échanges s\'essoufflent. Niveau [lycée / collège].',
+    trace:['Ma position initiale et mes 2 arguments personnels','Ma position finale (a-t-elle changé ?)','1 argument de l\'IA qui m\'a convaincu(e) ou surpris(e) et pourquoi'],
+    tip:'Distinguer explicitement en classe : "Cet argument vient de l\'IA — est-ce qu\'on le trouve convaincant ?" Cela renforce la posture critique vis-à-vis de la machine.'
+  },
+  5:{
+    tag:'Mission 5',title:'📞 Téléphone Brisé IA',
+    meta:['Lecture · Écriture','Français · Langues','⏱ 25–30 min','Collège / Lycée'],
+    obj:'Comprendre comment l\'IA transforme et appauvrit le sens à chaque reformulation — pour développer un regard critique sur l\'utilisation de l\'IA en rédaction.',
+    steps:[
+      {t:'Texte de départ (3 min)',d:'L\'enseignant fournit un texte court (10–15 lignes) : un paragraphe littéraire, une définition précise, un fait historique avec nuances.'},
+      {t:'La chaîne de reformulations (12 min)',d:'L\'enseignant (ou un élève désigné) fait reformuler le texte <strong>5 fois successivement</strong> par l\'IA. Chaque reformulation repart du texte précédent. Les 6 versions sont projetées.'},
+      {t:'Analyse comparative (8 min)',d:'La classe compare le texte original et le texte final côte à côte. Questions guidées : <em>\"Qu\'a-t-on perdu ?\"</em> <em>\"Qu\'a-t-on transformé ?\"</em> <em>\"Quel mot ou idée a disparu ?\"</em>'},
+      {t:'Conclusion collective (5 min)',d:'Débriefing : <em>\"Que révèle cette expérience sur l\'utilisation de l\'IA pour reformuler ou réécrire ses textes ?\"</em>'}
+    ],
+    prompt:'Reformule ce texte en conservant exactement le même sens, mais avec d\'autres mots : [coller le texte]. Garde la même longueur approximative et le même niveau de langue.',
+    trace:['3 mots ou idées qui ont disparu entre la V1 et la V6','1 sens qui a été déformé ou simplifié','Ce que ça m\'apprend sur le risque d\'utiliser l\'IA pour reformuler mes rédactions'],
+    tip:'Variante langues vivantes : faire traduire le texte de FR→EN→ES→DE→FR. Le résultat final est souvent méconnaissable et très parlant. Fonctionner en classe entière sur grand écran pour un effet "aha" collectif.'
+  },
+  6:{
+    tag:'Mission 6',title:'⏱ Défi Chrono',
+    meta:['Synthèse','Toutes matières','⏱ 20–30 min','Collège / Lycée'],
+    obj:'Produire en temps limité la meilleure synthèse possible sur un sujet du programme — en évaluant si l\'IA aide vraiment, et comment garder un regard critique sur ce qu\'elle génère.',
+    steps:[
+      {t:'Lancement du défi (2 min)',d:'L\'enseignant annonce un sujet précis du programme. Ex : <em>\"La photosynthèse en 5 points clés\"</em>, <em>\"Les causes de la Révolution française\"</em>. Règle : 10 minutes chrono, tous les outils autorisés (IA, cours, mémoire).'},
+      {t:'Chrono lancé (10 min)',d:'Chaque élève produit sa synthèse. L\'objectif est la <strong>qualité et la précision</strong>, pas la vitesse. L\'IA est un outil parmi d\'autres — pas une fin en soi.'},
+      {t:'Auto-évaluation critique (5 min)',d:'L\'élève relit sa synthèse et annote chaque affirmation : <strong>V</strong> (vérifiée avec source) / <strong>NV</strong> (non vérifiée) / <strong>D</strong> (douteuse).'},
+      {t:'Évaluation par les pairs (8 min)',d:'Échange de copies. Notation sur : Exactitude /5 · Structure /3 · Esprit critique visible /2. Restitution des copies avec commentaires.'},
+      {t:'Bilan collectif (5 min)',d:'Qui a eu les meilleures notes ? Ceux qui ont surtout utilisé l\'IA ou peu ? Pourquoi ? L\'enseignant anime la réflexion.'}
+    ],
+    prompt:'Génère une synthèse structurée en 5 points clés sur [sujet] pour des élèves de [niveau]. Chaque point doit faire 2–3 phrases, être factuel et précis. Indique pour chaque point si c\'est une information certaine ou sujette à débat.',
+    trace:['Ma synthèse annotée (V / NV / D)','La note que j\'ai reçue et les commentaires','Ce que j\'aurais fait différemment'],
+    tip:'Faire varier la règle : parfois IA interdite, parfois autorisée — comparer les résultats. Montre concrètement si l\'IA améliore réellement la qualité ou si elle crée une dépendance.'
+  },
+  7:{
+    tag:'Mission 7',title:'🏃 Coach Data EPS',
+    meta:['Analyse de données','EPS · SVT · Maths','⏱ 30–40 min','Lycée'],
+    obj:'Utiliser l\'IA pour analyser ses performances sportives personnelles et construire un plan de progression — tout en évaluant la pertinence et les limites des recommandations générées.',
+    steps:[
+      {t:'Collecte de données (5 min)',d:'Chaque élève note ses performances récentes sur une activité EPS : temps de course, distances, nombre de répétitions, fréquence cardiaque, etc. Minimum 3–4 mesures sur des séances différentes.'},
+      {t:'Saisie et analyse IA (10 min)',d:'L\'élève présente ses données à l\'IA : <em>\"Voici mes performances sur 4 semaines en course 1000m : [données]. Analyse ma progression et identifie mes points forts et faibles.\"</em>'},
+      {t:'Plan d\'entraînement personnalisé (8 min)',d:'Il demande à l\'IA : <em>\"Propose-moi un plan d\'entraînement de 3 semaines adapté à mon niveau pour améliorer [point faible identifié].\"</em>'},
+      {t:'Regard critique et validation (7 min)',d:'L\'élève évalue le plan : <em>\"Est-il réaliste ? L\'IA connaît-elle vraiment mon niveau ? Que manque-t-il ?\"</em> Il le soumet à l\'enseignant EPS pour validation.'},
+      {t:'Mise en commun (5 min)',d:'Partage des plans en petits groupes. Comparaison : l\'IA a-t-elle donné des plans cohérents ? Adaptés ? Dangereux pour certains ?'}
+    ],
+    prompt:'Voici mes performances sportives sur [durée] en [activité] : [données]. Analyse ma progression en identifiant mes points forts et mes axes d\'amélioration. Puis propose un plan d\'entraînement réaliste de 3 semaines pour améliorer [point faible], adapté à un lycéen de [niveau/âge].',
+    trace:['Mes données de performance + l\'analyse de l\'IA','Mon regard critique sur le plan proposé (réaliste ? adapté ? lacunes ?)','Ce que je retiens sur les limites de l\'IA pour des conseils personnalisés'],
+    tip:'Extension SVT : lier les données à la fréquence cardiaque et au VO2max. Extension Maths : tracer les courbes de progression. Idéal en projet interdisciplinaire EPS–SVT–Maths.'
+  },
+  8:{
+    tag:'Mission 8',title:'🎯 Atelier Différencié',
+    meta:['Métacognition','Toutes matières','⏱ 20–25 min','Collège / Lycée'],
+    obj:'Utiliser l\'IA pour générer une même notion à trois niveaux de complexité, puis se positionner — pour développer la connaissance de soi comme apprenant.',
+    steps:[
+      {t:'Génération des 3 versions (5 min)',d:'L\'enseignant (ou un élève) soumet le prompt. L\'IA produit 3 explications de la même notion : <strong>Version Débutant</strong> (6ème, jamais vu) / <strong>Version Intermédiaire</strong> (lycéen ayant déjà vu) / <strong>Version Expert</strong> (étudiant spécialisé).'},
+      {t:'Lecture individuelle silencieuse (5 min)',d:'Chaque élève lit les 3 versions et se positionne mentalement : <em>\"Quelle version correspond à ce que je comprends sans effort ?\"</em>'},
+      {t:'Vote anonyme (3 min)',d:'Sur un papier ou via Plickers/Wooclap : <em>\"Je suis niveau 1 / 2 / 3\"</em>. L\'enseignant affiche les résultats. Discussion sur la distribution observée.'},
+      {t:'Aller plus loin selon son niveau (8 min)',d:'Les élèves de niveau 1 demandent à l\'IA une version encore plus simple ou des analogies. Les élèves de niveau 3 demandent une version expert avec exemples de recherche actuelle. Chacun construit <strong>sa version personnelle</strong>.'},
+      {t:'Restitution (5 min)',d:'2–3 élèves de niveaux différents partagent leur version personnelle. La classe écoute : comprend-on mieux avec une explication rédigée par un pair ?'}
+    ],
+    prompt:'Explique [notion] en 3 versions différentes : Version 1 pour un collégien de 6ème qui n\'a jamais entendu ce mot (vocabulaire très simple, analogie concrète). Version 2 pour un lycéen qui a déjà rencontré la notion (définition rigoureuse, exemple disciplinaire). Version 3 pour un étudiant spécialisé (termes techniques, références aux enjeux actuels de la discipline).',
+    trace:['La version qui m\'a le mieux correspondu et pourquoi','Ma version personnelle de la notion en 3–5 phrases','Ce que ça m\'apprend sur ma façon d\'apprendre'],
+    tip:'Excellent en début de chapitre (diagnostic du niveau réel) ou en fin (validation des acquis). Les résultats du vote sont souvent surprenants — beaucoup d\'élèves se surestiment ou se sous-estiment.'
+  }
+};
+
+function openMission(n){
+  var m=MISSIONS[n];
+  if(!m)return;
+  document.getElementById('mmodal-tag').textContent=m.tag;
+  document.getElementById('mmodal-title').textContent=m.title;
+  var body=document.getElementById('mmodal-body');
+  // Meta tags
+  var meta='<div class="mm-meta">'+m.meta.map(function(t){return'<span class="mm-mtag">'+t+'</span>'}).join('')+'</div>';
+  // Objectif
+  var obj='<div><div class="mm-section-title">🎯 Objectif pédagogique</div><div class="mm-obj">'+m.obj+'</div></div>';
+  // Déroulé
+  var steps='<div><div class="mm-section-title">📋 Déroulé pas à pas</div><div class="mm-steps">'+m.steps.map(function(s,i){return'<div class="mm-step"><div class="mm-step-num">'+(i+1)+'</div><div class="mm-step-txt"><strong>'+s.t+'</strong><br>'+s.d+'</div></div>'}).join('')+'</div></div>';
+  // Prompt
+  var prompt='<div><div class="mm-section-title">💬 Prompt clé à utiliser</div><div class="mm-prompt">'+m.prompt+'</div></div>';
+  // Trace
+  var trace='<div class="mm-trace"><div class="mm-trace-title">✏️ Trace écrite attendue</div><div class="mm-trace-items">'+m.trace.map(function(t){return'<div class="mm-trace-item">'+t+'</div>'}).join('')+'</div></div>';
+  // Tip
+  var tip='<div class="mm-tip">💡 <strong>Conseil enseignant :</strong> '+m.tip+'</div>';
+  body.innerHTML=meta+obj+steps+prompt+trace+tip;
+  document.getElementById('mmodal-overlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function closeMissionModal(e){
+  if(e&&e.target!==document.getElementById('mmodal-overlay'))return;
+  document.getElementById('mmodal-overlay').classList.remove('open');
+  document.body.style.overflow='';
+}
+
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMissionModal(null);});
+</script>
 </body>
 </html>
