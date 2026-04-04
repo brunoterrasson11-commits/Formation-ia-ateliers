@@ -212,6 +212,19 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,'Helvetica Neue',Ar
 .ia-level-lbl{font-size:10px;font-weight:600;line-height:1.3}
 .ia-level-card.ia-selected .ia-level-lbl{font-weight:800}
 @media(max-width:900px){.ia-use-wrap{grid-template-columns:1fr}.comp-grid{grid-template-columns:repeat(2,1fr)}}
+/* SUBJECT GRID (A8) */
+.subj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.subj-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
+.subj-hdr{padding:10px 13px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--border);background:var(--surface2)}
+.subj-ico{font-size:17px;line-height:1}
+.subj-name{font-size:12.5px;font-weight:800;color:var(--text)}
+.subj-apps{padding:10px 13px;display:grid;gap:9px}
+.subj-app{display:grid;gap:2px}
+.subj-app-name{font-size:12px;font-weight:700;color:var(--text)}
+.subj-app-desc{font-size:11.5px;color:var(--text-sec);line-height:1.45}
+.subj-lvl{font-size:10px;font-weight:700;color:var(--text-muted)}
+@media(max-width:1050px){.subj-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){.subj-grid{grid-template-columns:1fr}}
 
 /* MISSIONS GRID */
 .missions-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
@@ -1390,18 +1403,219 @@ function checkLock(){
       <div><strong>C'est quoi Base44 ?</strong> <a href="https://base44.com" target="_blank" style="color:#059669">base44.com</a> est un générateur d'applications no-code propulsé par l'IA. Décrivez votre app en français, elle la génère et vous obtenez une URL partageable immédiatement. Gratuit jusqu'à 3 apps.</div>
     </div>
     <div>
-      <div class="sec-title">🛠 Exemples d'applications à créer en SVT</div>
-      <div class="card-0">
-        <table class="tbl">
-          <thead><tr><th>Application</th><th>Usage élèves</th><th>Niveau</th></tr></thead>
-          <tbody>
-            <tr><td class="tname">🔬 Schéma interactif de la cellule végétale</td><td>Cliquer sur les organites pour voir définition et fonction</td><td>2de / 1ère</td></tr>
-            <tr><td class="tname">🧬 Quiz sur les étapes de la mitose</td><td>Remettre les étapes dans l'ordre avec feedback instantané</td><td>Terminale</td></tr>
-            <tr><td class="tname">🌍 Simulateur de chaîne alimentaire</td><td>Créer une chaîne et observer les déséquilibres en temps réel</td><td>4e / 3e</td></tr>
-            <tr><td class="tname">💊 Calculateur d'IMC pédagogique</td><td>Saisir des données et analyser les résultats avec explications</td><td>EPS / SVT 5e</td></tr>
-            <tr><td class="tname">🌱 Journal de croissance végétale</td><td>Enregistrer les mesures d'une expérience sur plusieurs semaines</td><td>6e / 5e</td></tr>
-          </tbody>
-        </table>
+      <div class="sec-title">🛠 Exemples d'applications par matière</div>
+      <div class="subj-grid">
+
+        <div class="subj-card">
+          <div class="subj-hdr"><div class="subj-ico">✍️</div><div class="subj-name">Français</div></div>
+          <div class="subj-apps">
+            <div class="subj-app">
+              <div class="subj-app-name">Analyseur de figures de style</div>
+              <div class="subj-app-desc">L'élève colle un texte, l'app identifie et explique métaphores, hyperboles, anaphores avec exemples soulignés.</div>
+              <div class="subj-lvl">3e – Lycée</div>
+            </div>
+            <div class="subj-app">
+              <div class="subj-app-name">Atelier de réécriture guidée</div>
+              <div class="subj-app-desc">Saisir un passage, choisir une contrainte (changer la focalisation, le temps verbal, le registre), l'app guide la transformation étape par étape.</div>
+              <div class="subj-lvl">4e – 1ère</div>
+            </div>
+            <div class="subj-app">
+              <div class="subj-app-name">Quiz sur les mouvements littéraires</div>
+              <div class="subj-app-desc">Associer œuvres, auteurs et siècles. Feedback immédiat avec contexte historique.</div>
+              <div class="subj-lvl">3e – Terminale</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="subj-card">
+          <div class="subj-hdr"><div class="subj-ico">📐</div><div class="subj-name">Mathématiques</div></div>
+          <div class="subj-apps">
+            <div class="subj-app">
+              <div class="subj-app-name">Calculateur pas à pas</div>
+              <div class="subj-app-desc">Saisir une expression algébrique ou une équation : l'app affiche chaque étape de résolution avec la règle appliquée.</div>
+              <div class="subj-lvl">5e – Terminale</div>
+            </div>
+            <div class="subj-app">
+              <div class="subj-app-name">Visualiseur de probabilités</div>
+              <div class="subj-app-desc">Saisir une expérience aléatoire, l'app dessine l'arbre de probabilités et calcule automatiquement les issues.</div>
+              <div class="subj-lvl">1ère – Terminale</div>
+            </div>
+            <div class="subj-app">
+              <div class="subj-app-name">Générateur d'exercices de géométrie</div>
+              <div class="subj-app-desc">Choisir un niveau et un thème (Pythagore, Thalès, trigonométrie) : l'app génère 5 exercices avec correction.</div>
+              <div class="subj-lvl">4e – 2de</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="subj-card">
+          <div class="subj-hdr"><div class="subj-ico">🗺️</div><div class="subj-name">Histoire-Géographie</div></div>
+          <div class="subj-apps">
+            <div class="subj-app">
+              <div class="subj-app-name">Frise chronologique interactive</div>
+              <div class="subj-app-desc">Cliquer sur une date pour voir l'événement, le contexte et une image. Zoom par période et export possible.</div>
+              <div class="subj-lvl">6e – Terminale</div>
+            </div>
+            <div class="subj-app">
+              <div class="subj-app-name">Quiz capitales & repères géo</div>
+              <div class="subj-app-desc">Placer des capitales, fleuves ou reliefs sur une carte muette avec score et révision des erreurs.</div>
+              <div class="subj-lvl">6e – 3e</div>
+            </div>
+            <div class="subj-app">
+              <div class="subj-app-name">Comparateur de régimes politiques</div>
+              <div class="subj-app-desc">Saisir deux régimes ou deux périodes historiques, l'app génère un tableau comparatif structuré.</div>
+              <div class="subj-lvl">1ère – Terminale</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="subj-card">
+          <div class="subj-hdr"><div class="subj-ico">⚗️</div><div class="subj-name">Physique-Chimie</div></div>
+          <div class="subj-apps">
+            <div class="subj-app">
+              <div class="subj-app-name">Tableau périodique interactif</div>
+              <div class="subj-app-desc">Cliquer sur un élément pour voir sa configuration électronique, ses propriétés et son usage courant.</div>
+              <div class="subj-lvl">4e – Terminale</div>
+            </div>
+            <div class="subj-app">
+              <div class="subj-app-name">Simulateur de circuits électriques</div>
+              <div class="subj-app-desc">Ajouter des composants, l'app calcule tension, intensité et résistance avec la loi d'Ohm illustrée.</div>
+              <div class="subj-lvl">5e – 2de</div>
+            </div>
+            <div class="subj-app">
+              <div class="subj-app-name">Convertisseur d'unités scientifiques</div>
+              <div class="subj-app-desc">Convertir m/s ↔ km/h, J ↔ kWh, mol ↔ g avec la formule et le calcul détaillé affichés.</div>
+              <div class="subj-lvl">4e – 2de</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="subj-card">
+          <div class="subj-hdr"><div class="subj-ico">🔬</div><div class="subj-name">SVT</div></div>
+          <div class="subj-apps">
+            <div class="subj-app">
+              <div class="subj-app-name">Schéma interactif de la cellule</div>
+              <div class="subj-app-desc">Cliquer sur les organites pour voir leur nom, leur définition et leur rôle dans la cellule végétale ou animale.</div>
+              <div class="subj-lvl">5e – 2de</div>
+            </div>
+            <div class="subj-app">
+              <div class="subj-app-name">Simulateur de chaîne alimentaire</div>
+              <div class="subj-app-desc">Créer une chaîne, supprimer un maillon et observer les effets en cascade sur l'écosystème.</div>
+              <div class="subj-lvl">4e – 3e</div>
+            </div>
+            <div class="subj-app">
+              <div class="subj-app-name">Journal de croissance végétale</div>
+              <div class="subj-app-desc">Enregistrer date, mesure et observations sur plusieurs semaines. Affichage automatique du graphique d'évolution.</div>
+              <div class="subj-lvl">6e – 5e</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="subj-card">
+          <div class="subj-hdr"><div class="subj-ico">💻</div><div class="subj-name">SNT</div></div>
+          <div class="subj-apps">
+            <div class="subj-app">
+              <div class="subj-app-name">Décodeur binaire / hexadécimal</div>
+              <div class="subj-app-desc">Saisir un nombre décimal, l'app affiche sa conversion en binaire et en hexadécimal avec les étapes de calcul.</div>
+              <div class="subj-lvl">2de</div>
+            </div>
+            <div class="subj-app">
+              <div class="subj-app-name">Simulateur de données personnelles</div>
+              <div class="subj-app-desc">Créer un profil fictif sur un réseau social, l'app révèle quelles données sont collectées et leur valeur marchande.</div>
+              <div class="subj-lvl">2de</div>
+            </div>
+            <div class="subj-app">
+              <div class="subj-app-name">Quiz sur les notions clés du réseau</div>
+              <div class="subj-app-desc">Protocoles, adresses IP, routage, DNS : QCM avec schémas animés pour chaque correction.</div>
+              <div class="subj-lvl">2de</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="subj-card">
+          <div class="subj-hdr"><div class="subj-ico">🌍</div><div class="subj-name">Langues vivantes</div></div>
+          <div class="subj-apps">
+            <div class="subj-app">
+              <div class="subj-app-name">Flashcards de vocabulaire adaptatif</div>
+              <div class="subj-app-desc">Importer une liste de mots, l'app crée des exercices de mémorisation espacée (traduction, image, écoute).</div>
+              <div class="subj-lvl">Collège – Lycée</div>
+            </div>
+            <div class="subj-app">
+              <div class="subj-app-name">Simulateur de dialogue en situation</div>
+              <div class="subj-app-desc">Choisir un contexte (à la gare, au restaurant, chez le médecin), l'app propose des répliques et corrige les erreurs.</div>
+              <div class="subj-lvl">3e – Terminale</div>
+            </div>
+            <div class="subj-app">
+              <div class="subj-app-name">Conjugueur comparatif multilingue</div>
+              <div class="subj-app-desc">Entrer un verbe en français, voir sa conjugaison dans 2 langues côte à côte avec les irrégularités signalées.</div>
+              <div class="subj-lvl">Lycée</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="subj-card">
+          <div class="subj-hdr"><div class="subj-ico">🎵</div><div class="subj-name">Éducation musicale</div></div>
+          <div class="subj-apps">
+            <div class="subj-app">
+              <div class="subj-app-name">Dictionnaire de l'orchestre</div>
+              <div class="subj-app-desc">Cliquer sur un instrument pour entendre son timbre, voir sa famille, son rôle et un extrait de partition.</div>
+              <div class="subj-lvl">6e – 3e</div>
+            </div>
+            <div class="subj-app">
+              <div class="subj-app-name">Analyseur de structure musicale</div>
+              <div class="subj-app-desc">Saisir les sections d'une pièce, l'app identifie la forme (ABA, sonate, rondo) et la visualise sur une ligne du temps.</div>
+              <div class="subj-lvl">3e – Terminale</div>
+            </div>
+            <div class="subj-app">
+              <div class="subj-app-name">Quiz d'écoute : genres & époques</div>
+              <div class="subj-app-desc">Associer des extraits musicaux à leur genre, époque ou compositeur. Score et correction commentée.</div>
+              <div class="subj-lvl">Collège – Lycée</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="subj-card">
+          <div class="subj-hdr"><div class="subj-ico">🎨</div><div class="subj-name">Arts plastiques</div></div>
+          <div class="subj-apps">
+            <div class="subj-app">
+              <div class="subj-app-name">Fiche d'analyse d'œuvre guidée</div>
+              <div class="subj-app-desc">Décrire une œuvre (composition, couleurs, lignes), l'app génère une fiche d'analyse structurée par critères.</div>
+              <div class="subj-lvl">5e – Terminale</div>
+            </div>
+            <div class="subj-app">
+              <div class="subj-app-name">Générateur de contraintes créatives</div>
+              <div class="subj-app-desc">Tirer aléatoirement un support, une technique et un thème pour lancer une séquence de création sans blocage.</div>
+              <div class="subj-lvl">Collège – Lycée</div>
+            </div>
+            <div class="subj-app">
+              <div class="subj-app-name">Dictionnaire des mouvements artistiques</div>
+              <div class="subj-app-desc">Chercher un mouvement (cubisme, surréalisme…), obtenir ses caractéristiques visuelles et 3 œuvres représentatives.</div>
+              <div class="subj-lvl">3e – Lycée</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="subj-card">
+          <div class="subj-hdr"><div class="subj-ico">🏃</div><div class="subj-name">EPS</div></div>
+          <div class="subj-apps">
+            <div class="subj-app">
+              <div class="subj-app-name">Suivi de performance sportive</div>
+              <div class="subj-app-desc">Enregistrer ses résultats sur plusieurs séances, l'app affiche le graphique de progression et calcule la moyenne.</div>
+              <div class="subj-lvl">Lycée</div>
+            </div>
+            <div class="subj-app">
+              <div class="subj-app-name">Générateur d'échauffements</div>
+              <div class="subj-app-desc">Saisir le sport pratiqué et la durée disponible, l'app propose un échauffement progressif articulaire → musculaire → cardio.</div>
+              <div class="subj-lvl">Collège – Lycée</div>
+            </div>
+            <div class="subj-app">
+              <div class="subj-app-name">Calculateur de zones cardiaques</div>
+              <div class="subj-app-desc">Entrer son âge et sa FC de repos : l'app calcule les 5 zones d'entraînement (endurance fondamentale, seuil, VO2max…).</div>
+              <div class="subj-lvl">Lycée EPS/SVT</div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
     <div>
@@ -1420,8 +1634,8 @@ function checkLock(){
       <div class="sec-title">📋 Prompts à copier-coller</div>
       <div class="prompts">
         <div class="pcrd">
-          <div class="phdr"><span class="ptitle" style="color:var(--c8)">Prompt A — Brief pour Base44 (SVT)</span><button class="cpbtn" onclick="cp(this)">📋 Copier</button></div>
-          <div class="pbody">Je suis enseignant(e) en SVT, niveau [niveau]. Je veux créer une application interactive sur [sujet : la cellule végétale / la mitose / la photosynthèse…]. Elle doit permettre aux élèves de [action principale : identifier les organites en cliquant sur un schéma / remettre des étapes dans l'ordre / répondre à des questions avec feedback]. Interface en français, adaptée au collège/lycée. Génère une description précise de 150 mots que je pourrai coller dans Base44 pour créer l'application.</div>
+          <div class="phdr"><span class="ptitle" style="color:var(--c8)">Prompt A — Brief Base44 (toutes matières)</span><button class="cpbtn" onclick="cp(this)">📋 Copier</button></div>
+          <div class="pbody">Je suis enseignant(e) en [matière], niveau [collège/lycée, classe]. Je veux créer une application interactive sur [sujet précis du programme]. Elle doit permettre aux élèves de [action principale : répondre à un quiz / explorer un schéma interactif / saisir des données et voir un graphique / s'entraîner sur du vocabulaire…]. Interface en français, claire et motivante, utilisable sur ordinateur et tablette sans compte élève. Génère une description précise de 150 mots à coller directement dans Base44 pour générer l'application.</div>
         </div>
         <div class="pcrd">
           <div class="phdr"><span class="ptitle" style="color:var(--c8)">Prompt B — App quiz interactif (toutes matières)</span><button class="cpbtn" onclick="cp(this)">📋 Copier</button></div>
