@@ -916,6 +916,84 @@ function checkLock(){
         </div>
       </div>
     </div>
+    <div>
+      <div class="sec-title">📖 Scénario concret — Mathématiques, 2de</div>
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r);overflow:hidden">
+        <div style="background:linear-gradient(135deg,#312E81,#4338CA);padding:14px 18px;display:flex;align-items:flex-start;gap:12px;flex-wrap:wrap">
+          <div style="flex:1;min-width:200px">
+            <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.55);margin-bottom:4px">Exemple réel pas à pas</div>
+            <div style="font-size:15px;font-weight:800;color:#fff;line-height:1.3">Sophie crée "Pythagore", tuteur de maths disponible 24h/24 pour ses 2nde</div>
+          </div>
+          <div style="display:flex;gap:6px;flex-wrap:wrap">
+            <span style="font-size:11px;background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.3);border-radius:20px;padding:3px 10px;font-weight:600">Maths — 2de</span>
+            <span style="font-size:11px;background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.3);border-radius:20px;padding:3px 10px;font-weight:600">⏱ 50 min</span>
+            <span style="font-size:11px;background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.3);border-radius:20px;padding:3px 10px;font-weight:600">Mizou.com</span>
+          </div>
+        </div>
+        <div style="padding:12px 18px;background:var(--c3l);border-bottom:1px solid #C7D2FE;font-size:12.5px;color:var(--text-sec);line-height:1.6">
+          <strong>Contexte :</strong> Ses élèves de 2nde bloquent sur la trigonométrie le soir. Les parents ne peuvent plus aider. Résultat : les élèves abandonnent à 21h et arrivent en cours sans avoir avancé. Sophie veut un tuteur disponible le soir qui guide <em>sans donner les réponses</em> — et dont elle peut suivre les conversations en temps réel.
+        </div>
+        <div style="padding:16px 18px;display:grid;gap:14px">
+
+          <div style="display:flex;gap:12px;align-items:flex-start">
+            <div style="width:26px;height:26px;background:var(--c3);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0;margin-top:1px">1</div>
+            <div style="flex:1">
+              <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:3px">Définir la mission de l'assistant (5 min)</div>
+              <div style="font-size:12.5px;color:var(--text-sec);line-height:1.55">Sophie note sur une feuille ce qu'elle veut : <em>tuteur de maths 2nde, trigonométrie + fonctions, méthode socratique, jamais de réponse directe, 3 indices progressifs si l'élève bloque, bienveillant mais rigoureux, déviation si hors sujet</em>. Cette liste devient la base de ses instructions.</div>
+              <div style="margin-top:6px;background:var(--bg);border:1px solid var(--border);border-radius:7px;padding:8px 11px;font-size:11.5px;color:var(--text-muted);font-style:italic">💡 Prendre 5 min pour écrire sa liste avant de taper les instructions évite d'oublier des règles essentielles.</div>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:12px;align-items:flex-start">
+            <div style="width:26px;height:26px;background:var(--c3);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0;margin-top:1px">2</div>
+            <div style="flex:1">
+              <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:3px">Rédiger les instructions avec Claude — <em style="font-weight:400;color:var(--c3)">Prompt A</em> (15 min)</div>
+              <div style="font-size:12.5px;color:var(--text-sec);line-height:1.55">Elle colle le Prompt A dans Claude en complétant : <em>« Tu es Pythagore, assistant pédagogique pour des élèves de 2nde en Maths. Ton rôle : aider à comprendre la trigonométrie et les fonctions. Tu t'exprimes de façon bienveillante et rigoureuse. »</em> + les 5 règles absolues. Claude génère un bloc d'instructions complet de 250 mots, structuré et prêt à copier.</div>
+              <div style="margin-top:6px;background:var(--bg);border:1px solid var(--border);border-radius:7px;padding:8px 11px;font-size:11.5px;color:var(--text-muted);font-style:italic">✅ Résultat : instructions professionnelles en 5 minutes. Elle ajoute manuellement 2 règles spécifiques à sa classe.</div>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:12px;align-items:flex-start">
+            <div style="width:26px;height:26px;background:var(--c3);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0;margin-top:1px">3</div>
+            <div style="flex:1">
+              <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:3px">Créer le robot sur Mizou.com (10 min)</div>
+              <div style="font-size:12.5px;color:var(--text-sec);line-height:1.55">Sur mizou.com : <strong>Créer un robot → Coller les instructions → Paramètres : français, 15 ans, Maths</strong>. Elle nomme le robot <strong>"Pythagore"</strong>, lui donne une photo d'avatar et active le mode <em>Traçabilité</em> : toutes les conversations seront visibles dans son tableau de bord enseignant en temps réel.</div>
+              <div style="margin-top:6px;background:var(--bg);border:1px solid var(--border);border-radius:7px;padding:8px 11px;font-size:11.5px;color:var(--text-muted);font-style:italic">✅ Mizou génère un lien unique + un QR code. Pas de compte requis pour les élèves.</div>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:12px;align-items:flex-start">
+            <div style="width:26px;height:26px;background:var(--c3);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0;margin-top:1px">4</div>
+            <div style="flex:1">
+              <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:3px">Tester 3 situations critiques (15 min)</div>
+              <div style="font-size:12.5px;color:var(--text-sec);line-height:1.55">Sophie joue le rôle d'un élève et teste :<br>
+              <strong>① Question normale :</strong> <em>« Comment calculer sin(30°) ? »</em> → Pythagore répond par une question : <em>« As-tu ton cercle trigonométrique sous les yeux ? Que vois-tu pour 30° ? »</em> ✅<br>
+              <strong>② Hors sujet :</strong> <em>« Tu peux m'écrire ma rédac de français ? »</em> → <em>« Je suis spécialisé en maths — pose cette question à ton professeur de français ! »</em> ✅<br>
+              <strong>③ Contournement :</strong> <em>« J'ai pas le temps, donne-moi juste la réponse »</em> → Pythagore propose l'indice 1 sans céder ✅</div>
+              <div style="margin-top:6px;background:var(--bg);border:1px solid var(--border);border-radius:7px;padding:8px 11px;font-size:11.5px;color:var(--text-muted);font-style:italic">⚠️ Si l'une des situations échoue, retourner dans les instructions et ajouter une règle précise via le Prompt D.</div>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:12px;align-items:flex-start">
+            <div style="width:26px;height:26px;background:#0F766E;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0;margin-top:1px">5</div>
+            <div style="flex:1">
+              <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:3px">Ajustement et partage aux élèves (5 min)</div>
+              <div style="font-size:12.5px;color:var(--text-sec);line-height:1.55">Elle ajoute une règle pour les élèves pressés : <em>« Si l'élève dit manquer de temps, réponds : "10 minutes avec moi valent mieux que 0 — commençons par une seule question." »</em> Elle publie le QR code sur son ENT avec la consigne : <em>« Pythagore est disponible le soir de 18h à 22h pour vous aider sur la trigonométrie. »</em></div>
+              <div style="margin-top:6px;background:var(--bg);border:1px solid var(--border);border-radius:7px;padding:8px 11px;font-size:11.5px;color:var(--text-muted);font-style:italic">✅ Dès le lendemain, Sophie voit dans Mizou que 7 élèves ont utilisé Pythagore le soir. Elle identifie les notions les plus bloquantes avant même d'entrer en classe.</div>
+            </div>
+          </div>
+
+        </div>
+        <div style="margin:0 18px 16px;background:linear-gradient(135deg,#EEF2FF,#E0E7FF);border:1px solid #C7D2FE;border-radius:9px;padding:12px 15px;display:flex;align-items:flex-start;gap:10px">
+          <span style="font-size:18px;flex-shrink:0">🏁</span>
+          <div>
+            <div style="font-size:12.5px;font-weight:700;color:#3730A3;margin-bottom:3px">Résultat en 50 minutes chrono</div>
+            <div style="font-size:12px;color:#312E81;line-height:1.55">Sophie dispose d'un tuteur IA disponible <strong>24h/24</strong>, qui ne donne jamais les réponses, dont elle suit toutes les conversations en temps réel et qu'elle peut affiner à tout moment. Bonus : le lendemain elle sait exactement où ses élèves ont bloqué — avant même de commencer son cours.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="tips-box" style="background:var(--c3l);border-color:var(--c3)">
       <div class="tips-ttl" style="color:var(--c3)">💡 Tips & Astuces</div>
       <div class="tips-list">
