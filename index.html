@@ -178,6 +178,40 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,'Helvetica Neue',Ar
 .level-1{background:#DCFCE7;color:#16A34A;border:1px solid #86EFAC}
 .level-2{background:#FEF3C7;color:#D97706;border:1px solid #FCD34D}
 .level-3{background:#FEE2E2;color:#DC2626;border:1px solid #FCA5A5}
+.level-0{background:#F1F5F9;color:#475569;border:1px solid #CBD5E1}
+/* AUTO-ÉVAL TABLE */
+.autoeval-wrap{border:1px solid var(--border);border-radius:9px;overflow:hidden;margin-top:2px}
+.autoeval-title{font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:#475569;background:var(--bg);padding:7px 12px;border-bottom:1px solid var(--border)}
+.autoeval-tbl{width:100%;border-collapse:collapse;font-size:12px}
+.autoeval-tbl tr{border-bottom:1px solid var(--border)}
+.autoeval-tbl tr:last-child{border-bottom:none}
+.autoeval-check{width:22px;padding:8px 4px 8px 10px;color:#15803D;font-size:14px;vertical-align:middle}
+.autoeval-comp{padding:8px 6px;line-height:1.5;color:var(--text-sec);vertical-align:middle}
+.autoeval-ap{width:30px;background:#D1FAE5;text-align:center;font-size:11px;font-weight:800;color:#065F46;vertical-align:middle;font-style:italic}
+.autoeval-a{width:30px;background:#BFDBFE;text-align:center;font-size:11px;font-weight:800;color:#1E40AF;vertical-align:middle;font-style:italic}
+.autoeval-pa{width:30px;background:#FEF9C3;text-align:center;font-size:11px;font-weight:800;color:#854D0E;vertical-align:middle;font-style:italic}
+.autoeval-na{width:30px;background:#FEE2E2;text-align:center;font-size:11px;font-weight:800;color:#991B1B;vertical-align:middle;font-style:italic}
+/* COMPENSATIONS */
+.comp-wrap{border:1px solid var(--border);border-radius:9px;overflow:hidden}
+.comp-title{font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:#475569;background:var(--bg);padding:7px 12px;border-bottom:1px solid var(--border)}
+.comp-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border)}
+.comp-item{background:var(--surface);padding:6px 9px;font-size:11px;color:var(--text-sec);display:flex;align-items:center;gap:6px;line-height:1.3}
+.comp-cb{width:11px;height:11px;border:1.5px solid #94A3B8;border-radius:2px;flex-shrink:0}
+/* IA LEVELS VISUAL */
+.ia-use-wrap{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.ia-use-col-title{font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--text-muted);margin-bottom:7px}
+.ia-levels-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:5px}
+.ia-level-card{border-radius:8px;padding:8px 4px;text-align:center;border:2px solid transparent;display:flex;flex-direction:column;align-items:center;gap:3px}
+.ia-level-n0{background:#F1F5F9;border-color:#CBD5E1}
+.ia-level-n1{background:#ECFDF5;border-color:#86EFAC}
+.ia-level-n2{background:#FEF3C7;border-color:#FCD34D}
+.ia-level-n3{background:#FEE2E2;border-color:#FCA5A5}
+.ia-level-card.ia-selected{box-shadow:0 0 0 2px #7C3AED}
+.ia-level-num{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.06em}
+.ia-level-ico{font-size:20px;line-height:1.1}
+.ia-level-lbl{font-size:10px;font-weight:600;line-height:1.3}
+.ia-level-card.ia-selected .ia-level-lbl{font-weight:800}
+@media(max-width:900px){.ia-use-wrap{grid-template-columns:1fr}.comp-grid{grid-template-columns:repeat(2,1fr)}}
 
 /* MISSIONS GRID */
 .missions-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
@@ -1053,6 +1087,12 @@ function checkLock(){
           <thead><tr><th>Niveau</th><th>Nom</th><th>Principe</th><th>Exemple d'usage autorisé</th></tr></thead>
           <tbody>
             <tr>
+              <td><span class="level-badge level-0">Niveau 0</span></td>
+              <td class="tname">Sans IA</td>
+              <td>L'IA est totalement interdite — l'élève travaille uniquement avec ses ressources</td>
+              <td>Contrôle de mémorisation, dissertation, évaluation diagnostique</td>
+            </tr>
+            <tr>
               <td><span class="level-badge level-1">Niveau 1</span></td>
               <td class="tname">Autonome</td>
               <td>L'élève travaille seul — l'IA peut être utilisée uniquement pour vérifier</td>
@@ -1077,6 +1117,102 @@ function checkLock(){
     <div>
       <div class="sec-title">📄 Exemples de devoirs avec cartouche</div>
       <div class="devoir-wrap">
+
+        <!-- ★ EXEMPLE COMPLET ★ -->
+        <div class="devoir-card" style="border-color:#7C3AED">
+          <div class="devoir-hdr" style="background:linear-gradient(135deg,#4C1D95,#7C3AED);flex-direction:column;align-items:flex-start;gap:4px">
+            <span class="devoir-titre" style="color:#fff">🏛 Les sociétés iroquoiennes — Synthèse</span>
+            <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+              <span class="devoir-matiere" style="background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.3)">Histoire-Géo — CM2 / 5e</span>
+              <span style="font-size:10px;font-weight:700;color:#DDD6FE;background:rgba(109,40,217,.5);padding:2px 9px;border-radius:20px;border:1px solid rgba(167,139,250,.4)">★ Exemple complet avec grille de suivi</span>
+            </div>
+          </div>
+          <div class="devoir-body">
+            <div class="devoir-consigne"><strong>Consigne :</strong> À partir des documents étudiés en classe, réalise une fiche de synthèse sur la société iroquoienne vers 1500 et ses transformations jusqu'en 1745 sous l'influence de la colonisation européenne. Tu dois expliquer l'organisation sociale, les habitations, le mode de vie et les changements survenus.</div>
+
+            <!-- JE M'AUTO-ÉVALUE -->
+            <div class="autoeval-wrap">
+              <div class="autoeval-title">✓ Je m'auto-évalue</div>
+              <table class="autoeval-tbl">
+                <tbody>
+                  <tr>
+                    <td class="autoeval-check">✓</td>
+                    <td class="autoeval-comp">Lire l'organisation d'une société sur son territoire : comprendre comment les Iroquoiens s'organisent, leurs habitations, leur mode de vie, leur gestion du territoire et leurs structures sociales vers 1500.</td>
+                    <td class="autoeval-ap">A+</td><td class="autoeval-a">A</td><td class="autoeval-pa">PA</td><td class="autoeval-na">NA</td>
+                  </tr>
+                  <tr>
+                    <td class="autoeval-check">✓</td>
+                    <td class="autoeval-comp">Interpréter le changement dans une société et sur son territoire : observer et expliquer les changements survenus entre 1500 et 1745, notamment sous l'influence de la colonisation européenne (ex : changements du territoire, impact du troc, transformations des objets utilisés, évolution des relations avec les Européens).</td>
+                    <td class="autoeval-ap">A+</td><td class="autoeval-a">A</td><td class="autoeval-pa">PA</td><td class="autoeval-na">NA</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- COMPENSATIONS -->
+            <div class="comp-wrap">
+              <div class="comp-title">Compensations</div>
+              <div class="comp-grid">
+                <div class="comp-item"><div class="comp-cb"></div>🧑‍🏫 Aide d'un adulte</div>
+                <div class="comp-item"><div class="comp-cb"></div>💬 Reformulation consigne</div>
+                <div class="comp-item"><div class="comp-cb"></div>🎙️ Dictée à l'adulte</div>
+                <div class="comp-item"><div class="comp-cb"></div>📖 Adaptation du contenu</div>
+                <div class="comp-item"><div class="comp-cb"></div>🗂️ Adaptation du support</div>
+                <div class="comp-item"><div class="comp-cb"></div>📚 Outil de référence</div>
+                <div class="comp-item"><div class="comp-cb"></div>🧱 Matériel concret</div>
+                <div class="comp-item"><div class="comp-cb"></div>⏰ Ajout de temps</div>
+                <div class="comp-item"><div class="comp-cb"></div>📅 Évaluation différée</div>
+                <div class="comp-item"><div class="comp-cb"></div>⚖️ Adaptation du barème</div>
+                <div class="comp-item"><div class="comp-cb"></div>🔄 Évaluation repassée</div>
+                <div class="comp-item"><div class="comp-cb"></div>💻 Outil numérique</div>
+                <div class="comp-item"><div class="comp-cb"></div>👥 Travail de groupe</div>
+                <div class="comp-item"><div class="comp-cb"></div>🤝 Aide d'un camarade</div>
+                <div class="comp-item"><div class="comp-cb"></div>🗣️ Évaluation orale</div>
+                <div class="comp-item"><div class="comp-cb"></div>🏠 Travail à la maison</div>
+              </div>
+            </div>
+
+            <!-- USAGE IA -->
+            <div class="ia-use-wrap">
+              <div>
+                <div class="ia-use-col-title">🤖 Usage de l'IA pour ce devoir</div>
+                <div class="ia-levels-grid">
+                  <div class="ia-level-card ia-level-n0">
+                    <div class="ia-level-num" style="color:#64748B">Niveau 0</div>
+                    <div class="ia-level-ico">🚫</div>
+                    <div class="ia-level-lbl" style="color:#64748B">IA interdite</div>
+                  </div>
+                  <div class="ia-level-card ia-level-n1">
+                    <div class="ia-level-num" style="color:#16A34A">Niveau 1</div>
+                    <div class="ia-level-ico">💡</div>
+                    <div class="ia-level-lbl" style="color:#166534">Inspiration</div>
+                  </div>
+                  <div class="ia-level-card ia-level-n2 ia-selected">
+                    <div class="ia-level-num" style="color:#D97706">Niveau 2</div>
+                    <div class="ia-level-ico">🧠</div>
+                    <div class="ia-level-lbl" style="color:#92400E">✓ Guidé</div>
+                  </div>
+                  <div class="ia-level-card ia-level-n3">
+                    <div class="ia-level-num" style="color:#DC2626">Niveau 3</div>
+                    <div class="ia-level-ico">🌐</div>
+                    <div class="ia-level-lbl" style="color:#991B1B">Libre déclaré</div>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div class="ia-use-col-title">📋 Cadre d'usage de l'IA</div>
+                <div class="cartouche" style="border-color:#D97706;margin-top:0">
+                  <div class="cartouche-hdr" style="background:#FEF3C7;color:#92400E">🤖 Niveau 2 — Guidé</div>
+                  <div class="cartouche-body" style="background:#FFFBEB">
+                    <div class="cartouche-row"><span class="cartouche-ico">✅</span><div><strong>Tu PEUX :</strong> utiliser l'IA pour rechercher des informations sur les Iroquoiens, comprendre des mots difficiles, vérifier des dates ou un fait du cours.</div></div>
+                    <div class="cartouche-row"><span class="cartouche-ico">❌</span><div><strong>Tu NE DOIS PAS :</strong> faire rédiger la synthèse par l'IA — l'organisation et la rédaction restent ton travail personnel.</div></div>
+                    <div class="cartouche-row"><span class="cartouche-ico">💡</span><div><strong>À conserver :</strong> lire et interpréter des documents, organiser un texte structuré, faire le lien entre 1500 et 1745.</div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
         <div class="devoir-card">
           <div class="devoir-hdr">
@@ -1191,7 +1327,7 @@ function checkLock(){
       <div class="hint">Cliquez sur chaque étape pour la cocher ✓</div>
       <div class="steps" id="st-a7">
         <div class="step" onclick="tick(this,'a7',0)"><div class="snum" style="border-color:var(--c7);color:var(--c7)"><span>1</span></div><div class="stxt">Choisissez un devoir existant que vous souhaitez adapter avec un cartouche IA.</div></div>
-        <div class="step" onclick="tick(this,'a7',1)"><div class="snum" style="border-color:var(--c7);color:var(--c7)"><span>2</span></div><div class="stxt">Déterminez le niveau de cartouche (1, 2 ou 3) selon les compétences que vous souhaitez préserver.</div></div>
+        <div class="step" onclick="tick(this,'a7',1)"><div class="snum" style="border-color:var(--c7);color:var(--c7)"><span>2</span></div><div class="stxt">Déterminez le niveau de cartouche (0 = sans IA, 1 = autonome, 2 = guidé, 3 = accompagné) selon les compétences que vous souhaitez préserver.</div></div>
         <div class="step" onclick="tick(this,'a7',2)"><div class="snum" style="border-color:var(--c7);color:var(--c7)"><span>3</span></div><div class="stxt">Rédigez votre cartouche avec le <strong>Prompt A</strong> : définissez ce que l'IA peut et ne peut pas faire.</div></div>
         <div class="step" onclick="tick(this,'a7',3)"><div class="snum" style="border-color:var(--c7);color:var(--c7)"><span>4</span></div><div class="stxt">Testez le devoir vous-même avec et sans l'IA pour identifier d'éventuels contournements.</div></div>
         <div class="step" onclick="tick(this,'a7',4)"><div class="snum" style="border-color:var(--c7);color:var(--c7)"><span>5</span></div><div class="stxt">Partagez avec un collègue : le cartouche est-il clair ? L'élève comprend-il ce qu'il peut faire ?</div></div>
