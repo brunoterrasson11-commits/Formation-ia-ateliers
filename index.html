@@ -1449,6 +1449,90 @@ function checkLock(){
         <div class="tip">Pour les missions à distance (devoirs maison), utilisez le système de cartouche d'usage de l'Atelier 7.</div>
       </div>
     </div>
+
+    <!-- FICHES ÉLÈVES TÉLÉCHARGEABLES -->
+    <div>
+      <div class="sec-title">📋 Fiches élèves — 3 activités à imprimer / télécharger</div>
+      <div style="font-size:11.5px;color:var(--text-sec);margin-bottom:12px">Issues de <em>The Critical AI Classroom</em> — 3 fiches clés-en-main pour travailler l'esprit critique face à l'IA, adaptables à tous les niveaux (6e → 1ère).</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
+
+        <!-- Fiche 1 -->
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden;display:flex;flex-direction:column">
+          <div style="background:linear-gradient(135deg,#1E40AF,#3B82F6);padding:13px 15px;color:#fff">
+            <div style="font-size:10px;font-weight:700;letter-spacing:.08em;opacity:.75;margin-bottom:4px">FICHE ÉLÈVE N°1</div>
+            <div style="font-size:13px;font-weight:800;line-height:1.35">L'IA écrit-elle comme une vraie personne ?</div>
+            <div style="display:flex;gap:6px;margin-top:7px;flex-wrap:wrap">
+              <span style="background:rgba(255,255,255,.2);border-radius:20px;padding:2px 8px;font-size:10px">✏️ Écriture</span>
+              <span style="background:rgba(255,255,255,.2);border-radius:20px;padding:2px 8px;font-size:10px">⏱ 25 min</span>
+              <span style="background:rgba(255,255,255,.2);border-radius:20px;padding:2px 8px;font-size:10px">6e → 3e</span>
+            </div>
+          </div>
+          <div style="padding:12px 14px;font-size:12px;color:var(--text-sec);line-height:1.65;flex:1">
+            <strong style="color:var(--text)">Mission :</strong> Comparer un texte IA et un texte humain. Les élèves génèrent un texte sur l'amitié, l'analysent, écrivent leur propre version, puis écoutent les deux à l'aveugle.
+            <div style="margin-top:9px;display:flex;flex-direction:column;gap:5px">
+              <div style="font-size:11.5px">🔵 Génération d'un texte IA (prompt guidé)</div>
+              <div style="font-size:11.5px">🔵 Analyse critique (4 questions)</div>
+              <div style="font-size:11.5px">🔵 Écriture d'un texte humain personnel</div>
+              <div style="font-size:11.5px">🔵 Lecture à l'aveugle + quiz probabilités</div>
+            </div>
+          </div>
+          <div style="padding:0 14px 13px">
+            <button onclick="printFiche(1)" style="width:100%;background:#1E40AF;color:#fff;border:none;border-radius:7px;padding:9px;font-size:12px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px">📥 Télécharger PDF / Imprimer</button>
+          </div>
+        </div>
+
+        <!-- Fiche 2 -->
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden;display:flex;flex-direction:column">
+          <div style="background:linear-gradient(135deg,#7C2D12,#EA580C);padding:13px 15px;color:#fff">
+            <div style="font-size:10px;font-weight:700;letter-spacing:.08em;opacity:.75;margin-bottom:4px">FICHE ÉLÈVE N°2</div>
+            <div style="font-size:13px;font-weight:800;line-height:1.35">L'IA semble comprendre… mais ne comprend pas</div>
+            <div style="display:flex;gap:6px;margin-top:7px;flex-wrap:wrap">
+              <span style="background:rgba(255,255,255,.2);border-radius:20px;padding:2px 8px;font-size:10px">🧠 Esprit critique</span>
+              <span style="background:rgba(255,255,255,.2);border-radius:20px;padding:2px 8px;font-size:10px">⏱ 20 min</span>
+              <span style="background:rgba(255,255,255,.2);border-radius:20px;padding:2px 8px;font-size:10px">5e → 2de</span>
+            </div>
+          </div>
+          <div style="padding:12px 14px;font-size:12px;color:var(--text-sec);line-height:1.65;flex:1">
+            <strong style="color:var(--text)">Mission :</strong> Tester si l'IA comprend vraiment ce qu'elle dit. Les élèves posent des questions absurdes et observent que l'IA répond toujours de façon convaincante.
+            <div style="margin-top:9px;display:flex;flex-direction:column;gap:5px">
+              <div style="font-size:11.5px">🔴 Question absurde : "Un frigo peut-il rêver ?"</div>
+              <div style="font-size:11.5px">🔴 Test de logique avec scénario impossible</div>
+              <div style="font-size:11.5px">🔴 Conclusion guidée : probabilités ≠ compréhension</div>
+            </div>
+          </div>
+          <div style="padding:0 14px 13px">
+            <button onclick="printFiche(2)" style="width:100%;background:#7C2D12;color:#fff;border:none;border-radius:7px;padding:9px;font-size:12px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px">📥 Télécharger PDF / Imprimer</button>
+          </div>
+        </div>
+
+        <!-- Fiche 3 -->
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden;display:flex;flex-direction:column">
+          <div style="background:linear-gradient(135deg,#14532D,#16A34A);padding:13px 15px;color:#fff">
+            <div style="font-size:10px;font-weight:700;letter-spacing:.08em;opacity:.75;margin-bottom:4px">FICHE ÉLÈVE N°3</div>
+            <div style="font-size:13px;font-weight:800;line-height:1.35">Que devient ton cerveau si tu délègues trop ?</div>
+            <div style="display:flex;gap:6px;margin-top:7px;flex-wrap:wrap">
+              <span style="background:rgba(255,255,255,.2);border-radius:20px;padding:2px 8px;font-size:10px">🧩 Métacognition</span>
+              <span style="background:rgba(255,255,255,.2);border-radius:20px;padding:2px 8px;font-size:10px">⏱ 15 min</span>
+              <span style="background:rgba(255,255,255,.2);border-radius:20px;padding:2px 8px;font-size:10px">4e → 1ère</span>
+            </div>
+          </div>
+          <div style="padding:12px 14px;font-size:12px;color:var(--text-sec);line-height:1.65;flex:1">
+            <strong style="color:var(--text)">Mission :</strong> Comparer une tâche faite seul vs avec l'IA pour comprendre l'impact sur l'effort cognitif et la mémorisation.
+            <div style="margin-top:9px;display:flex;flex-direction:column;gap:5px">
+              <div style="font-size:11.5px">🟢 3 mini-défis sans IA (calcul, synonyme, résumé)</div>
+              <div style="font-size:11.5px">🟢 Mêmes défis avec IA + grille comparative</div>
+              <div style="font-size:11.5px">🟢 Réflexion guidée sur la délégation cognitive</div>
+            </div>
+          </div>
+          <div style="padding:0 14px 13px">
+            <button onclick="printFiche(3)" style="width:100%;background:#14532D;color:#fff;border:none;border-radius:7px;padding:9px;font-size:12px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px">📥 Télécharger PDF / Imprimer</button>
+          </div>
+        </div>
+
+      </div>
+      <div style="font-size:11px;color:var(--text-muted);margin-top:8px;font-style:italic">Source : <em>The Critical AI Classroom</em> — Un manifeste et une boîte à outils pour intégrer l'IA par l'esprit critique (6 ateliers, collège → lycée)</div>
+    </div>
+
   </div>
 </section>
 
@@ -2812,6 +2896,148 @@ function openMission(n){
   document.body.style.overflow='hidden';
 }
 
+function printFiche(n){
+  var fiches={
+    1:{
+      color:'#1E40AF',bg:'#EFF6FF',
+      title:'Fiche Élève N°1',
+      subtitle:'L\'IA écrit-elle comme une vraie personne ?',
+      tags:'✏️ Écriture · ⏱ 25 min · 6e → 3e',
+      mission:'Comparer un texte IA et un texte humain pour comprendre comment l\'IA choisit les mots.',
+      body:`<div class="f-block">
+  <div class="f-step">🔍 MISSION</div>
+  <p>Comparer un texte IA et un texte humain.</p>
+</div>
+<div class="f-block">
+  <div class="f-step">✏️ ÉTAPE 1 — Texte IA</div>
+  <p>Tape dans l'IA : <strong>"Écris un texte de 40 mots sur l'amitié."</strong><br>Lis le texte obtenu.</p>
+</div>
+<div class="f-block">
+  <div class="f-step">🧐 ÉTAPE 2 — Analyse du texte IA</div>
+  <table class="f-table">
+    <tr><td>1️⃣ Y a-t-il un souvenir très précis ?</td><td>☐ Oui &nbsp; ☐ Non</td></tr>
+    <tr><td>2️⃣ Y a-t-il un détail concret ?</td><td>☐ Oui &nbsp; ☐ Non</td></tr>
+    <tr><td>3️⃣ Ce texte pourrait-il être écrit par n'importe qui ?</td><td>☐ Oui &nbsp; ☐ Non</td></tr>
+    <tr><td>4️⃣ L'IA a-t-elle déjà vécu une amitié ?</td><td>☐ Oui &nbsp; ☐ Non</td></tr>
+  </table>
+</div>
+<div class="f-block">
+  <div class="f-step">✍️ ÉTAPE 3 — Texte HUMAIN</div>
+  <p>Écris maintenant <strong>40 mots maximum</strong> sur l'amitié avec :<br>✔ un détail précis &nbsp; ✔ une émotion vraie &nbsp; ✔ une phrase très courte</p>
+  <div class="f-lines"></div><div class="f-lines"></div><div class="f-lines"></div>
+</div>
+<div class="f-block">
+  <div class="f-step">⚖️ ÉTAPE 4 — Comparaison à l'aveugle</div>
+  <p>Écoute un texte lu par un élève (sans savoir si c'est lui ou l'IA).</p>
+  <table class="f-table">
+    <tr><td>Semble-t-il écrit par une vraie personne ?</td><td>☐ Oui &nbsp; ☐ Non</td></tr>
+    <tr><td>Pourquoi ?</td><td style="width:200px"></td></tr>
+  </table>
+</div>
+<div class="f-block f-quiz">
+  <div class="f-step">❓ Quiz 1</div>
+  <p>Quand on pose une question à une IA comme ChatGPT, elle choisit les mots les plus…</p>
+  <p>A. intelligents &nbsp; <strong>B. probables</strong> &nbsp; C. compliqués &nbsp; D. rigolos</p>
+  <div class="f-step" style="margin-top:12px">❓ Quiz 2</div>
+  <p>Si on commence par : <em>"Il fait très froid, je mets mon…"</em> l'IA proposera sûrement :</p>
+  <p>A. maillot de bain &nbsp; <strong>B. manteau</strong> &nbsp; C. cartable &nbsp; D. téléphone</p>
+  <div class="f-step" style="margin-top:12px">❓ Quiz 3</div>
+  <p>Est-ce que l'IA comprend vraiment ce qu'elle dit ?</p>
+  <p>A. Oui, comme un humain &nbsp; <strong>B. Non, elle calcule des probabilités</strong> &nbsp; C. Seulement en maths &nbsp; D. Ça dépend</p>
+</div>
+<div class="f-block f-key">
+  <div class="f-step">💡 À retenir</div>
+  <p>Une IA ne pense pas comme un humain. Elle calcule quel mot a le plus de chances d'arriver ensuite — comme un téléphone qui propose des mots quand on écrit un message 📱</p>
+</div>`
+    },
+    2:{
+      color:'#7C2D12',bg:'#FFF7ED',
+      title:'Fiche Élève N°2',
+      subtitle:'L\'IA semble comprendre… mais ne comprend pas',
+      tags:'🧠 Esprit critique · ⏱ 20 min · 5e → 2de',
+      mission:'Tester si l\'IA comprend vraiment ce qu\'elle dit, en lui posant des questions absurdes.',
+      body:`<div class="f-block">
+  <div class="f-step">🔍 MISSION</div>
+  <p>Tester si l'IA comprend vraiment ce qu'elle dit.</p>
+</div>
+<div class="f-block">
+  <div class="f-step">✏️ ÉTAPE 1 — Question étrange</div>
+  <p>Pose à l'IA : <strong>"Un frigo peut-il rêver ? Explique."</strong></p>
+  <p>Résume la réponse ici :</p>
+  <div class="f-lines"></div><div class="f-lines"></div>
+  <table class="f-table" style="margin-top:10px">
+    <tr><td>1️⃣ L'IA dit-elle que la question est absurde ?</td><td>☐ Oui &nbsp; ☐ Non</td></tr>
+    <tr><td>2️⃣ Un frigo peut-il réellement rêver ?</td><td>☐ Oui &nbsp; ☐ Non</td></tr>
+    <tr><td>3️⃣ Pourquoi l'IA répond-elle quand même ?</td><td style="width:180px"></td></tr>
+  </table>
+</div>
+<div class="f-block">
+  <div class="f-step">✏️ ÉTAPE 2 — Test de logique</div>
+  <p>Pose : <strong>"Si je mets un glaçon dans un four chaud, que se passe-t-il ?"</strong></p>
+  <p>Puis : <strong>"Et si le four est magique ?"</strong></p>
+  <table class="f-table" style="margin-top:10px">
+    <tr><td>4️⃣ L'IA adapte-t-elle sa réponse au scénario absurde ?</td><td>☐ Oui &nbsp; ☐ Non</td></tr>
+    <tr><td>5️⃣ L'IA sait-elle ce qu'est vraiment un four ?</td><td>☐ Oui &nbsp; ☐ Non</td></tr>
+  </table>
+</div>
+<div class="f-block">
+  <div class="f-step">🧠 CONCLUSION — Complète</div>
+  <p>L'IA produit des phrases <span class="f-blank">_______________</span> mais elle ne comprend pas le <span class="f-blank">_______________</span>.</p>
+</div>
+<div class="f-block f-key">
+  <div class="f-step">💡 À retenir</div>
+  <p>L'IA produit des réponses <strong>plausibles</strong>, pas des réponses <strong>vraies</strong>. Elle n'a aucune compréhension du monde physique — elle assemble des mots statistiquement cohérents.</p>
+</div>`
+    },
+    3:{
+      color:'#14532D',bg:'#F0FDF4',
+      title:'Fiche Élève N°3',
+      subtitle:'Que devient ton cerveau si tu délègues trop ?',
+      tags:'🧩 Métacognition · ⏱ 15 min · 4e → 1ère',
+      mission:'Comparer une tâche faite seul vs avec l\'IA pour comprendre l\'impact sur l\'effort cognitif.',
+      body:`<div class="f-block">
+  <div class="f-step">🔍 MISSION</div>
+  <p>Réfléchir à ce qui arrive à ton cerveau quand tu ne fais plus l'effort.</p>
+</div>
+<div class="f-block">
+  <div class="f-step">✏️ ÉTAPE 1 — Petit défi SANS IA (5 minutes)</div>
+  <p>Réponds sans aide :</p>
+  <table class="f-table">
+    <tr><td>1️⃣ Combien font 5 × 4 ?</td><td style="width:120px">Réponse : ______</td></tr>
+    <tr><td>2️⃣ Donne un synonyme de "rapide"</td><td>Réponse : ______</td></tr>
+    <tr><td>3️⃣ Résume en une phrase ce que tu as fait hier</td><td style="width:200px"></td></tr>
+  </table>
+</div>
+<div class="f-block">
+  <div class="f-step">✏️ ÉTAPE 2 — Même chose AVEC IA</div>
+  <p>Refais les 3 questions en autorisant l'IA. Remplis le tableau :</p>
+  <table class="f-table">
+    <thead><tr><th>Question</th><th>Plus rapide ?</th><th>Plus facile ?</th><th>Autant réfléchi ?</th></tr></thead>
+    <tbody>
+      <tr><td>5 × 4</td><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td></tr>
+      <tr><td>Synonyme</td><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td></tr>
+      <tr><td>Résumé</td><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td></tr>
+    </tbody>
+  </table>
+</div>
+<div class="f-block">
+  <div class="f-step">🧠 ÉTAPE 3 — Réflexion</div>
+  <p>Si tu ne fais plus jamais d'effort mental, que risque-t-il d'arriver ?</p>
+  <div class="f-lines"></div><div class="f-lines"></div>
+  <p style="margin-top:12px">💡 Complète : Le cerveau fonctionne comme un <span class="f-blank">_______________</span>.</p>
+</div>
+<div class="f-block f-key">
+  <div class="f-step">💡 À retenir</div>
+  <p>Le cerveau fonctionne comme un muscle : comprendre demande un effort. Lire une réponse d'IA ne signifie pas l'apprendre. La reformulation sans écran est la seule preuve de compréhension.</p>
+</div>`
+    }
+  };
+  var f=fiches[n];
+  var w=window.open('','_blank','width=850,height=950');
+  w.document.write('<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8"><title>'+f.title+'</title><style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:Georgia,serif;color:#111;background:#fff;padding:30px 40px;max-width:800px;margin:0 auto}header{border-left:5px solid '+f.color+';padding:10px 18px;background:'+f.bg+';margin-bottom:20px;border-radius:0 8px 8px 0}.f-label{font-size:11px;font-weight:700;letter-spacing:.1em;color:'+f.color+';text-transform:uppercase;margin-bottom:4px}.f-title{font-size:20px;font-weight:900;color:#111;margin-bottom:4px}.f-tags{font-size:11px;color:#666;margin-bottom:6px}.f-mission{font-size:13px;color:#444;font-style:italic}.f-block{margin-bottom:18px;padding:14px 16px;border:1px solid #E5E7EB;border-radius:8px;background:#FAFAFA}.f-step{font-size:12px;font-weight:800;letter-spacing:.05em;color:'+f.color+';text-transform:uppercase;margin-bottom:8px}.f-table{width:100%;border-collapse:collapse;font-size:12.5px;margin-top:6px}.f-table th{background:'+f.bg+';padding:6px 10px;text-align:left;font-weight:700;border:1px solid #D1D5DB}.f-table td{padding:8px 10px;border:1px solid #E5E7EB;vertical-align:top}.f-lines{border-bottom:1px solid #9CA3AF;height:28px;margin:6px 0}.f-blank{display:inline-block;border-bottom:2px solid #374151;min-width:120px;height:18px}.f-quiz{background:#FFFBEB;border-color:#FCD34D}.f-key{background:'+f.bg+';border-color:'+f.color+';border-width:2px}footer{margin-top:24px;font-size:10px;color:#9CA3AF;text-align:center;border-top:1px solid #E5E7EB;padding-top:10px}@media print{body{padding:15px 20px}}</style></head><body><header><div class="f-label">'+f.title+' — The Critical AI Classroom</div><div class="f-title">'+f.subtitle+'</div><div class="f-tags">'+f.tags+'</div><div class="f-mission">'+f.mission+'</div></header>'+f.body+'<footer>The Critical AI Classroom · Formation IA · formation-ia-j2.vercel.app</footer></body></html>');
+  w.document.close();w.focus();
+  setTimeout(function(){w.print();},600);
+}
 function closeMissionModal(e){
   if(e&&e.target!==document.getElementById('mmodal-overlay'))return;
   document.getElementById('mmodal-overlay').classList.remove('open');
