@@ -427,7 +427,12 @@ function checkLock(){
     <button class="nb active" onclick="go('home',this)">
       <span style="font-size:15px">🏠</span><span>Accueil & Programme</span>
     </button>
-    <div class="nav-label" style="margin-top:7px">8 Ateliers au choix</div>
+    <div class="nav-label" style="margin-top:7px">9 Ateliers au choix</div>
+    <button class="nb" onclick="go('a0',this)" id="nb-a0">
+      <span class="ndot" style="background:#4338CA"></span>
+      <span>Atelier 0 · Prompts avancés</span>
+      <span class="meta"><span class="nbadge">60–90'</span><span class="nchk" id="chk-a0" style="display:none">✓</span></span>
+    </button>
     <button class="nb" onclick="go('a1',this)" id="nb-a1">
       <span class="ndot" style="background:var(--c1)"></span>
       <span>Atelier 1 · Préparation cours</span>
@@ -512,6 +517,11 @@ function checkLock(){
     <div>
       <div class="sec-title">🧭 Quel atelier pour quel besoin ?</div>
       <div class="matrix">
+        <div class="mc" onclick="go('a0',document.getElementById('nb-a0'))" style="border-color:#4338CA">
+          <div class="mc-num" style="color:#4338CA">Atelier 0</div>
+          <div class="mc-need">Je veux maîtriser des cadres avancés de prompt et comprendre les limites de l'IA</div>
+          <div class="mc-dur">⏱ 60–90 min</div>
+        </div>
         <div class="mc" onclick="go('a1',document.getElementById('nb-a1'))" style="border-color:var(--c1)">
           <div class="mc-num" style="color:var(--c1)">Atelier 1</div>
           <div class="mc-need">Je veux gagner du temps sur la préparation de cours</div>
@@ -571,6 +581,334 @@ function checkLock(){
       </div>
     </div>
 
+  </div>
+</section>
+
+<!-- ══════════════════ ATELIER 0 ══════════════════ -->
+<section class="sec" id="sec-a0">
+  <div class="ahdr" style="background:linear-gradient(135deg,#1E1B4B,#4338CA)">
+    <div class="atag">Atelier 0</div>
+    <h2>Cadres avancés d'interaction avec l'IA</h2>
+    <div class="ameta">
+      <span class="adur">⏱ 60–90 min</span>
+      <span class="tpill">ChatGPT</span><span class="tpill">Claude</span>
+    </div>
+    <div class="crcn-block">
+      <div class="crcn-title">Compétences CRCN-Édu</div>
+      <div class="crcn-badges">
+        <span class="crcn-badge crcn-d1" id="cb-a0-15"><span class="crcn-code">1.5</span><span class="crcn-lbl">Posture critique</span></span>
+        <span class="crcn-badge crcn-d2" id="cb-a0-21"><span class="crcn-code">2.1</span><span class="crcn-lbl">Interagir avec les services</span></span>
+        <span class="crcn-badge crcn-d3" id="cb-a0-31"><span class="crcn-code">3.1</span><span class="crcn-lbl">Concevoir / résoudre</span></span>
+      </div>
+    </div>
+  </div>
+  <div class="abody">
+    <div class="obj-block" style="background:#EEF2FF;border-color:#C7D2FE">
+      <span class="obj-ico">🎯</span>
+      <div>Maîtriser des cadres avancés d'interaction avec l'IA : mobiliser des grilles théoriques d'analyse, structurer une pensée par <strong>subsomption</strong>, pratiquer le <strong>Steelman</strong> et l'enrichissement lexical — tout en comprenant les limites structurelles du modèle pour adopter une posture de vigilance éclairée.</div>
+    </div>
+
+    <!-- 1. GRILLES DE LECTURE EXPERTES -->
+    <div>
+      <div class="sec-title">🔭 1. Mobiliser des grilles de lecture expertes</div>
+      <div style="background:#EEF2FF;border-left:3px solid #4338CA;border-radius:8px;padding:12px 14px;font-size:13px;color:var(--text);margin-bottom:10px;line-height:1.6">
+        <strong style="color:#4338CA">Objectif pédagogique :</strong> Sortir d'une analyse superficielle pour entrer dans une lecture <em>multidimensionnelle</em>, structurée et conceptuellement robuste — en convoquant des penseurs dont les cadres théoriques sont solidement documentés et reconnus.
+      </div>
+      <div class="pcrd">
+        <div class="phdr"><span class="ptitle" style="color:#4338CA">Prompt — Grilles de lecture expertes</span><button class="cpbtn" onclick="cp(this)">📋 Copier</button></div>
+        <div class="pbody">Sélectionne 10 penseurs fondamentaux dont tu maîtrises les cadres théoriques en profondeur.
+Leur pensée doit permettre d'analyser ce document à travers des grilles conceptuelles solides.
+Veille à couvrir un maximum de domaines : philosophie, sciences, littérature, socio-économie, ingénierie.
+Intègre au moins cinq penseurs spécialisés en ressources humaines et management.
+Privilégie des auteurs dont les travaux sont largement documentés et reconnus, plutôt que des experts contemporains récents.
+
+[Collez ici votre document]</div>
+      </div>
+      <div class="tips-box" style="background:#EEF2FF;border-color:#4338CA;margin-top:10px">
+        <div class="tips-ttl" style="color:#4338CA">💡 Pourquoi cette technique fonctionne</div>
+        <div class="tips-list">
+          <div class="tip">L'IA dispose d'une connaissance encyclopédique des grands auteurs — en la contraignant à choisir 10 cadres précis, on évite le flottement générique.</div>
+          <div class="tip">La contrainte "au moins cinq en RH/management" oblige le modèle à équilibrer l'ancrage disciplinaire et l'ouverture transversale.</div>
+          <div class="tip">Privilégier les auteurs largement documentés réduit le risque d'hallucination sur des sources marginales.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. SUBSUMER / PENSEUR UNIQUE -->
+    <div>
+      <div class="sec-title">🧩 2. Approfondir via un penseur unique — Subsumer</div>
+      <div style="background:#1E1B4B;border-radius:var(--r);padding:14px 18px;margin-bottom:10px">
+        <div style="font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(199,210,254,.6);margin-bottom:5px">Concept clé</div>
+        <div style="font-size:20px;font-weight:900;color:#A5B4FC;margin-bottom:6px;letter-spacing:-.3px">Subsumer</div>
+        <div style="font-size:13px;color:#E0E7FF;line-height:1.7">Intégrer un contenu sous une catégorie ou un cadre théorique plus large afin de lui donner une <strong style="color:#A5B4FC">cohérence intellectuelle</strong>. Passer d'une accumulation d'idées à une véritable structuration de la pensée.</div>
+      </div>
+      <div class="pcrd">
+        <div class="phdr"><span class="ptitle" style="color:#4338CA">Prompt — Analyse par subsomption (ex. : Drucker)</span><button class="cpbtn" onclick="cp(this)">📋 Copier</button></div>
+        <div class="pbody">Analyse ce document à travers le cadre théorique de [Peter Drucker / nom du penseur].
+Structure ton analyse en identifiant les concepts clés mobilisés et en produisant une synthèse intégrative.
+Subsume les éléments du document sous les grandes catégories de sa pensée, en montrant comment chaque idée s'articule à son système théorique.
+
+[Collez ici votre document]</div>
+      </div>
+      <div style="background:#F5F3FF;border-left:3px solid #7C3AED;border-radius:8px;padding:10px 14px;margin-top:8px;font-size:12px;color:var(--text-sec);line-height:1.6">
+        <strong style="color:#7C3AED">Enchaînement productif :</strong> Utilisez d'abord le prompt "10 penseurs" pour identifier les cadres disponibles, puis relancez avec ce prompt de subsomption sur le penseur le plus pertinent. Les deux techniques se renforcent mutuellement.
+      </div>
+    </div>
+
+    <!-- 3. ESPACE CONCEPTUEL -->
+    <div>
+      <div class="sec-title">🗺 3. La conversation avec l'IA comme espace conceptuel</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:9px">
+        <div style="background:#1E1B4B;border-radius:var(--r);padding:13px 15px">
+          <div style="font-size:18px;margin-bottom:6px">🧭</div>
+          <div style="font-size:12.5px;font-weight:700;color:#A5B4FC;margin-bottom:5px">Un espace de coordonnées sémantiques</div>
+          <div style="font-size:12px;color:#C7D2FE;line-height:1.6">Chaque mot agit comme une coordonnée qui déplace la réponse dans le réseau du modèle. Une légère variation de formulation peut ouvrir des zones d'analyse entièrement différentes.</div>
+        </div>
+        <div style="background:#1E1B4B;border-radius:var(--r);padding:13px 15px">
+          <div style="font-size:18px;margin-bottom:6px">🔦</div>
+          <div style="font-size:12.5px;font-weight:700;color:#A5B4FC;margin-bottom:5px">Une démarche d'exploration, pas une simple requête</div>
+          <div style="font-size:12px;color:#C7D2FE;line-height:1.6">Interagir avec l'IA relève moins d'une requête que d'une exploration active. L'utilisateur guide — l'IA révèle ce qu'elle "sait sans savoir qu'elle sait".</div>
+        </div>
+        <div style="background:#1E1B4B;border-radius:var(--r);padding:13px 15px">
+          <div style="font-size:18px;margin-bottom:6px">🎯</div>
+          <div style="font-size:12.5px;font-weight:700;color:#A5B4FC;margin-bottom:5px">L'IA ne sait pas qu'elle sait</div>
+          <div style="font-size:12px;color:#C7D2FE;line-height:1.6">Le modèle ne possède pas de conscience de ses propres connaissances. C'est à l'utilisateur de formuler les bonnes coordonnées pour faire émerger les savoirs pertinents.</div>
+        </div>
+        <div style="background:#2D2A6E;border-radius:var(--r);padding:13px 15px;border:1.5px solid #4338CA">
+          <div style="font-size:18px;margin-bottom:6px">💡</div>
+          <div style="font-size:12.5px;font-weight:700;color:#FDE68A;margin-bottom:5px">Principe fondamental</div>
+          <div style="font-size:12px;color:#FEF3C7;line-height:1.6">Plus la formulation est précise et conceptuellement riche, plus le modèle accède à des zones de réponse fines. <em>Le prompt est la pensée.</em></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. STEELMAN -->
+    <div>
+      <div class="sec-title">🥊 4. Technique du "Steelman" — Renforcer un argument</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:10px">
+        <div style="background:#FEF9C3;border:1.5px solid #FCD34D;border-radius:var(--r);padding:13px 15px">
+          <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#92400E;margin-bottom:6px">Définition</div>
+          <div style="font-size:15px;font-weight:800;color:#78350F;margin-bottom:8px">Steelman</div>
+          <div style="font-size:12.5px;color:var(--text-sec);line-height:1.65">Reformuler un argument dans sa version la plus <strong>solide</strong>, la plus <strong>rationnelle</strong> et la plus <strong>défendable</strong> — même si l'on n'y adhère pas spontanément.</div>
+        </div>
+        <div style="display:grid;gap:7px;align-content:start">
+          <div style="background:var(--surface);border:1px solid var(--border);border-radius:7px;padding:8px 11px;font-size:12px;line-height:1.5">✦ <strong>Identifier le noyau rationnel</strong> d'un raisonnement</div>
+          <div style="background:var(--surface);border:1px solid var(--border);border-radius:7px;padding:8px 11px;font-size:12px;line-height:1.5">✦ <strong>Combler les lacunes implicites</strong> d'une thèse</div>
+          <div style="background:var(--surface);border:1px solid var(--border);border-radius:7px;padding:8px 11px;font-size:12px;line-height:1.5">✦ <strong>Suspendre temporairement</strong> la contradiction</div>
+          <div style="background:var(--surface);border:1px solid var(--border);border-radius:7px;padding:8px 11px;font-size:12px;line-height:1.5">✦ <strong>Produire la meilleure version</strong> possible d'une thèse</div>
+        </div>
+      </div>
+      <div style="background:#F8FAFC;border:1px solid var(--border);border-radius:var(--r);padding:12px 14px;margin-bottom:10px">
+        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--text-muted);margin-bottom:8px">Exemple concret</div>
+        <div style="display:flex;align-items:flex-start;gap:12px;flex-wrap:wrap">
+          <div style="background:#FEE2E2;border-radius:7px;padding:8px 12px;font-size:13px;color:#7F1D1D;flex:1;min-width:180px"><strong>Argument brut :</strong><br>"ChatGPT est plus intelligent que moi."</div>
+          <div style="font-size:20px;align-self:center;color:var(--text-muted)">→</div>
+          <div style="background:#DCFCE7;border-radius:7px;padding:8px 12px;font-size:13px;color:#14532D;flex:2;min-width:220px"><strong>Prompt :</strong> "Steelman cet argument."<br><span style="color:var(--text-sec);font-size:11.5px;margin-top:4px;display:block">→ L'IA reformule pour montrer en quoi ChatGPT surpasse l'humain sur des dimensions mesurables : vitesse de traitement, étendue encyclopédique, cohérence formelle…</span></div>
+        </div>
+      </div>
+      <div class="pcrd">
+        <div class="phdr"><span class="ptitle" style="color:#4338CA">Prompt — Steelman</span><button class="cpbtn" onclick="cp(this)">📋 Copier</button></div>
+        <div class="pbody">Steelman cet argument : [ARGUMENT]
+
+Reformule-le dans sa version la plus solide, la plus rationnelle et la plus défendable.
+Identifie le noyau rationnel, comble les lacunes implicites, et produis la meilleure version possible de cette thèse — sans nécessairement y adhérer.</div>
+      </div>
+      <div style="background:#EEF2FF;border-left:3px solid #4338CA;border-radius:8px;padding:10px 14px;margin-top:8px;font-size:12px;color:var(--text-sec);line-height:1.6">
+        <strong style="color:#4338CA">Objectif pédagogique :</strong> Développer une pensée plus rigoureuse en apprenant d'abord à <em>renforcer</em> un raisonnement avant de le critiquer. C'est l'inverse du "strawman" — et une discipline intellectuelle exigeante.
+      </div>
+    </div>
+
+    <!-- 5. ENRICHISSEMENT LEXICAL -->
+    <div>
+      <div class="sec-title">📖 5. Enrichissement lexical et précision conceptuelle</div>
+      <div style="background:#EEF2FF;border-left:3px solid #4338CA;border-radius:8px;padding:10px 14px;font-size:12.5px;color:var(--text);line-height:1.6;margin-bottom:10px">
+        <strong style="color:#4338CA">Objectif pédagogique :</strong> Augmenter la précision des requêtes et accéder à des nuances conceptuelles plus fines. Un vocabulaire enrichi = un espace de prompt plus vaste = des réponses plus précises et différenciées.
+      </div>
+      <div class="pcrd">
+        <div class="phdr"><span class="ptitle" style="color:#4338CA">Prompt — Enrichissement lexical</span><button class="cpbtn" onclick="cp(this)">📋 Copier</button></div>
+        <div class="pbody">Propose des alternatives au mot suivant : [MOT]
+
+Contraintes :
+– au moins 15 termes en français, qu'ils soient courants, soutenus ou techniques ;
+– inclure des mots issus d'autres langues sans équivalent exact en français ;
+– privilégier des termes à forte densité conceptuelle ;
+– intégrer, si pertinent, des termes rares, savants ou philosophiques.
+
+Pour chaque terme :
+– préciser la langue d'origine ;
+– expliquer en une phrase ce qu'il apporte de spécifique ;
+– donner un exemple d'utilisation dans une instruction ou un prompt.</div>
+      </div>
+    </div>
+
+    <!-- 6 + 7. LIMITES & FACTEURS DE RISQUE -->
+    <div>
+      <div style="background:#1E1B4B;border-radius:var(--r);padding:11px 16px;margin-bottom:12px;display:flex;align-items:flex-start;gap:10px">
+        <span style="font-size:22px;flex-shrink:0;margin-top:1px">⚠️</span>
+        <div>
+          <div style="font-size:13px;font-weight:800;color:#FDE68A;margin-bottom:4px">Comprendre les limites structurelles de l'IA</div>
+          <div style="font-size:12px;color:#C7D2FE;line-height:1.65">Pour l'IA, il n'existe <strong style="color:#A5B4FC">pas de différence architecturale</strong> entre une connerie, une spéculation et une vérité. Dans les trois cas, le mécanisme de génération est fondamentalement le même. Le modèle peut produire une réponse brillante ou totalement délirante avec la même fluidité, la même structure — et parfois la même assurance.</div>
+        </div>
+      </div>
+      <div class="sec-title">🔥 6. Les quatre grands facteurs de risque d'erreur</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:9px">
+        <div style="background:#FEF2F2;border:1.5px solid #FCA5A5;border-radius:var(--r);padding:13px 15px">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+            <span style="background:#DC2626;color:#fff;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0">1</span>
+            <span style="font-size:12.5px;font-weight:700;color:#7F1D1D">Qualité des données d'entrée</span>
+          </div>
+          <div style="font-size:12px;color:var(--text-sec);line-height:1.6;margin-bottom:7px"><em>Garbage in, garbage out.</em> Si l'IA travaille sur des données incomplètes ou mal extraites, sa réponse héritera de ces défauts.</div>
+          <div style="font-size:11px;color:#991B1B;background:#FEE2E2;border-radius:5px;padding:6px 9px;line-height:1.5">Article payant inaccessible · PDF mal décodé · Document tronqué · Sujet peu documenté · Base imprécise</div>
+        </div>
+        <div style="background:#FFF7ED;border:1.5px solid #FED7AA;border-radius:var(--r);padding:13px 15px">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+            <span style="background:#EA580C;color:#fff;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0">2</span>
+            <span style="font-size:12.5px;font-weight:700;color:#7C2D12">Clarté de l'instruction</span>
+          </div>
+          <div style="font-size:12px;color:var(--text-sec);line-height:1.6;margin-bottom:7px">Une consigne floue pousse le modèle à combler les vides — et quand une machine comble les vides, elle prolonge <em>statistiquement</em> un chemin. Ce qui est fascinant, et parfois catastrophique.</div>
+          <div style="font-size:11px;color:#9A3412;background:#FFEDD5;border-radius:5px;padding:6px 9px;line-height:1.5">Plus la question est factuelle → plus la réponse risque de l'être. Plus elle contient des hypothèses implicites → plus elle bâtit sur du sable.</div>
+        </div>
+        <div style="background:#FFFBEB;border:1.5px solid #FDE68A;border-radius:var(--r);padding:13px 15px">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+            <span style="background:#D97706;color:#fff;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0">3</span>
+            <span style="font-size:12.5px;font-weight:700;color:#78350F">Effet cascade</span>
+          </div>
+          <div style="font-size:12px;color:var(--text-sec);line-height:1.6;margin-bottom:7px">Les erreurs ne disparaissent pas quand on enchaîne des étapes — elles <em>s'additionnent, se transmettent, s'amplifient</em>. C'est le principe de contamination progressive.</div>
+          <div style="font-size:11px;color:#92400E;background:#FEF3C7;border-radius:5px;padding:6px 9px;line-height:1.5">Imprécision en synthèse → fausse hypothèse à l'étape 2 → conclusion erronée dans le document final.</div>
+        </div>
+        <div style="background:#EFF6FF;border:1.5px solid #BFDBFE;border-radius:var(--r);padding:13px 15px">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+            <span style="background:#2563EB;color:#fff;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0">4</span>
+            <span style="font-size:12.5px;font-weight:700;color:#1E3A8A">Baisse de vigilance humaine</span>
+          </div>
+          <div style="font-size:12px;color:var(--text-sec);line-height:1.6;margin-bottom:7px">Lorsqu'un outil produit vite et avec aplomb, l'utilisateur relâche naturellement sa vigilance. L'IA ne dit jamais "là, quelque chose cloche." Elle continue.</div>
+          <div style="font-size:11px;color:#1E40AF;background:#DBEAFE;border-radius:5px;padding:6px 9px;line-height:1.5"><strong>Les LLM ne détruisent pas votre cerveau. Ce sont la paresse intellectuelle et l'absence d'apprentissage qui le font.</strong></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8. RÈGLES DE PRUDENCE -->
+    <div>
+      <div class="sec-title">✅ 7. Les quatre règles de prudence</div>
+      <div style="display:grid;gap:8px">
+        <div style="background:var(--surface);border:1.5px solid #A7F3D0;border-radius:var(--r);padding:12px 15px;display:flex;gap:12px;align-items:flex-start">
+          <div style="background:#059669;color:#fff;border-radius:7px;padding:5px 10px;font-size:11px;font-weight:800;flex-shrink:0;line-height:1.3;text-align:center">Règle<br>1</div>
+          <div>
+            <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:4px">Ne jamais laisser l'IA produire plus que ce que l'on peut vérifier</div>
+            <div style="font-size:12px;color:var(--text-sec);line-height:1.6">L'IA génère des pages en secondes ; la capacité humaine de vérification reste limitée. L'utilisateur <em>est</em> le goulot d'étranglement du processus. <strong>Mieux valent dix petites itérations vérifiables qu'une production massive impossible à contrôler sérieusement.</strong></div>
+          </div>
+        </div>
+        <div style="background:var(--surface);border:1.5px solid #A7F3D0;border-radius:var(--r);padding:12px 15px;display:flex;gap:12px;align-items:flex-start">
+          <div style="background:#059669;color:#fff;border-radius:7px;padding:5px 10px;font-size:11px;font-weight:800;flex-shrink:0;line-height:1.3;text-align:center">Règle<br>2</div>
+          <div>
+            <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:4px">Vérifier à chaque étape, et non à la fin</div>
+            <div style="font-size:12px;color:var(--text-sec);line-height:1.6">Chaque étape de travail avec l'IA est un point de contamination potentiel. Si la vérification n'intervient qu'au bout de la chaîne, les erreurs ont déjà infusé dans l'ensemble du raisonnement. <strong>Contrôler tôt, souvent, et localement.</strong></div>
+          </div>
+        </div>
+        <div style="background:var(--surface);border:1.5px solid #A7F3D0;border-radius:var(--r);padding:12px 15px;display:flex;gap:12px;align-items:flex-start">
+          <div style="background:#059669;color:#fff;border-radius:7px;padding:5px 10px;font-size:11px;font-weight:800;flex-shrink:0;line-height:1.3;text-align:center">Règle<br>3</div>
+          <div>
+            <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:4px">Rester factuel dans les prompts</div>
+            <div style="font-size:12px;color:var(--text-sec);line-height:1.6">Avant d'envoyer une consigne : est-ce un <strong>fait vérifié</strong> ou une supposition glissée sans le voir ? Le modèle traite volontiers une hypothèse implicite comme une base légitime — et construit alors sur une prémisse peut-être fausse. <strong>Ne pas demander à l'IA de déduire ce qui n'est pas établi.</strong></div>
+          </div>
+        </div>
+        <div style="background:var(--surface);border:1.5px solid #A7F3D0;border-radius:var(--r);padding:12px 15px;display:flex;gap:12px;align-items:flex-start">
+          <div style="background:#059669;color:#fff;border-radius:7px;padding:5px 10px;font-size:11px;font-weight:800;flex-shrink:0;line-height:1.3;text-align:center">Règle<br>4</div>
+          <div>
+            <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:4px">Connaître les zones de danger</div>
+            <div style="font-size:12px;color:var(--text-sec);line-height:1.6;margin-bottom:7px">Plus un sujet appartient à une zone à risque, plus la vérification externe doit être forte.</div>
+            <div style="display:flex;flex-wrap:wrap;gap:5px">
+              <span style="background:#FEE2E2;color:#991B1B;border-radius:20px;padding:2px 9px;font-size:11px;font-weight:600">🔢 Chiffres</span>
+              <span style="background:#FEE2E2;color:#991B1B;border-radius:20px;padding:2px 9px;font-size:11px;font-weight:600">📅 Dates</span>
+              <span style="background:#FEE2E2;color:#991B1B;border-radius:20px;padding:2px 9px;font-size:11px;font-weight:600">👤 Personnes peu connues</span>
+              <span style="background:#FEE2E2;color:#991B1B;border-radius:20px;padding:2px 9px;font-size:11px;font-weight:600">📰 Événements récents</span>
+              <span style="background:#FEE2E2;color:#991B1B;border-radius:20px;padding:2px 9px;font-size:11px;font-weight:600">📊 Analyses multi-sources</span>
+              <span style="background:#FEE2E2;color:#991B1B;border-radius:20px;padding:2px 9px;font-size:11px;font-weight:600">📄 Documents longs ou complexes</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- IDÉE DIRECTRICE -->
+    <div style="background:linear-gradient(135deg,#1E1B4B,#312E81);border-radius:var(--r);padding:20px 22px">
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#A5B4FC;margin-bottom:10px">🎯 Idée directrice — À retenir</div>
+      <div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:14px;line-height:1.5">Utiliser une IA efficacement ne consiste pas seulement à "bien demander".</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:14px">
+        <div style="background:rgba(255,255,255,.07);border-radius:7px;padding:8px 11px;font-size:12px;color:#E0E7FF;line-height:1.5">🧠 <strong style="color:#A5B4FC">Construire</strong> un espace de pensée</div>
+        <div style="background:rgba(255,255,255,.07);border-radius:7px;padding:8px 11px;font-size:12px;color:#E0E7FF;line-height:1.5">✍️ <strong style="color:#A5B4FC">Formuler</strong> des instructions rigoureuses</div>
+        <div style="background:rgba(255,255,255,.07);border-radius:7px;padding:8px 11px;font-size:12px;color:#E0E7FF;line-height:1.5">🔍 <strong style="color:#A5B4FC">Contrôler</strong> la qualité des entrées</div>
+        <div style="background:rgba(255,255,255,.07);border-radius:7px;padding:8px 11px;font-size:12px;color:#E0E7FF;line-height:1.5">✅ <strong style="color:#A5B4FC">Vérifier</strong> les sorties en continu</div>
+        <div style="background:rgba(255,255,255,.07);border-radius:7px;padding:8px 11px;font-size:12px;color:#E0E7FF;line-height:1.5;grid-column:span 2">🔬 <strong style="color:#A5B4FC">Rester intellectuellement actif</strong> tout au long du processus</div>
+      </div>
+      <div style="background:rgba(255,255,255,.1);border-radius:7px;padding:10px 14px;font-size:13px;color:#FDE68A;font-weight:700;line-height:1.65;border-left:3px solid #FBBF24">
+        Une IA bien utilisée augmente la pensée.<br>Une IA mal utilisée industrialise l'erreur.
+      </div>
+    </div>
+
+    <!-- PROGRESSION -->
+    <div>
+      <div class="prog-hdr"><span>Progression</span><span id="pg-a0">0 / 5 étapes</span></div>
+      <div class="prog-bar"><div class="prog-fill" id="pf-a0" style="background:#4338CA;width:0%"></div></div>
+      <div class="hint">Cliquez sur chaque étape pour la cocher ✓</div>
+      <div class="steps" id="st-a0">
+        <div class="step" onclick="tick(this,'a0',0)"><div class="snum" style="border-color:#4338CA;color:#4338CA"><span>1</span></div><div class="stxt">Choisissez un document de travail et testez le <strong>Prompt A — Grilles de lecture</strong> — notez les 10 penseurs proposés et repérez celui qui vous surprend le plus.</div></div>
+        <div class="step" onclick="tick(this,'a0',1)"><div class="snum" style="border-color:#4338CA;color:#4338CA"><span>2</span></div><div class="stxt">Sélectionnez l'un des penseurs et relancez avec le <strong>Prompt B — Subsomption</strong> — identifiez comment il réorganise le contenu sous ses catégories théoriques.</div></div>
+        <div class="step" onclick="tick(this,'a0',2)"><div class="snum" style="border-color:#4338CA;color:#4338CA"><span>3</span></div><div class="stxt">Choisissez un argument qui vous semble faible et appliquez le <strong>Prompt C — Steelman</strong> — notez ce que le renforcement révèle de nouveau dans la thèse.</div></div>
+        <div class="step" onclick="tick(this,'a0',3)"><div class="snum" style="border-color:#4338CA;color:#4338CA"><span>4</span></div><div class="stxt">Choisissez un mot-clé de votre pratique et lancez le <strong>Prompt D — Enrichissement lexical</strong> — sélectionnez 3 termes à réutiliser dans un prochain prompt.</div></div>
+        <div class="step" onclick="tick(this,'a0',4)"><div class="snum" style="border-color:#4338CA;color:#4338CA"><span>5</span></div><div class="stxt">Échangez avec un collègue : identifiez ensemble <strong>deux zones de danger</strong> propres à votre discipline et la règle de prudence prioritaire à adopter.</div></div>
+      </div>
+    </div>
+
+    <!-- PROMPTS -->
+    <div>
+      <div class="sec-title">📋 Prompts à copier-coller</div>
+      <div class="prompts">
+        <div class="pcrd">
+          <div class="phdr"><span class="ptitle" style="color:#4338CA">Prompt A — Grilles de lecture expertes (10 penseurs)</span><button class="cpbtn" onclick="cp(this)">📋 Copier</button></div>
+          <div class="pbody">Sélectionne 10 penseurs fondamentaux dont tu maîtrises les cadres théoriques en profondeur. Leur pensée doit permettre d'analyser ce document à travers des grilles conceptuelles solides. Veille à couvrir un maximum de domaines : philosophie, sciences, littérature, socio-économie, ingénierie. Intègre au moins cinq penseurs spécialisés en ressources humaines et management. Privilégie des auteurs dont les travaux sont largement documentés et reconnus, plutôt que des experts contemporains récents.
+
+[Collez ici votre document]</div>
+        </div>
+        <div class="pcrd">
+          <div class="phdr"><span class="ptitle" style="color:#4338CA">Prompt B — Analyse par subsomption (un penseur)</span><button class="cpbtn" onclick="cp(this)">📋 Copier</button></div>
+          <div class="pbody">Analyse ce document à travers le cadre théorique de [nom du penseur]. Structure ton analyse en identifiant les concepts clés mobilisés et en produisant une synthèse intégrative. Subsume les éléments du document sous les grandes catégories de sa pensée, en montrant comment chaque idée s'articule à son système théorique.
+
+[Collez ici votre document]</div>
+        </div>
+        <div class="pcrd">
+          <div class="phdr"><span class="ptitle" style="color:#4338CA">Prompt C — Steelman</span><button class="cpbtn" onclick="cp(this)">📋 Copier</button></div>
+          <div class="pbody">Steelman cet argument : [ARGUMENT]
+
+Reformule-le dans sa version la plus solide, la plus rationnelle et la plus défendable. Identifie le noyau rationnel, comble les lacunes implicites, et produis la meilleure version possible de cette thèse — sans nécessairement y adhérer.</div>
+        </div>
+        <div class="pcrd">
+          <div class="phdr"><span class="ptitle" style="color:#4338CA">Prompt D — Enrichissement lexical</span><button class="cpbtn" onclick="cp(this)">📋 Copier</button></div>
+          <div class="pbody">Propose des alternatives au mot suivant : [MOT]
+
+Contraintes :
+– au moins 15 termes en français, qu'ils soient courants, soutenus ou techniques ;
+– inclure des mots issus d'autres langues sans équivalent exact en français ;
+– privilégier des termes à forte densité conceptuelle ;
+– intégrer, si pertinent, des termes rares, savants ou philosophiques.
+
+Pour chaque terme :
+– préciser la langue d'origine ;
+– expliquer en une phrase ce qu'il apporte de spécifique ;
+– donner un exemple d'utilisation dans une instruction ou un prompt.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tips-box" style="background:#EEF2FF;border-color:#4338CA">
+      <div class="tips-ttl" style="color:#4338CA">💡 Tips & Astuces</div>
+      <div class="tips-list">
+        <div class="tip">Enchaînez systématiquement Prompt A (10 penseurs) puis Prompt B (subsomption) sur un même document : la combinaison produit une analyse structurée en moins de 5 minutes.</div>
+        <div class="tip">Le Steelman est particulièrement efficace face aux objections d'élèves ou de collègues que vous trouvez peu fondées — renforcez d'abord leur version avant de répondre.</div>
+        <div class="tip">Pour l'enrichissement lexical, travaillez sur des mots-clés de vos consignes d'évaluation : un vocabulaire plus précis améliore directement la qualité des réponses attendues.</div>
+        <div class="tip">Règle d'or : si vous ne pouvez pas vérifier une information en moins de 2 minutes, considérez qu'elle est en "zone de danger" et traitez-la comme suspecte jusqu'à confirmation externe.</div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1835,6 +2173,112 @@ function checkLock(){
 
       </div>
     </div>
+
+    <!-- ★ CODE ACADÉMIE DE PARIS — 3 NIVEAUX ★ -->
+    <div>
+      <div class="sec-title">🏛 Référentiel académie de Paris — 3 niveaux d'usage IA dans les devoirs</div>
+      <div style="font-size:11.5px;color:var(--text-sec);margin-bottom:10px">Source : <em>Encadrer l'utilisation de l'IA dans les devoirs à la maison</em> — Groupe « IA et éducation », Inspecteurs du 2nd degré, académie de Paris (mai 2025). Ce code simple est complémentaire au système de cartouche.</div>
+      <div class="card-0">
+        <table class="tbl">
+          <thead><tr><th>Niveau</th><th>Nom</th><th>Ce que l'élève peut faire</th><th>Posture attendue</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><span class="level-badge level-1">Niveau 1</span></td>
+              <td class="tname">Utilisation autonome</td>
+              <td>L'élève utilise l'IA comme il le souhaite, <strong>sans avoir à en rendre compte</strong>.</td>
+              <td>Responsabilisation : l'élève gère ses ressources librement.</td>
+            </tr>
+            <tr>
+              <td><span class="level-badge level-2">Niveau 2</span></td>
+              <td class="tname">Utilisation explicite</td>
+              <td>L'élève peut utiliser l'IA mais <strong>doit expliquer comment</strong> : quel outil, quels prompts, quelle analyse des résultats.</td>
+              <td>Métacognition : l'élève interroge la validité des réponses, développe une posture réflexive.</td>
+            </tr>
+            <tr>
+              <td><span class="level-badge level-3">Niveau 3</span></td>
+              <td class="tname">Sans IA</td>
+              <td>Le recours à l'IA est <strong>fortement déconseillé</strong>. L'enseignant fournit les étayages nécessaires à la réussite de la tâche.</td>
+              <td>Effort cognitif personnel : mémoriser, automatiser, comprendre sans déléguer.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="background:var(--c7l);border-left:3px solid var(--c7);border-radius:8px;padding:10px 14px;margin-top:8px;font-size:12px;color:var(--text)">
+        <strong style="color:var(--c7)">Conseil d'usage :</strong> Ce code (1/2/3) peut figurer directement dans l'intitulé du devoir. Le <strong>Niveau 2</strong> est particulièrement formateur : il transforme l'IA en outil de réflexion métacognitive plutôt qu'en substitut. Le <strong>Niveau 3</strong> ne signifie pas « interdiction » mais exige d'expliquer <em>pourquoi</em> ce travail doit rester personnel.
+      </div>
+    </div>
+
+    <!-- ★ GUIDE ÉLÈVE — CE QUE L'IA PEUT / NE PEUT PAS FAIRE ★ -->
+    <div>
+      <div class="sec-title">🎓 Guide élève — Ce que l'IA peut et ne peut pas faire</div>
+      <div style="font-size:11.5px;color:var(--text-sec);margin-bottom:10px">Ce guide est à distribuer aux élèves pour développer une posture réflexive vis-à-vis de l'IA dans leurs devoirs.</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div style="background:#F0FDF4;border:1.5px solid #86EFAC;border-radius:var(--r);padding:14px">
+          <div style="font-size:12px;font-weight:800;color:#166534;text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px">✅ Ce que l'IA peut faire pour t'aider</div>
+          <div style="display:grid;gap:7px">
+            <div style="background:#fff;border-radius:7px;padding:9px 11px;font-size:12.5px;line-height:1.5"><strong style="color:#15803D">🔍 Vérifier ta compréhension</strong><br><span style="color:var(--text-sec)">Générer des questions sur ton cours, reformuler des notions compliquées, expliquer différemment une idée.</span></div>
+            <div style="background:#fff;border-radius:7px;padding:9px 11px;font-size:12.5px;line-height:1.5"><strong style="color:#15803D">🧠 T'aider à mémoriser</strong><br><span style="color:var(--text-sec)">Proposer des quiz et exercices d'auto-évaluation, suggérer des moyens mnémotechniques et stratégies de mémorisation active.</span></div>
+            <div style="background:#fff;border-radius:7px;padding:9px 11px;font-size:12.5px;line-height:1.5"><strong style="color:#15803D">🔄 Accompagner l'automatisation</strong><br><span style="color:var(--text-sec)">Générer des exercices répétitifs (conjugaison, calcul, codage…), proposer des mises en situation pour appliquer une règle.</span></div>
+            <div style="background:#fff;border-radius:7px;padding:9px 11px;font-size:12.5px;line-height:1.5"><strong style="color:#15803D">💡 Stimuler ta réflexion</strong><br><span style="color:var(--text-sec)">Poser des questions ouvertes, suggérer différentes lectures d'un problème, aider à approfondir un sujet.</span></div>
+            <div style="background:#fff;border-radius:7px;padding:9px 11px;font-size:12.5px;line-height:1.5"><strong style="color:#15803D">📝 Structurer et donner des idées</strong><br><span style="color:var(--text-sec)">Proposer des plans, des arguments, reformuler un texte, synthétiser des informations.</span></div>
+          </div>
+        </div>
+        <div style="background:#FEF2F2;border:1.5px solid #FCA5A5;border-radius:var(--r);padding:14px">
+          <div style="font-size:12px;font-weight:800;color:#991B1B;text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px">❌ Ce que l'IA ne peut (et ne doit) pas faire</div>
+          <div style="display:grid;gap:7px">
+            <div style="background:#fff;border-radius:7px;padding:9px 11px;font-size:12.5px;line-height:1.5"><strong style="color:#DC2626">🧠 Mémoriser à ta place</strong><br><span style="color:var(--text-sec)">C'est ton cerveau qui apprend ! Si tu ne fais pas l'effort de mémoriser, tu ne pourras pas utiliser tes connaissances en classe.</span></div>
+            <div style="background:#fff;border-radius:7px;padding:9px 11px;font-size:12.5px;line-height:1.5"><strong style="color:#DC2626">👥 Remplacer les échanges humains</strong><br><span style="color:var(--text-sec)">L'apprentissage passe aussi par les discussions avec tes camarades et enseignants. L'IA ne remplace pas ces interactions.</span></div>
+            <div style="background:#fff;border-radius:7px;padding:9px 11px;font-size:12.5px;line-height:1.5"><strong style="color:#DC2626">🤔 Penser et décider à ta place</strong><br><span style="color:var(--text-sec)">L'IA donne des suggestions. Tu dois exercer ton esprit critique et faire confiance à ton raisonnement personnel.</span></div>
+            <div style="background:#fff;border-radius:7px;padding:9px 11px;font-size:12.5px;line-height:1.5"><strong style="color:#DC2626">🔍 Remplacer un moteur de recherche</strong><br><span style="color:var(--text-sec)">Les IA génératives peuvent inventer des informations (<em>hallucinations</em>). Toujours vérifier avec une source fiable.</span></div>
+            <div style="background:#FEF3C7;border-radius:7px;padding:9px 11px;font-size:12px;line-height:1.5;border:1px solid #FCD34D"><strong style="color:#92400E">🌍 Impact environnemental</strong><br><span style="color:#92400E">Interroger une IA consomme ~10× plus d'énergie qu'une recherche web. Utiliser l'IA avec discernement, c'est aussi prendre soin de la planète.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ★ 8 CATÉGORIES DE PROMPTS ÉLÈVES ★ -->
+    <div>
+      <div class="sec-title">💬 8 catégories de prompts élèves — À distribuer aux élèves</div>
+      <div style="font-size:11.5px;color:var(--text-sec);margin-bottom:10px">Source : académie de Paris (mai 2025). 8 objectifs d'apprentissage avec des exemples de formulations à proposer à l'IA. Les élèves s'en inspirent pour construire leurs propres prompts.</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:9px">
+        <div style="background:var(--surface);border:1.5px solid #BFDBFE;border-radius:var(--r);overflow:hidden">
+          <div style="background:#EFF6FF;padding:9px 12px;display:flex;align-items:center;gap:8px"><span style="background:#2563EB;color:#fff;border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;flex-shrink:0">1</span><span style="font-size:11.5px;font-weight:700;color:#1E3A8A">Vérifier sa compréhension d'une notion</span></div>
+          <div style="padding:10px 12px;font-size:12px;color:var(--text-sec)"><div style="font-style:italic;color:var(--text-muted);font-size:11px;margin-bottom:5px">Exemples de prompts :</div><ul style="list-style:none;display:grid;gap:4px"><li style="padding:4px 8px;background:var(--surface2);border-radius:5px;border-left:2px solid #93C5FD;line-height:1.5">Peux-tu expliquer [notion] avec des mots simples ?</li><li style="padding:4px 8px;background:var(--surface2);border-radius:5px;border-left:2px solid #93C5FD;line-height:1.5">Peux-tu me poser 5 questions pour vérifier ma compréhension de [notion] ?</li><li style="padding:4px 8px;background:var(--surface2);border-radius:5px;border-left:2px solid #93C5FD;line-height:1.5">Si j'ai bien compris, [ma reformulation]. Est-ce correct ?</li><li style="padding:4px 8px;background:var(--surface2);border-radius:5px;border-left:2px solid #93C5FD;line-height:1.5">Quelles sont les erreurs fréquentes sur ce sujet ?</li></ul></div>
+        </div>
+        <div style="background:var(--surface);border:1.5px solid #A7F3D0;border-radius:var(--r);overflow:hidden">
+          <div style="background:#ECFDF5;padding:9px 12px;display:flex;align-items:center;gap:8px"><span style="background:#059669;color:#fff;border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;flex-shrink:0">2</span><span style="font-size:11.5px;font-weight:700;color:#064E3B">Tester sa mémorisation</span></div>
+          <div style="padding:10px 12px;font-size:12px;color:var(--text-sec)"><div style="font-style:italic;color:var(--text-muted);font-size:11px;margin-bottom:5px">Exemples de prompts :</div><ul style="list-style:none;display:grid;gap:4px"><li style="padding:4px 8px;background:var(--surface2);border-radius:5px;border-left:2px solid #6EE7B7;line-height:1.5">Transforme ce cours en une liste de points clés à retenir.</li><li style="padding:4px 8px;background:var(--surface2);border-radius:5px;border-left:2px solid #6EE7B7;line-height:1.5">Crée un quiz avec des questions à choix multiples sur ce sujet.</li><li style="padding:4px 8px;background:var(--surface2);border-radius:5px;border-left:2px solid #6EE7B7;line-height:1.5">Cache certains mots dans ce résumé pour que je les retrouve moi-même.</li><li style="padding:4px 8px;background:var(--surface2);border-radius:5px;border-left:2px solid #6EE7B7;line-height:1.5">Pose-moi des questions de plus en plus difficiles sur ce cours.</li></ul></div>
+        </div>
+        <div style="background:var(--surface);border:1.5px solid #FED7AA;border-radius:var(--r);overflow:hidden">
+          <div style="background:#FFF7ED;padding:9px 12px;display:flex;align-items:center;gap:8px"><span style="background:#EA580C;color:#fff;border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;flex-shrink:0">3</span><span style="font-size:11.5px;font-weight:700;color:#7C2D12">Vérifier sa compréhension d'une méthode</span></div>
+          <div style="padding:10px 12px;font-size:12px;color:var(--text-sec)"><div style="font-style:italic;color:var(--text-muted);font-size:11px;margin-bottom:5px">Exemples de prompts :</div><ul style="list-style:none;display:grid;gap:4px"><li style="padding:4px 8px;background:var(--surface2);border-radius:5px;border-left:2px solid #FDBA74;line-height:1.5">Explique étape par étape comment résoudre [type d'exercice].</li><li style="padding:4px 8px;background:var(--surface2);border-radius:5px;border-left:2px solid #FDBA74;line-height:1.5">Quelles sont les erreurs fréquentes quand on applique cette méthode ?</li><li style="padding:4px 8px;background:var(--surface2);border-radius:5px;border-left:2px solid #FDBA74;line-height:1.5">Pose-moi des questions où je dois retrouver l'étape manquante.</li><li style="padding:4px 8px;background:var(--surface2);border-radius:5px;border-left:2px solid #FDBA74;line-height:1.5">Propose une version simplifiée de cette méthode pour commencer.</li></ul></div>
+        </div>
+        <div style="background:var(--surface);border:1.5px solid #DDD6FE;border-radius:var(--r);overflow:hidden">
+          <div style="background:#F5F3FF;padding:9px 12px;display:flex;align-items:center;gap:8px"><span style="background:#7C3AED;color:#fff;border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;flex-shrink:0">4</span><span style="font-size:11.5px;font-weight:700;color:#4C1D95">Automatiser un raisonnement ou une méthode</span></div>
+          <div style="padding:10px 12px;font-size:12px;color:var(--text-sec)"><div style="font-style:italic;color:var(--text-muted);font-size:11px;margin-bottom:5px">Exemples de prompts :</div><ul style="list-style:none;display:grid;gap:4px"><li style="padding:4px 8px;background:var(--surface2);border-radius:5px;border-left:2px solid #C4B5FD;line-height:1.5">Donne-moi trois exercices progressifs sur [notion].</li><li style="padding:4px 8px;background:var(--surface2);border-radius:5px;border-left:2px solid #C4B5FD;line-height:1.5">Guide-moi pas à pas dans la résolution de cet exercice.</li><li style="padding:4px 8px;background:var(--surface2);border-radius:5px;border-left:2px solid #C4B5FD;line-height:1.5">Donne-moi un exercice avec une erreur cachée que je dois trouver.</li><li style="padding:4px 8px;background:var(--surface2);border-radius:5px;border-left:2px solid #C4B5FD;line-height:1.5">Ne me donne pas la réponse tout de suite — des indices si je bloque.</li></ul></div>
+        </div>
+        <div style="background:var(--surface);border:1.5px solid #CFFAFE;border-radius:var(--r);overflow:hidden">
+          <div style="background:#ECFEFF;padding:9px 12px;display:flex;align-items:center;gap:8px"><span style="background:#0E7490;color:#fff;border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;flex-shrink:0">5</span><span style="font-size:11.5px;font-weight:700;color:#164E63">Structurer ses idées pour rédiger</span></div>
+          <div style="padding:10px 12px;font-size:12px;color:var(--text-sec)"><div style="font-style:italic;color:var(--text-muted);font-size:11px;margin-bottom:5px">Exemples de prompts :</div><ul style="list-style:none;display:grid;gap:4px"><li style="padding:4px 8px;background:var(--surface2);border-radius:5px;border-left:2px solid #67E8F9;line-height:1.5">Propose-moi un plan détaillé pour répondre à cette question.</li><li style="padding:4px 8px;background:var(--surface2);border-radius:5px;border-left:2px solid #67E8F9;line-height:1.5">Quels sont les arguments pour et contre cette idée ?</li><li style="padding:4px 8px;background:var(--surface2);border-radius:5px;border-left:2px solid #67E8F9;line-height:1.5">Aide-moi à reformuler ma problématique pour la rendre plus précise.</li><li style="padding:4px 8px;background:var(--surface2);border-radius:5px;border-left:2px solid #67E8F9;line-height:1.5">Relis mon texte et dis-moi si mon raisonnement est clair. (Je rédige moi-même.)</li></ul></div>
+        </div>
+        <div style="background:var(--surface);border:1.5px solid #BBF7D0;border-radius:var(--r);overflow:hidden">
+          <div style="background:#F0FDF4;padding:9px 12px;display:flex;align-items:center;gap:8px"><span style="background:#16A34A;color:#fff;border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;flex-shrink:0">6</span><span style="font-size:11.5px;font-weight:700;color:#14532D">Transférer une compétence dans un autre contexte</span></div>
+          <div style="padding:10px 12px;font-size:12px;color:var(--text-sec)"><div style="font-style:italic;color:var(--text-muted);font-size:11px;margin-bottom:5px">Exemples de prompts :</div><ul style="list-style:none;display:grid;gap:4px"><li style="padding:4px 8px;background:var(--surface2);border-radius:5px;border-left:2px solid #6EE7B7;line-height:1.5">Donne-moi un autre exemple où cette règle s'applique.</li><li style="padding:4px 8px;background:var(--surface2);border-radius:5px;border-left:2px solid #6EE7B7;line-height:1.5">Cette notion existe-t-elle aussi en [autre discipline] ?</li><li style="padding:4px 8px;background:var(--surface2);border-radius:5px;border-left:2px solid #6EE7B7;line-height:1.5">Transforme cet exercice en un problème concret du quotidien.</li><li style="padding:4px 8px;background:var(--surface2);border-radius:5px;border-left:2px solid #6EE7B7;line-height:1.5">Comment ce principe est-il utilisé dans un métier ?</li></ul></div>
+        </div>
+        <div style="background:var(--surface);border:1.5px solid #FCA5A5;border-radius:var(--r);overflow:hidden">
+          <div style="background:#FEF2F2;padding:9px 12px;display:flex;align-items:center;gap:8px"><span style="background:#DC2626;color:#fff;border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;flex-shrink:0">7</span><span style="font-size:11.5px;font-weight:700;color:#7F1D1D">Développer sa pensée critique</span></div>
+          <div style="padding:10px 12px;font-size:12px;color:var(--text-sec)"><div style="font-style:italic;color:var(--text-muted);font-size:11px;margin-bottom:5px">Exemples de prompts :</div><ul style="list-style:none;display:grid;gap:4px"><li style="padding:4px 8px;background:var(--surface2);border-radius:5px;border-left:2px solid #FCA5A5;line-height:1.5">Quelle est ta source pour cette réponse ?</li><li style="padding:4px 8px;background:var(--surface2);border-radius:5px;border-left:2px solid #FCA5A5;line-height:1.5">Quels sont les différents points de vue sur ce sujet ?</li><li style="padding:4px 8px;background:var(--surface2);border-radius:5px;border-left:2px solid #FCA5A5;line-height:1.5">Quels arguments pourraient contredire cette idée ?</li><li style="padding:4px 8px;background:var(--surface2);border-radius:5px;border-left:2px solid #FCA5A5;line-height:1.5">Je vais vérifier ta réponse par moi-même. Donne-moi des pistes pour le faire.</li></ul></div>
+        </div>
+        <div style="background:var(--surface);border:1.5px solid #FDE68A;border-radius:var(--r);overflow:hidden">
+          <div style="background:#FFFBEB;padding:9px 12px;display:flex;align-items:center;gap:8px"><span style="background:#D97706;color:#fff;border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;flex-shrink:0">8</span><span style="font-size:11.5px;font-weight:700;color:#78350F">Rendre l'apprentissage ludique</span></div>
+          <div style="padding:10px 12px;font-size:12px;color:var(--text-sec)"><div style="font-style:italic;color:var(--text-muted);font-size:11px;margin-bottom:5px">Exemples de prompts :</div><ul style="list-style:none;display:grid;gap:4px"><li style="padding:4px 8px;background:var(--surface2);border-radius:5px;border-left:2px solid #FCD34D;line-height:1.5">Transforme ce cours en une histoire pour que je m'en souvienne mieux.</li><li style="padding:4px 8px;background:var(--surface2);border-radius:5px;border-left:2px solid #FCD34D;line-height:1.5">Fais-moi deviner cette notion avec des indices comme dans un jeu.</li><li style="padding:4px 8px;background:var(--surface2);border-radius:5px;border-left:2px solid #FCD34D;line-height:1.5">Crée-moi une mini-enquête où je dois retrouver la bonne réponse.</li><li style="padding:4px 8px;background:var(--surface2);border-radius:5px;border-left:2px solid #FCD34D;line-height:1.5">J'ai besoin que ce soit plus amusant pour rester motivé — propose une approche ludique.</li></ul></div>
+        </div>
+      </div>
+      <div style="background:#F1F5F9;border-left:3px solid #94A3B8;border-radius:8px;padding:10px 14px;margin-top:8px;font-size:12px;color:var(--text-sec)">
+        <strong style="color:var(--text)">Comment utiliser ces catégories en classe ?</strong> Distribuez cette liste aux élèves au format papier ou PDF. Pour un devoir de niveau 2 (usage explicite), demandez-leur de noter quelle catégorie ils ont utilisée et quels prompts ont été les plus utiles — c'est une trace réflexive précieuse.
+      </div>
+    </div>
+
     <div>
       <div class="prog-hdr"><span>Progression</span><span id="pg-a7">0 / 5 étapes</span></div>
       <div class="prog-bar"><div class="prog-fill" id="pf-a7" style="background:var(--c7);width:0%"></div></div>
@@ -2489,6 +2933,7 @@ function showToast() {
 
 // ── ROUE ──
 const WHEEL_ITEMS = [
+  { id:'a0', label:'Atelier 0', sub:'Prompts avancés',        color:'#4338CA' },
   { id:'a1', label:'Atelier 1', sub:'Préparation cours',      color:'#2563EB' },
   { id:'a2', label:'Atelier 2', sub:'Ressources interactives', color:'#7C3AED' },
   { id:'a3', label:'Atelier 3', sub:'Assistant IA',            color:'#4F46E5' },
