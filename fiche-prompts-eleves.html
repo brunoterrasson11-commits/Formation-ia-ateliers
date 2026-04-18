@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Comment bien utiliser l'IA pour tes devoirs — Fiche élève</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+    background: #F1F5F9;
+    color: #0F172A;
+    padding: 24px 16px 40px;
+  }
+
+  .page {
+    max-width: 900px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(0,0,0,.10);
+  }
+
+  /* HEADER */
+  .header {
+    background: linear-gradient(135deg, #831843 0%, #DB2777 100%);
+    padding: 28px 32px 24px;
+    color: #fff;
+  }
+  .header-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .header-tag {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.65);
+    margin-bottom: 5px;
+  }
+  .header h1 {
+    font-size: 22px;
+    font-weight: 900;
+    line-height: 1.2;
+    margin-bottom: 4px;
+  }
+  .header-sub {
+    font-size: 13px;
+    color: rgba(255,255,255,.75);
+    line-height: 1.5;
+  }
+  .source {
+    font-size: 10px;
+    color: rgba(255,255,255,.5);
+    margin-top: 14px;
+    font-style: italic;
+  }
+
+  /* INTRO BANDEAU */
+  .intro {
+    background: #FFF1F2;
+    border-bottom: 1px solid #FCE7F3;
+    padding: 14px 32px;
+    font-size: 13px;
+    color: #9D174D;
+    line-height: 1.65;
+  }
+  .intro strong { color: #831843; }
+
+  /* PRINT BTN */
+  .print-bar {
+    background: #F8FAFC;
+    border-bottom: 1px solid #E2E8F0;
+    padding: 10px 32px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .btn-print {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 16px;
+    background: #9D174D;
+    color: #fff;
+    border: none;
+    border-radius: 7px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background .15s;
+  }
+  .btn-print:hover { background: #831843; }
+  .print-hint { font-size: 11.5px; color: #94A3B8; }
+
+  /* BODY */
+  .body { padding: 24px 32px 32px; }
+
+  .section-title {
+    font-size: 10px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: .09em;
+    color: #94A3B8;
+    margin-bottom: 14px;
+  }
+
+  /* 8 CARDS GRID */
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .card {
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1.5px solid;
+  }
+  .card-hdr {
+    padding: 9px 13px;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+  }
+  .card-num {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .card-title {
+    font-size: 12px;
+    font-weight: 800;
+    line-height: 1.3;
+  }
+  .card-body {
+    padding: 9px 13px 11px;
+    background: #fff;
+  }
+  .card-obj {
+    font-size: 10.5px;
+    font-style: italic;
+    color: #94A3B8;
+    margin-bottom: 6px;
+  }
+  .prompts-list {
+    list-style: none;
+    display: grid;
+    gap: 4px;
+  }
+  .prompts-list li {
+    font-size: 11.5px;
+    line-height: 1.5;
+    padding: 4px 9px;
+    border-radius: 5px;
+    background: #F8FAFC;
+    border-left: 2.5px solid;
+    color: #334155;
+  }
+
+  /* RÈGLES D'OR */
+  .rules {
+    background: #F8FAFC;
+    border: 1.5px solid #E2E8F0;
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin-bottom: 20px;
+  }
+  .rules-title {
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: #475569;
+    margin-bottom: 10px;
+  }
+  .rules-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 7px;
+  }
+  .rule-item {
+    background: #fff;
+    border-radius: 7px;
+    padding: 9px 12px;
+    font-size: 12px;
+    line-height: 1.5;
+    border: 1px solid #E2E8F0;
+    color: #334155;
+  }
+  .rule-item strong { color: #0F172A; display: block; margin-bottom: 2px; }
+
+  /* FOOTER */
+  .footer {
+    background: #0F172A;
+    padding: 13px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .footer-txt { font-size: 10px; color: rgba(255,255,255,.45); }
+  .footer-strong { font-size: 11px; font-weight: 700; color: rgba(255,255,255,.7); }
+
+  /* PRINT */
+  @media print {
+    body { background: #fff; padding: 0; }
+    .page { box-shadow: none; border-radius: 0; max-width: 100%; }
+    .print-bar { display: none; }
+    .header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .card-hdr { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .card-num { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .prompts-list li { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .footer { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .intro { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .rules { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-top">
+      <div>
+        <div class="header-tag">Fiche méthode · Élève</div>
+        <h1>Comment bien utiliser l'IA<br>pour tes devoirs ?</h1>
+        <div class="header-sub">8 objectifs d'apprentissage · exemples de prompts à adapter</div>
+      </div>
+    </div>
+    <div class="source">Source : Groupe « IA et éducation », Inspecteurs du 2nd degré — Académie de Paris (mai 2025)</div>
+  </div>
+
+  <!-- INTRO -->
+  <div class="intro">
+    <strong>L'IA peut t'aider à apprendre — mais pas à apprendre à ta place.</strong> Utilise ces 8 catégories pour poser de bonnes questions selon ce que tu veux travailler. <strong>Adapte chaque prompt à ton cours, ton niveau, ta matière.</strong>
+  </div>
+
+  <!-- PRINT BAR -->
+  <div class="print-bar">
+    <button class="btn-print" onclick="window.print()">🖨 Imprimer / Enregistrer en PDF</button>
+    <span class="print-hint">Dans la boîte de dialogue d'impression, choisir « Enregistrer en PDF » pour obtenir le fichier.</span>
+  </div>
+
+  <!-- BODY -->
+  <div class="body">
+
+    <div class="section-title">8 manières de bien travailler avec l'IA</div>
+
+    <div class="grid">
+
+      <!-- 1 -->
+      <div class="card" style="border-color:#BFDBFE">
+        <div class="card-hdr" style="background:#EFF6FF">
+          <div class="card-num" style="background:#2563EB">1</div>
+          <div class="card-title" style="color:#1E3A8A">Vérifier ta compréhension d'une notion</div>
+        </div>
+        <div class="card-body">
+          <div class="card-obj">Objectif : m'assurer que j'ai bien compris et repérer mes lacunes</div>
+          <ul class="prompts-list">
+            <li style="border-color:#93C5FD">Peux-tu expliquer [notion] avec des mots simples ?</li>
+            <li style="border-color:#93C5FD">Peux-tu me poser 5 questions pour vérifier ma compréhension de [notion] ?</li>
+            <li style="border-color:#93C5FD">Si j'ai bien compris, [ma reformulation]. Est-ce correct ?</li>
+            <li style="border-color:#93C5FD">Quelles sont les erreurs fréquentes sur ce sujet ?</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 2 -->
+      <div class="card" style="border-color:#A7F3D0">
+        <div class="card-hdr" style="background:#ECFDF5">
+          <div class="card-num" style="background:#059669">2</div>
+          <div class="card-title" style="color:#064E3B">Tester ta mémorisation</div>
+        </div>
+        <div class="card-body">
+          <div class="card-obj">Objectif : vérifier ce que j'ai retenu et repérer ce qu'il me reste à apprendre</div>
+          <ul class="prompts-list">
+            <li style="border-color:#6EE7B7">Transforme ce cours en une liste de points clés à retenir.</li>
+            <li style="border-color:#6EE7B7">Crée un quiz avec des questions à choix multiples sur ce sujet.</li>
+            <li style="border-color:#6EE7B7">Cache certains mots dans ce résumé pour que je les retrouve moi-même.</li>
+            <li style="border-color:#6EE7B7">Pose-moi des questions de plus en plus difficiles sur ce cours.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 3 -->
+      <div class="card" style="border-color:#FED7AA">
+        <div class="card-hdr" style="background:#FFF7ED">
+          <div class="card-num" style="background:#EA580C">3</div>
+          <div class="card-title" style="color:#7C2D12">Vérifier ta compréhension d'une méthode</div>
+        </div>
+        <div class="card-body">
+          <div class="card-obj">Objectif : m'assurer que je sais appliquer correctement toutes les étapes</div>
+          <ul class="prompts-list">
+            <li style="border-color:#FDBA74">Explique étape par étape comment résoudre [type d'exercice].</li>
+            <li style="border-color:#FDBA74">Quelles sont les erreurs fréquentes quand on applique cette méthode ?</li>
+            <li style="border-color:#FDBA74">Pose-moi des questions où je dois retrouver l'étape manquante.</li>
+            <li style="border-color:#FDBA74">Propose-moi une version simplifiée de cette méthode pour commencer.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 4 -->
+      <div class="card" style="border-color:#DDD6FE">
+        <div class="card-hdr" style="background:#F5F3FF">
+          <div class="card-num" style="background:#7C3AED">4</div>
+          <div class="card-title" style="color:#4C1D95">Automatiser un raisonnement ou une méthode</div>
+        </div>
+        <div class="card-body">
+          <div class="card-obj">Objectif : répéter pour développer des automatismes</div>
+          <ul class="prompts-list">
+            <li style="border-color:#C4B5FD">Donne-moi trois exercices progressifs sur [notion].</li>
+            <li style="border-color:#C4B5FD">Guide-moi pas à pas dans la résolution de cet exercice.</li>
+            <li style="border-color:#C4B5FD">Donne-moi un exercice avec une erreur cachée que je dois trouver.</li>
+            <li style="border-color:#C4B5FD">Ne me donne pas la réponse tout de suite — des indices si je bloque.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 5 -->
+      <div class="card" style="border-color:#CFFAFE">
+        <div class="card-hdr" style="background:#ECFEFF">
+          <div class="card-num" style="background:#0E7490">5</div>
+          <div class="card-title" style="color:#164E63">Structurer ses idées pour rédiger</div>
+        </div>
+        <div class="card-body">
+          <div class="card-obj">Objectif : organiser ma réflexion et éviter le hors-sujet</div>
+          <ul class="prompts-list">
+            <li style="border-color:#67E8F9">Propose-moi un plan détaillé pour répondre à cette question.</li>
+            <li style="border-color:#67E8F9">Quels sont les arguments pour et contre cette idée ?</li>
+            <li style="border-color:#67E8F9">Aide-moi à reformuler ma problématique pour la rendre plus précise.</li>
+            <li style="border-color:#67E8F9">Relis mon texte et dis-moi si mon raisonnement est clair. (Je rédige moi-même.)</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 6 -->
+      <div class="card" style="border-color:#BBF7D0">
+        <div class="card-hdr" style="background:#F0FDF4">
+          <div class="card-num" style="background:#16A34A">6</div>
+          <div class="card-title" style="color:#14532D">Transférer une compétence dans un autre contexte</div>
+        </div>
+        <div class="card-body">
+          <div class="card-obj">Objectif : apprendre à appliquer une notion à de nouvelles situations</div>
+          <ul class="prompts-list">
+            <li style="border-color:#6EE7B7">Donne-moi un autre exemple où cette règle s'applique.</li>
+            <li style="border-color:#6EE7B7">Cette notion existe-t-elle aussi en [autre discipline] ?</li>
+            <li style="border-color:#6EE7B7">Transforme cet exercice en un problème concret du quotidien.</li>
+            <li style="border-color:#6EE7B7">Comment ce principe est-il utilisé dans un métier ?</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 7 -->
+      <div class="card" style="border-color:#FCA5A5">
+        <div class="card-hdr" style="background:#FEF2F2">
+          <div class="card-num" style="background:#DC2626">7</div>
+          <div class="card-title" style="color:#7F1D1D">Développer ta pensée critique</div>
+        </div>
+        <div class="card-body">
+          <div class="card-obj">Objectif : apprendre à questionner l'information et évaluer sa pertinence</div>
+          <ul class="prompts-list">
+            <li style="border-color:#FCA5A5">Quelle est ta source pour cette réponse ?</li>
+            <li style="border-color:#FCA5A5">Quels sont les différents points de vue sur ce sujet ?</li>
+            <li style="border-color:#FCA5A5">Quels arguments pourraient contredire cette idée ?</li>
+            <li style="border-color:#FCA5A5">Je vais vérifier ta réponse par moi-même. Donne-moi des pistes.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 8 -->
+      <div class="card" style="border-color:#FDE68A">
+        <div class="card-hdr" style="background:#FFFBEB">
+          <div class="card-num" style="background:#D97706">8</div>
+          <div class="card-title" style="color:#78350F">Rendre l'apprentissage ludique</div>
+        </div>
+        <div class="card-body">
+          <div class="card-obj">Objectif : rendre l'étude plus motivante et interactive</div>
+          <ul class="prompts-list">
+            <li style="border-color:#FCD34D">Transforme ce cours en une histoire pour que je m'en souvienne mieux.</li>
+            <li style="border-color:#FCD34D">Fais-moi deviner cette notion avec des indices comme dans un jeu.</li>
+            <li style="border-color:#FCD34D">Crée-moi une mini-enquête où je dois retrouver la bonne réponse.</li>
+            <li style="border-color:#FCD34D">J'ai besoin que ce soit plus amusant — propose une approche ludique.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div><!-- /grid -->
+
+    <!-- RÈGLES D'OR -->
+    <div class="rules">
+      <div class="rules-title">⚠ Ce que l'IA ne doit pas faire à ta place</div>
+      <div class="rules-grid">
+        <div class="rule-item"><strong>🧠 Mémoriser à ta place</strong>C'est ton cerveau qui apprend. Sans effort de mémorisation, tu ne pourras pas utiliser tes connaissances en classe.</div>
+        <div class="rule-item"><strong>👥 Remplacer les échanges humains</strong>L'apprentissage passe aussi par les discussions avec tes camarades et tes enseignants.</div>
+        <div class="rule-item"><strong>🤔 Penser et décider à ta place</strong>L'IA donne des suggestions. Tu dois exercer ton esprit critique et faire confiance à ton raisonnement.</div>
+        <div class="rule-item"><strong>🔍 Remplacer un moteur de recherche</strong>Les IA génératives peuvent inventer des informations. Toujours vérifier avec une source fiable.</div>
+      </div>
+    </div>
+
+  </div><!-- /body -->
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-strong">Comment bien utiliser l'IA pour tes devoirs — Fiche élève</div>
+    <div class="footer-txt">Académie de Paris · mai 2025 · formation-ia-j2.vercel.app</div>
+  </div>
+
+</div><!-- /page -->
+
+</body>
+</html>
