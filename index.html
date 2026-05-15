@@ -33,6 +33,18 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,'Helvetica Neue',Ar
 .nbadge{font-size:9px;background:rgba(255,255,255,.1);color:rgba(255,255,255,.45);padding:1px 5px;border-radius:4px}
 .nchk{font-size:10px;color:var(--ok)}
 
+/* FORMATEUR */
+.form-toggle-btn{display:block;width:100%;padding:9px 10px;border:none;background:rgba(255,255,255,.08);border-radius:7px;color:rgba(255,255,255,.7);font-size:12px;text-align:left;cursor:pointer;transition:background .12s;margin-top:6px}
+.form-toggle-btn:hover{background:rgba(255,255,255,.14);color:#fff}
+.formateur-panel{padding:10px 2px 6px}
+.form-gen-btn{width:100%;padding:9px 10px;background:#4338CA;border:none;border-radius:7px;color:#fff;font-size:12px;font-weight:600;cursor:pointer;transition:background .12s}
+.form-gen-btn:hover{background:#3730A3}
+.qr-modal{position:fixed;inset:0;background:rgba(0,0,0,.75);display:flex;align-items:center;justify-content:center;z-index:9999;cursor:pointer}
+.qr-modal-inner{background:#fff;border-radius:16px;padding:24px;text-align:center;max-width:90vw;max-height:90vh;box-shadow:0 20px 60px rgba(0,0,0,.4)}
+.qr-modal-inner img{width:min(75vw,75vh);height:min(75vw,75vh);display:block}
+.qr-modal-inner p{font-size:13px;color:#444;margin-top:12px}
+.qr-modal-inner small{font-size:11px;color:#999;display:block;margin-top:4px}
+
 /* TIMER */
 .timer-box{padding:13px 16px;border-top:1px solid rgba(255,255,255,.08);background:rgba(0,0,0,.2)}
 .timer-lbl{font-size:10px;color:var(--sb-muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px}
@@ -485,6 +497,19 @@ function checkLock(){
     <button class="nb" onclick="go('docs',this)">
       <span style="font-size:14px">📚</span><span>Ressources documentaires</span>
     </button>
+
+    <div style="border-top:1px solid rgba(255,255,255,.08);margin-top:8px;padding-top:8px">
+      <button class="form-toggle-btn" id="formateur-toggle" onclick="toggleFormateurPanel()">
+        ⚙️ Configurer la session
+      </button>
+      <div id="formateur-panel" class="formateur-panel" style="display:none">
+        <button class="form-gen-btn" onclick="genJ2Link()">🔗 Générer le lien de session</button>
+        <div id="form-qr-box" style="display:none;text-align:center;margin-top:10px;background:#fff;border-radius:8px;padding:8px;cursor:pointer" onclick="openQrModal()">
+          <img id="form-qr-img" src="" alt="QR Code" style="width:100%;max-width:210px;border-radius:4px;display:block;margin:0 auto">
+          <div style="font-size:9.5px;color:#666;margin-top:5px">🔍 Cliquer pour agrandir</div>
+        </div>
+      </div>
+    </div>
   </nav>
   <div class="timer-box">
     <div class="timer-lbl">⏱ Chronomètre</div>
@@ -3560,6 +3585,46 @@ function closeMissionModal(e){
 }
 
 document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMissionModal(null);});
+
+// ── CONFIGURER LA SESSION ──────────────────────────────────────
+function toggleFormateurPanel() {
+  const panel = document.getElementById('formateur-panel');
+  if (!panel) return;
+  panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+}
+
+function genJ2Link() {
+  const url = 'https://formation-ia-j2.vercel.app';
+  const qrImg = document.getElementById('form-qr-img');
+  qrImg.src = 'https://api.qrserver.com/v1/create-qr-code/?size=400x400&color=0B1120&bgcolor=ffffff&qzone=1&data=' + encodeURIComponent(url);
+  document.getElementById('form-qr-box').style.display = 'block';
+}
+
+// ── MODALE QR CODE ─────────────────────────────────────────────
+function openQrModal() {
+  const src = document.getElementById('form-qr-img').src;
+  if (!src) return;
+  const m = document.createElement('div');
+  m.className = 'qr-modal';
+  m.id = 'qr-modal';
+  m.innerHTML =
+    '<div class="qr-modal-inner" onclick="event.stopPropagation()">' +
+    '<img src="' + src.replace('400x400','700x700') + '" alt="QR Code session">' +
+    '<p><strong>QR Code — Session Journée 2</strong></p>' +
+    '<small>Cliquez ailleurs ou appuyez sur Échap pour fermer</small>' +
+    '</div>';
+  m.onclick = closeQrModal;
+  document.body.appendChild(m);
+  document.addEventListener('keydown', _qrEsc);
+}
+
+function closeQrModal() {
+  const m = document.getElementById('qr-modal');
+  if (m) m.remove();
+  document.removeEventListener('keydown', _qrEsc);
+}
+
+function _qrEsc(e) { if (e.key === 'Escape') closeQrModal(); }
 </script>
 </body>
 </html>
